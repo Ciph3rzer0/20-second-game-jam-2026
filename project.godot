@@ -133,6 +133,10 @@ loading_scene_path="res://scenes/loading_screens/loading_screen.tscn"
 
 disable_install_audio_busses=true
 
+[navigation]
+
+avoidance/name="Game Template"
+
 [physics]
 
 common/enable_pause_aware_picking=true
