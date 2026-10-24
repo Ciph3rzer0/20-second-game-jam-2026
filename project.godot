@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Game Template"
+config/name="20 Second game - josh & anthony"
 run/main_scene="res://scenes/opening/opening.tscn"
 config/features=PackedStringArray("4.7")
 config/icon="res://icon.png"
@@ -40,6 +40,7 @@ enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg", "res:
 
 [gui]
 
+theme/custom="res://resources/themes/expedition.tres"
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]
