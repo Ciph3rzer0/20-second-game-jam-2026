@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://c8rukw01kdir"]
+
+[ext_resource type="PackedScene" uid="uid://dytw1n4u10xe" path="res://scenes/game/spacechem/atom.tscn" id="1_n2r6d"]
+[ext_resource type="Script" uid="uid://dcxvxenrwn44c" path="res://scenes/game/spacechem/atom_spawner.gd" id="2_ussss"]
+
+[node name="Test Spacechem" type="Node2D" unique_id=69965068]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1954086795]
+
+[node name="Atom" parent="." unique_id=2002835070 instance=ExtResource("1_n2r6d")]
+
+[node name="AtomSpawner" type="Node2D" parent="." unique_id=920176691]
+position = Vector2(-508, 0)
+script = ExtResource("2_ussss")
+
+[node name="Timer" type="Timer" parent="AtomSpawner" unique_id=1365292616]
+process_callback = 0
+autostart = true
+
+[node name="Atom1" parent="AtomSpawner" unique_id=2108689141 instance=ExtResource("1_n2r6d")]
+
+[node name="Atom2" parent="AtomSpawner" unique_id=524775349 instance=ExtResource("1_n2r6d")]
+
+[node name="Atom3" parent="AtomSpawner" unique_id=181744842 instance=ExtResource("1_n2r6d")]
+
+[node name="Atom4" parent="AtomSpawner" unique_id=888149749 instance=ExtResource("1_n2r6d")]
+
+[node name="Atom5" parent="AtomSpawner" unique_id=1201896626 instance=ExtResource("1_n2r6d")]
+
+[node name="Atom6" parent="AtomSpawner" unique_id=1609927803 instance=ExtResource("1_n2r6d")]
+
+[node name="Atom7" parent="AtomSpawner" unique_id=41488712 instance=ExtResource("1_n2r6d")]
+
+[connection signal="timeout" from="AtomSpawner/Timer" to="AtomSpawner" method="spawn_atom"]

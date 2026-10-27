@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dytw1n4u10xe"]
+
+[ext_resource type="Texture2D" uid="uid://bxet5sqcunwhl" path="res://scenes/game/spacechem/white_circle_gradient_texture.tres" id="1_pf6bh"]
+[ext_resource type="Script" uid="uid://dkris46alkxp4" path="res://scenes/game/spacechem/atom.gd" id="2_pjqkp"]
+[ext_resource type="Script" uid="uid://dws3sj7mh4wbi" path="res://scenes/game/spacechem/atom_behavior.gd" id="3_i0lbn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_krb5w"]
+radius = 13.0
+
+[node name="Atom" type="CharacterBody2D" unique_id=1750067703]
+script = ExtResource("2_pjqkp")
+
+[node name="Graphics" type="Node2D" parent="." unique_id=1130469000]
+scale = Vector2(2.0354047, 2.0354047)
+
+[node name="Outline" type="Sprite2D" parent="Graphics" unique_id=2002835070]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("1_pf6bh")
+
+[node name="White" type="Sprite2D" parent="Graphics" unique_id=1184952459]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_pf6bh")
+
+[node name="Direction" type="Sprite2D" parent="Graphics" unique_id=91279179]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(9.000001, 0)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_pf6bh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=941921674]
+shape = SubResource("CircleShape2D_krb5w")
+
+[node name="Behavior" type="Node" parent="." unique_id=1903217767]
+script = ExtResource("3_i0lbn")
+
+[node name="NumberLabel" type="Label" parent="." unique_id=355215112]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -12.5
+offset_right = 12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "-"
+horizontal_alignment = 1
