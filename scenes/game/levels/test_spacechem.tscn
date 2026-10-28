@@ -2,6 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://dytw1n4u10xe" path="res://scenes/game/spacechem/atom.tscn" id="1_n2r6d"]
 [ext_resource type="Script" uid="uid://dcxvxenrwn44c" path="res://scenes/game/spacechem/atom_spawner.gd" id="2_ussss"]
+[ext_resource type="Script" uid="uid://d1rfpfbo4m270" path="res://scenes/game/levels/atom_switch.gd" id="3_brhhv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_krb5w"]
+radius = 20.0
 
 [node name="Test Spacechem" type="Node2D" unique_id=69965068]
 
@@ -31,4 +35,14 @@ autostart = true
 
 [node name="Atom7" parent="AtomSpawner" unique_id=41488712 instance=ExtResource("1_n2r6d")]
 
+[node name="AtomSwitch" type="Area2D" parent="." unique_id=894883763]
+position = Vector2(186, 0)
+script = ExtResource("3_brhhv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AtomSwitch" unique_id=788761213]
+shape = SubResource("CircleShape2D_krb5w")
+
+[node name="Sprite2D" type="Sprite2D" parent="AtomSwitch" unique_id=1813215905]
+
 [connection signal="timeout" from="AtomSpawner/Timer" to="AtomSpawner" method="spawn_atom"]
+[connection signal="body_entered" from="AtomSwitch" to="AtomSwitch" method="_on_body_entered"]
