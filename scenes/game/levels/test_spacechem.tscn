@@ -3,6 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://dytw1n4u10xe" path="res://scenes/game/spacechem/atom.tscn" id="1_n2r6d"]
 [ext_resource type="Script" uid="uid://dcxvxenrwn44c" path="res://scenes/game/spacechem/atom_spawner.gd" id="2_ussss"]
 [ext_resource type="Script" uid="uid://d1rfpfbo4m270" path="res://scenes/game/levels/atom_switch.gd" id="3_brhhv"]
+[ext_resource type="Material" uid="uid://bpn1h0pxe8val" path="res://scenes/game/spacechem/path_dashed_line.tres" id="4_od0l8"]
+[ext_resource type="Script" uid="uid://b7sf46g72cp21" path="res://addons/node_editor/map_graph.gd" id="5_jqs26"]
+[ext_resource type="Script" uid="uid://51vv0tyfj4j6" path="res://addons/node_editor/map_node.gd" id="6_yjarg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_krb5w"]
 radius = 20.0
@@ -10,11 +13,13 @@ radius = 20.0
 [node name="Test Spacechem" type="Node2D" unique_id=69965068]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1954086795]
+position = Vector2(640, 360)
 
 [node name="Atom" parent="." unique_id=2002835070 instance=ExtResource("1_n2r6d")]
+position = Vector2(658, 505)
 
 [node name="AtomSpawner" type="Node2D" parent="." unique_id=920176691]
-position = Vector2(-508, 0)
+position = Vector2(150, 505)
 script = ExtResource("2_ussss")
 
 [node name="Timer" type="Timer" parent="AtomSpawner" unique_id=1365292616]
@@ -36,13 +41,57 @@ autostart = true
 [node name="Atom7" parent="AtomSpawner" unique_id=41488712 instance=ExtResource("1_n2r6d")]
 
 [node name="AtomSwitch" type="Area2D" parent="." unique_id=894883763]
-position = Vector2(186, 0)
+position = Vector2(844, 505)
 script = ExtResource("3_brhhv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AtomSwitch" unique_id=788761213]
 shape = SubResource("CircleShape2D_krb5w")
 
 [node name="Sprite2D" type="Sprite2D" parent="AtomSwitch" unique_id=1813215905]
+
+[node name="MapGraph" type="Node2D" parent="." unique_id=1009461681]
+material = ExtResource("4_od0l8")
+position = Vector2(658, 505)
+script = ExtResource("5_jqs26")
+edge_width = 4.0
+tile_length = 100.0
+metadata/_custom_type_script = "uid://b7sf46g72cp21"
+
+[node name="MapNode" type="Node2D" parent="MapGraph" unique_id=492152308 node_paths=PackedStringArray("connections")]
+position = Vector2(67, 25)
+script = ExtResource("6_yjarg")
+connections = [NodePath("../MapNode2")]
+metadata/_custom_type_script = "uid://51vv0tyfj4j6"
+
+[node name="MapNode2" type="Node2D" parent="MapGraph" unique_id=1856065545 node_paths=PackedStringArray("connections")]
+position = Vector2(114, -12)
+script = ExtResource("6_yjarg")
+connections = [NodePath("../MapNode5")]
+metadata/_custom_type_script = "uid://51vv0tyfj4j6"
+
+[node name="MapNode3" type="Node2D" parent="MapGraph" unique_id=1751001604 node_paths=PackedStringArray("connections")]
+position = Vector2(209, 34)
+script = ExtResource("6_yjarg")
+connections = [NodePath("../MapNode4")]
+metadata/_custom_type_script = "uid://51vv0tyfj4j6"
+
+[node name="MapNode5" type="Node2D" parent="MapGraph" unique_id=1604046195 node_paths=PackedStringArray("connections")]
+position = Vector2(240, -42)
+script = ExtResource("6_yjarg")
+connections = [NodePath("../MapNode3")]
+metadata/_custom_type_script = "uid://51vv0tyfj4j6"
+
+[node name="MapNode4" type="Node2D" parent="MapGraph" unique_id=718745510 node_paths=PackedStringArray("connections")]
+position = Vector2(182, 21)
+script = ExtResource("6_yjarg")
+connections = [NodePath("../MapNode2")]
+metadata/_custom_type_script = "uid://51vv0tyfj4j6"
+
+[node name="MapNode6" type="Node2D" parent="MapGraph" unique_id=1725561572 node_paths=PackedStringArray("connections")]
+position = Vector2(98, 55)
+script = ExtResource("6_yjarg")
+connections = [NodePath("../MapNode2"), NodePath("../MapNode3")]
+metadata/_custom_type_script = "uid://51vv0tyfj4j6"
 
 [connection signal="timeout" from="AtomSpawner/Timer" to="AtomSpawner" method="spawn_atom"]
 [connection signal="body_entered" from="AtomSwitch" to="AtomSwitch" method="_on_body_entered"]
