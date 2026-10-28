@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bxet5sqcunwhl" path="res://scenes/game/spacechem/white_circle_gradient_texture.tres" id="1_pf6bh"]
 [ext_resource type="Script" uid="uid://dkris46alkxp4" path="res://scenes/game/spacechem/atom.gd" id="2_pjqkp"]
 [ext_resource type="Script" uid="uid://dws3sj7mh4wbi" path="res://scenes/game/spacechem/atom_behavior.gd" id="3_i0lbn"]
+[ext_resource type="Script" uid="uid://51vv0tyfj4j6" path="res://addons/node_editor/map_node.gd" id="4_0kd4i"]
+[ext_resource type="Script" uid="uid://b7sf46g72cp21" path="res://addons/node_editor/map_graph.gd" id="5_6ygy2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_krb5w"]
 radius = 13.0
@@ -49,3 +51,37 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "-"
 horizontal_alignment = 1
+
+[node name="MapGraph" type="Node2D" parent="." unique_id=178663950]
+script = ExtResource("5_6ygy2")
+metadata/_custom_type_script = "uid://b7sf46g72cp21"
+
+[node name="MapNode" type="Node2D" parent="MapGraph" unique_id=133116160 node_paths=PackedStringArray("connections")]
+position = Vector2(67, 25)
+script = ExtResource("4_0kd4i")
+connections = [NodePath("../MapNode2")]
+metadata/_custom_type_script = "uid://51vv0tyfj4j6"
+
+[node name="MapNode2" type="Node2D" parent="MapGraph" unique_id=1911607827 node_paths=PackedStringArray("connections")]
+position = Vector2(114, -12)
+script = ExtResource("4_0kd4i")
+connections = [NodePath("../MapNode5")]
+metadata/_custom_type_script = "uid://51vv0tyfj4j6"
+
+[node name="MapNode3" type="Node2D" parent="MapGraph" unique_id=508016372 node_paths=PackedStringArray("connections")]
+position = Vector2(209, 34)
+script = ExtResource("4_0kd4i")
+connections = [NodePath("../MapNode4")]
+metadata/_custom_type_script = "uid://51vv0tyfj4j6"
+
+[node name="MapNode5" type="Node2D" parent="MapGraph" unique_id=1825662266 node_paths=PackedStringArray("connections")]
+position = Vector2(240, -42)
+script = ExtResource("4_0kd4i")
+connections = [NodePath("../MapNode3")]
+metadata/_custom_type_script = "uid://51vv0tyfj4j6"
+
+[node name="MapNode4" type="Node2D" parent="MapGraph" unique_id=105907676 node_paths=PackedStringArray("connections")]
+position = Vector2(208, -10)
+script = ExtResource("4_0kd4i")
+connections = [NodePath("../MapNode2")]
+metadata/_custom_type_script = "uid://51vv0tyfj4j6"
