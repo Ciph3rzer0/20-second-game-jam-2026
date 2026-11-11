@@ -11,11 +11,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	for action in _held:
-		if Input.is_action_pressed(action):
+		if Input.is_action_just_pressed(action):
+			_held[action] = 0
+		elif Input.is_action_pressed(action):
 			_held[action] += delta
 			hold_progress.emit(action, minf(_held[action] / hold_time, 1.0))
 			if _held[action] >= hold_time:
-				_held[action] = 0.0
+				_held[action] = -100.0
 				_trigger(action)
 		elif _held[action] > 0.0:
 			_held[action] = 0.0
