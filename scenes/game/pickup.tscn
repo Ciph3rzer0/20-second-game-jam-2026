@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dnk1epprcnqdl"]
+
+[ext_resource type="Script" uid="uid://dosqdk4jpyp31" path="res://pickup.gd" id="1_kbw5p"]
+[ext_resource type="Resource" uid="uid://cwhrjbmmhrnn7" path="res://scenes/game/player/upgrades/speed_upgrade.tres" id="2_86qlm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8i87d"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_krb5w"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_krb5w"]
+
+[node name="Pickup" type="Area3D" unique_id=1048115677]
+script = ExtResource("1_kbw5p")
+upgrade = ExtResource("2_86qlm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1304640246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.0068473816)
+material_override = SubResource("StandardMaterial3D_8i87d")
+mesh = SubResource("SphereMesh_krb5w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1398602344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_krb5w")
