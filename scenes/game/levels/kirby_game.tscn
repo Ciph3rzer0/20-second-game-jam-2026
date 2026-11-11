@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dicu4yguy0o6m"]
 
-[ext_resource type="Script" uid="uid://bbm5sxfbhkypq" path="res://player.gd" id="1_ripiw"]
+[ext_resource type="Script" uid="uid://bbm5sxfbhkypq" path="res://scenes/game/player/player.gd" id="1_o7uk8"]
+[ext_resource type="Script" uid="uid://dosqdk4jpyp31" path="res://pickup.gd" id="2_lqk0u"]
+[ext_resource type="Resource" uid="uid://cwhrjbmmhrnn7" path="res://scenes/game/player/upgrades/speed_upgrade.tres" id="3_lqk0u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wvbpc"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -23,6 +25,12 @@ height = 0.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_krb5w"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8i87d"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_krb5w"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_krb5w"]
+
 [node name="Kirby Game" type="Node3D" unique_id=219900912]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2141334000]
@@ -36,7 +44,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1695591333]
-script = ExtResource("1_ripiw")
+script = ExtResource("1_o7uk8")
 
 [node name="Body" type="MeshInstance3D" parent="Player" unique_id=1736768690]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -54,3 +62,17 @@ shape = SubResource("CapsuleShape3D_krb5w")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(100, 1, 100)
+
+[node name="Pickup" type="Area3D" parent="." unique_id=1185522909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+script = ExtResource("2_lqk0u")
+upgrade = ExtResource("3_lqk0u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pickup" unique_id=1776006137]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.0068473816)
+material_override = SubResource("StandardMaterial3D_8i87d")
+mesh = SubResource("SphereMesh_krb5w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pickup" unique_id=146768306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_krb5w")
