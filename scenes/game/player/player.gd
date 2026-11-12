@@ -37,6 +37,8 @@ const DIRECTION_COUNT := 8
 @export var move_speed: float = 6.0
 @export var ground_acceleration: float = 80.0
 @export var ground_deceleration: float = 100.0
+## While cotton_candy floats in a zone this close to the floor, use ground control.
+@export var float_control_height: float = 0.6
 @export var air_acceleration: float = 30.0
 @export var air_deceleration: float = 10.0
 ## Applied to the combined stick vector before 8-way snapping.
@@ -225,9 +227,18 @@ func _try_jump() -> void:
 
 # --- Horizontal ------------------------------------------------------------
 
+func _near_floor() -> bool:
+	var params := PhysicsTestMotionParameters3D.new()
+	params.from = global_transform
+	params.motion = Vector3.DOWN * float_control_height
+	return PhysicsServer3D.body_test_motion(get_rid(), params)
+
 func _apply_horizontal(delta: float, on_floor: bool) -> void:
+	# Lifted slightly by an updraft counts as grounded for control purposes.
+	var grounded: bool = on_floor or (cotton_candy and _zone != null and _near_floor())
+
 	var dir := move_direction
-	var speed := move_speed if on_floor else _air_speed
+	var speed := move_speed if grounded else _air_speed
 	if is_dashing:
 		if dir != Vector3.ZERO:
 			_dash_direction = dir
@@ -236,7 +247,7 @@ func _apply_horizontal(delta: float, on_floor: bool) -> void:
 
 	var target := dir * speed
 	var rate: float
-	if on_floor or is_dashing:
+	if grounded or is_dashing:
 		rate = ground_acceleration if dir != Vector3.ZERO else ground_deceleration
 	else:
 		rate = air_acceleration if dir != Vector3.ZERO else air_deceleration
