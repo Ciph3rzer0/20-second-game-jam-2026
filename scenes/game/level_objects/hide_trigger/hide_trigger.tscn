@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dfifonwu0o5eb"]
+
+[ext_resource type="Script" uid="uid://fao87fbgaa4w" path="res://scenes/game/level_objects/hide_trigger/hide_trigger.gd" id="1_ob8qn"]
+
+[node name="HideTrigger" type="Area3D" unique_id=1283546342]
+collision_mask = 256
+script = ExtResource("1_ob8qn")

@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="7_gm86f"]
 [ext_resource type="Script" uid="uid://drhp0v8ueri1p" path="res://scenes/game/player/effects/cotton_candy_effect.gd" id="8_c5i6r"]
 [ext_resource type="Texture2D" uid="uid://bn1rkbo65u0ib" path="res://assets/flat/cotton_candy.png" id="8_vuxjq"]
+[ext_resource type="PackedScene" uid="uid://dfifonwu0o5eb" path="res://scenes/game/level_objects/hide_trigger/hide_trigger.tscn" id="12_qoke0"]
 [ext_resource type="Texture2D" uid="uid://3wu1lbkmlqr3" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_orange_512x512.png" id="12_vuxjq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wvbpc"]
@@ -47,6 +48,9 @@ albedo_texture = ExtResource("4_bfu6m")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 uv1_world_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_krb5w"]
+size = Vector3(7, 2, 5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qoke0"]
 albedo_texture = ExtResource("12_vuxjq")
@@ -134,6 +138,14 @@ size = Vector3(1, 5, 4)
 
 [node name="Updraft" parent="." unique_id=1952319572 instance=ExtResource("7_gm86f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, 5.5)
+
+[node name="HideTrigger" parent="." unique_id=1283546342 node_paths=PackedStringArray("nodes_to_hide") instance=ExtResource("12_qoke0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 0.5)
+nodes_to_hide = [NodePath("../Level2")]
+
+[node name="Trigger Box" type="CollisionShape3D" parent="HideTrigger" unique_id=538955210]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_krb5w")
 
 [node name="Level2" type="Node3D" parent="." unique_id=1256520527]
 
