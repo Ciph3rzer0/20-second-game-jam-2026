@@ -82,6 +82,9 @@ var is_dashing := false
 ## Active gravity acceleration (world space). Set automatically by gravity zones.
 var gravity_vector := Vector3.DOWN * 9.8
 
+## When true, gravity zones push the opposite way (low-gravity updrafts lift the player).
+var cotton_candy := false
+
 var _gravity := 9.8  # base gravity magnitude, also used for the jump impulse
 var _default_gravity := Vector3.DOWN * 9.8
 var _zone: Area3D
@@ -175,8 +178,10 @@ func _update_gravity(delta: float) -> void:
 			dir = (_zone.to_global(_zone.gravity_point_center) - global_position).normalized()
 		else:
 			dir = _zone.gravity_direction.normalized()
-		gravity_vector = dir * _zone.gravity * gravity_scale
-		# Only COMBINE adds to the default gravity. The other modes replace it.
+		var zone_gravity := dir * _zone.gravity * gravity_scale
+		if cotton_candy:
+			zone_gravity = -zone_gravity / 3.0
+		gravity_vector = zone_gravity
 		if _zone.gravity_space_override == Area3D.SPACE_OVERRIDE_COMBINE:
 			gravity_vector += _default_gravity
 	else:
@@ -195,6 +200,12 @@ func _apply_gravity(delta: float, on_floor: bool) -> void:
 		return
 	var mult := fall_gravity_multiplier if (velocity.y < 0.0 and g > 0.0) else 1.0
 	velocity.y = clampf(velocity.y - g * mult * delta, -max_fall_speed, max_fall_speed)
+
+	# Cotton candy: updrafts cap upward speed at the zone's float_velocity.
+	if cotton_candy and _zone:
+		var cap: Variant = _zone.get(&"float_velocity")
+		if cap != null:
+			velocity.y = minf(velocity.y, float(cap))
 
 
 func _try_jump() -> void:

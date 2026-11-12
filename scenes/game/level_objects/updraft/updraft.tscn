@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bcsv33tc6xux5"]
 
+[ext_resource type="Script" uid="uid://buqp0xbyh6yh3" path="res://scenes/game/level_objects/updraft/updraft.gd" id="1_8nirh"]
 [ext_resource type="Material" uid="uid://dur48is30gxyd" path="res://scenes/game/level_objects/updraft/bubble_particle_material.tres" id="1_f0tcq"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iue01"]
@@ -25,6 +26,7 @@ gravity_space_override = 3
 gravity_point_center = Vector3(0, 1, 0)
 gravity_direction = Vector3(0, 1, 0)
 gravity = -2.0
+script = ExtResource("1_8nirh")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=222366728]
 amount = 24
