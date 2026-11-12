@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dicu4yguy0o6m"]
 
+[ext_resource type="Script" uid="uid://di0qejwprb2fr" path="res://scenes/game/hud/timer.gd" id="1_c5i6r"]
 [ext_resource type="PackedScene" uid="uid://rxe83v08frni" path="res://scenes/game/player/player.tscn" id="1_o7uk8"]
 [ext_resource type="Texture2D" uid="uid://du72n1ikiej87" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_red_512x512.png" id="2_bfu6m"]
 [ext_resource type="PackedScene" uid="uid://dnk1epprcnqdl" path="res://scenes/game/pickup.tscn" id="2_lqk0u"]
@@ -10,6 +11,36 @@
 [ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="7_gm86f"]
 [ext_resource type="PackedScene" uid="uid://dfifonwu0o5eb" path="res://scenes/game/level_objects/hide_trigger/hide_trigger.tscn" id="12_qoke0"]
 [ext_resource type="Texture2D" uid="uid://3wu1lbkmlqr3" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_orange_512x512.png" id="12_vuxjq"]
+
+[sub_resource type="Gradient" id="Gradient_c5i6r"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.16995074, 0.3275194, 0.5270936, 0.7241379)
+colors = PackedColorArray(0.95686275, 0.972549, 1, 0, 0.92156863, 0.08627451, 1, 1, 0.92941177, 0.95686275, 1, 0.7137255, 0.9580808, 0.9722747, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vuxjq"]
+gradient = SubResource("Gradient_c5i6r")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_qoke0"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.16995074, 0.5270936, 0.6782946, 0.7241379)
+colors = PackedColorArray(0.95686275, 0.972549, 1, 0, 0.92941177, 0.95686275, 1, 0.7137255, 0.4679584, 0.27134293, 0.58313775, 1, 0.9580808, 0.9722747, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_42dhw"]
+gradient = SubResource("Gradient_qoke0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_11ovw"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.20930232, 0.28875968, 0.4108527, 0.4379845)
+colors = PackedColorArray(0, 0.0653737, 0, 1, 0, 0, 0, 0.7137255, 1, 0.050000012, 0, 1, 1, 0.050000012, 0, 1, 0.9580808, 0.9722747, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kv4ne"]
+gradient = SubResource("Gradient_11ovw")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wvbpc"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -44,6 +75,48 @@ uv1_triplanar = true
 uv1_world_triplanar = true
 
 [node name="Kirby Game" type="Node3D" unique_id=219900912]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1094618587]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=153440872]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timer" type="Timer" parent="CanvasLayer/Control" unique_id=168978992 node_paths=PackedStringArray("progress_bar")]
+wait_time = 20.0
+one_shot = true
+autostart = true
+script = ExtResource("1_c5i6r")
+progress_bar = NodePath("../TextureProgressBar")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control" unique_id=1539044473]
+layout_mode = 1
+offset_left = 61.0
+offset_top = 59.0
+offset_right = 125.0
+offset_bottom = 123.0
+scale = Vector2(2, 2)
+value = 50.0
+fill_mode = 5
+texture_under = SubResource("GradientTexture2D_vuxjq")
+texture_over = SubResource("GradientTexture2D_42dhw")
+texture_progress = SubResource("GradientTexture2D_kv4ne")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control" unique_id=1502766968]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -138.0
+offset_right = 138.0
+offset_bottom = 27.0
+grow_horizontal = 2
+max_value = 20.0
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
 
