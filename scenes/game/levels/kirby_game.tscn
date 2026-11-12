@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://cwhrjbmmhrnn7" path="res://scenes/game/player/upgrades/speed_upgrade.tres" id="3_lqk0u"]
 [ext_resource type="Texture2D" uid="uid://lksj7mbcw2dp" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_lime_512x512.png" id="4_bfu6m"]
 [ext_resource type="Resource" uid="uid://dp2gng6k71tnm" path="res://scenes/game/player/upgrades/pancake_upgrade.tres" id="5_4gyht"]
+[ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="7_gm86f"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wvbpc"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -97,3 +98,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 2.5, 5)
 material_override = SubResource("StandardMaterial3D_4gyht")
 use_collision = true
 size = Vector3(1, 5, 4)
+
+[node name="Updraft" parent="." unique_id=1952319572 instance=ExtResource("7_gm86f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5170934)

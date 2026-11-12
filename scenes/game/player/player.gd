@@ -5,12 +5,16 @@ extends CharacterBody3D
 ## Movement directions are snapped to the 8 screen-space directions (also for
 ## analog sticks), derived from the camera's yaw so they stay screen-aligned at
 ## any camera angle. Includes jump (coyote time, buffering, variable height),
-## a steerable/cancelable sprint-dash, slope handling, stair stepping, and an
-## interact hook.
+## a steerable/cancelable sprint-dash, slope handling, stair stepping, an
+## interact hook, and gravity zones (Area3D gravity overrides).
 ##
 ## Interaction contract: anything overlapping [member interact_area] that has an
-## `interact(player: PlayerController)` method gets it called on pc_interact.
+## `interact(player: Player)` method gets it called on pc_interact.
 ## [signal interact_pressed] always fires, with the target or null.
+##
+## Gravity zones: add an Area3D child as [member field_detector]. Entering an
+## Area3D with a gravity override swaps [member gravity_vector]. Zones are
+## assumed not to overlap.
 
 signal jumped
 signal landed
@@ -25,6 +29,9 @@ const DIRECTION_COUNT := 8
 @export var camera: Camera3D
 ## Optional area (usually a child in front of the player) used to pick an interact target.
 @export var interact_area: Area3D
+## Area3D child (capsule roughly matching the body) that detects gravity zones.
+## Its collision_mask must include the zones' layer.
+@export var field_detector: Area3D
 
 @export_group("Movement")
 @export var move_speed: float = 6.0
@@ -62,13 +69,23 @@ const DIRECTION_COUNT := 8
 @export_range(0.0, 1.0) var step_height: float = 0.35
 @export_range(0.0, 89.0) var max_slope_degrees: float = 46.0
 
+@export_group("Gravity Zones")
+## Drag on sideways drift from gravity zones, 1/s.
+## Terminal drift speed = sideways gravity / this.
+@export var field_drift_drag: float = 4.0
+
 ## World-space, 8-way snapped input direction. Unit length or zero.
 var move_direction := Vector3.ZERO
 ## Last non-zero intended facing (snapped). Use for aiming abilities.
 var facing_direction := Vector3.FORWARD
 var is_dashing := false
+## Active gravity acceleration (world space). Set automatically by gravity zones.
+var gravity_vector := Vector3.DOWN * 9.8
 
-var _gravity := 9.8
+var _gravity := 9.8  # base gravity magnitude, also used for the jump impulse
+var _default_gravity := Vector3.DOWN * 9.8
+var _zone: Area3D
+var _drift := Vector3.ZERO  # sideways velocity from gravity zones, added on top of input
 var _coyote_timer := 0.0
 var _jump_buffer_timer := 0.0
 var _dash_timer := 0.0
@@ -81,6 +98,11 @@ var _was_on_floor := false
 
 func _ready() -> void:
 	_gravity = float(ProjectSettings.get_setting("physics/3d/default_gravity")) * gravity_scale
+	_default_gravity = Vector3.DOWN * _gravity
+	gravity_vector = _default_gravity
+	if field_detector:
+		field_detector.area_entered.connect(_on_zone_entered)
+		field_detector.area_exited.connect(_on_zone_exited)
 	floor_max_angle = deg_to_rad(max_slope_degrees)
 	floor_constant_speed = true
 	floor_stop_on_slope = true
@@ -93,6 +115,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var on_floor := is_on_floor()
 	_update_timers(delta, on_floor)
+	_update_gravity(delta)
 	move_direction = _read_move_direction()
 
 	if Input.is_action_just_pressed("pc_jump"):
@@ -133,14 +156,45 @@ func _read_move_direction() -> Vector3:
 	return (right * input.x - forward * input.y).normalized()
 
 
+# --- Gravity zones ---------------------------------------------------------
+
+func _on_zone_entered(area: Area3D) -> void:
+	if area.gravity_space_override != Area3D.SPACE_OVERRIDE_DISABLED:
+		_zone = area
+
+
+func _on_zone_exited(area: Area3D) -> void:
+	if area == _zone:
+		_zone = null
+
+
+func _update_gravity(delta: float) -> void:
+	if _zone:
+		var dir: Vector3
+		if _zone.gravity_point:
+			dir = (_zone.to_global(_zone.gravity_point_center) - global_position).normalized()
+		else:
+			dir = _zone.gravity_direction.normalized()
+		gravity_vector = dir * _zone.gravity * gravity_scale
+		# Only COMBINE adds to the default gravity. The other modes replace it.
+		if _zone.gravity_space_override == Area3D.SPACE_OVERRIDE_COMBINE:
+			gravity_vector += _default_gravity
+	else:
+		gravity_vector = _default_gravity
+
+	var sideways := Vector3(gravity_vector.x, 0.0, gravity_vector.z)
+	_drift += (sideways - _drift * field_drift_drag) * delta
+
+
 # --- Vertical --------------------------------------------------------------
 
 func _apply_gravity(delta: float, on_floor: bool) -> void:
-	if on_floor and velocity.y <= 0.0:
+	var g := -gravity_vector.y  # positive = down
+	if on_floor and velocity.y <= 0.0 and g > 0.0:
 		velocity.y = 0.0
 		return
-	var g := _gravity * (fall_gravity_multiplier if velocity.y < 0.0 else 1.0)
-	velocity.y = maxf(velocity.y - g * delta, -max_fall_speed)
+	var mult := fall_gravity_multiplier if (velocity.y < 0.0 and g > 0.0) else 1.0
+	velocity.y = clampf(velocity.y - g * mult * delta, -max_fall_speed, max_fall_speed)
 
 
 func _try_jump() -> void:
@@ -226,9 +280,11 @@ func _update_timers(delta: float, on_floor: bool) -> void:
 # --- Collision / floor -----------------------------------------------------
 
 func _move(delta: float, on_floor: bool) -> void:
-	if on_floor and velocity.y <= 0.0 and _try_step_up(delta):
-		return
-	move_and_slide()
+	# Zone drift is added only for this move so input control stays independent of it.
+	velocity += _drift
+	if not (on_floor and velocity.y <= 0.0 and _try_step_up(delta)):
+		move_and_slide()
+	velocity -= _drift
 
 
 func _update_floor_transition() -> void:

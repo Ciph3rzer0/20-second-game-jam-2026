@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dur48is30gxyd"]
+
+[ext_resource type="Texture2D" uid="uid://dgv4i0lafjd2c" path="res://scenes/game/level_objects/updraft/bubble_texture_(gradient2d).tres" id="1_g1i46"]
+
+[resource]
+transparency = 1
+depth_draw_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_g1i46")
+disable_receive_shadows = true
+billboard_mode = 1
