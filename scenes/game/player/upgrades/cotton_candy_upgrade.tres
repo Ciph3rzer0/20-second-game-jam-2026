@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PlayerUpgrade" format=3 uid="uid://bqnwoduq6d7dq"]
+
+[ext_resource type="Script" uid="uid://u8ihulyahn3r" path="res://scenes/game/player/player_upgrade.gd" id="1_xccdv"]
+[ext_resource type="Script" uid="uid://cojvk63sy5k3" path="res://scenes/game/player/effects/player_effect.gd" id="2_b66ob"]
+[ext_resource type="Script" uid="uid://drhp0v8ueri1p" path="res://scenes/game/player/effects/cotton_candy_effect.gd" id="3_n4pgj"]
+[ext_resource type="Texture2D" uid="uid://bn1rkbo65u0ib" path="res://assets/flat/cotton_candy.png" id="4_h3kpk"]
+
+[sub_resource type="Resource" id="Resource_c5i6r"]
+script = ExtResource("3_n4pgj")
+metadata/_custom_type_script = "uid://drhp0v8ueri1p"
+
+[resource]
+script = ExtResource("1_xccdv")
+upgrade_icon = ExtResource("4_h3kpk")
+upgrade_name = "Cotton Candy"
+upgrade_message = "You feel lighter... In addition to an oddf fear of dissolution."
+upgrade_effects = Array[ExtResource("2_b66ob")]([SubResource("Resource_c5i6r")])
+metadata/_custom_type_script = "uid://u8ihulyahn3r"

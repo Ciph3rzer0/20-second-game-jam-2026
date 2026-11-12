@@ -6,11 +6,8 @@
 [ext_resource type="Resource" uid="uid://cwhrjbmmhrnn7" path="res://scenes/game/player/upgrades/speed_upgrade.tres" id="3_lqk0u"]
 [ext_resource type="Texture2D" uid="uid://lksj7mbcw2dp" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_lime_512x512.png" id="4_bfu6m"]
 [ext_resource type="Resource" uid="uid://dp2gng6k71tnm" path="res://scenes/game/player/upgrades/pancake_upgrade.tres" id="5_4gyht"]
-[ext_resource type="Script" uid="uid://u8ihulyahn3r" path="res://scenes/game/player/player_upgrade.gd" id="6_lu0cf"]
-[ext_resource type="Script" uid="uid://cojvk63sy5k3" path="res://scenes/game/player/effects/player_effect.gd" id="7_c5i6r"]
+[ext_resource type="Resource" uid="uid://bqnwoduq6d7dq" path="res://scenes/game/player/upgrades/cotton_candy_upgrade.tres" id="6_lu0cf"]
 [ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="7_gm86f"]
-[ext_resource type="Script" uid="uid://drhp0v8ueri1p" path="res://scenes/game/player/effects/cotton_candy_effect.gd" id="8_c5i6r"]
-[ext_resource type="Texture2D" uid="uid://bn1rkbo65u0ib" path="res://assets/flat/cotton_candy.png" id="8_vuxjq"]
 [ext_resource type="PackedScene" uid="uid://dfifonwu0o5eb" path="res://scenes/game/level_objects/hide_trigger/hide_trigger.tscn" id="12_qoke0"]
 [ext_resource type="Texture2D" uid="uid://3wu1lbkmlqr3" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_orange_512x512.png" id="12_vuxjq"]
 
@@ -30,18 +27,6 @@ albedo_texture = ExtResource("2_bfu6m")
 uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
 uv1_world_triplanar = true
-
-[sub_resource type="Resource" id="Resource_c5i6r"]
-script = ExtResource("8_c5i6r")
-metadata/_custom_type_script = "uid://drhp0v8ueri1p"
-
-[sub_resource type="Resource" id="Resource_n4y2n"]
-script = ExtResource("6_lu0cf")
-upgrade_icon = ExtResource("8_vuxjq")
-upgrade_name = "Cotton Candy"
-upgrade_message = "You feel lighter... In addition to an oddf fear of dissolution."
-upgrade_effects = Array[ExtResource("7_c5i6r")]([SubResource("Resource_c5i6r")])
-metadata/_custom_type_script = "uid://u8ihulyahn3r"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gyht"]
 albedo_texture = ExtResource("4_bfu6m")
@@ -96,7 +81,7 @@ upgrade = ExtResource("5_4gyht")
 
 [node name="Pickup3" parent="." unique_id=661552777 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039504528, 1.0731442, -4.3148265)
-upgrade = SubResource("Resource_n4y2n")
+upgrade = ExtResource("6_lu0cf")
 
 [node name="Level1" type="Node3D" parent="." unique_id=185398592]
 
