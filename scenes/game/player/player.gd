@@ -262,6 +262,11 @@ func _apply_horizontal(delta: float, on_floor: bool) -> void:
 		rate = air_acceleration if dir != Vector3.ZERO else air_deceleration
 
 	var horizontal := Vector3(velocity.x, 0.0, velocity.z).move_toward(target, rate * delta)
+
+	# Zone drag: exponential damping, read from a horizontal_drag property on the zone.
+	if _zone and _zone.linear_damp_space_override != Area3D.SPACE_OVERRIDE_DISABLED:
+		horizontal *= exp(-_zone.linear_damp * delta)
+
 	velocity.x = horizontal.x
 	velocity.z = horizontal.z
 
