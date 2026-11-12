@@ -39,6 +39,8 @@ const DIRECTION_COUNT := 8
 @export var ground_deceleration: float = 100.0
 ## While cotton_candy floats in a zone this close to the floor, use ground control.
 @export var float_control_height: float = 0.6
+## How fast (m/s²) upward speed above a zone's float_velocity bleeds off, e.g. after jumping in.
+@export var float_overspeed_decay: float = 6.0
 @export var air_acceleration: float = 30.0
 @export var air_deceleration: float = 10.0
 ## Applied to the combined stick vector before 8-way snapping.
@@ -201,13 +203,20 @@ func _apply_gravity(delta: float, on_floor: bool) -> void:
 		velocity.y = 0.0
 		return
 	var mult := fall_gravity_multiplier if (velocity.y < 0.0 and g > 0.0) else 1.0
-	velocity.y = clampf(velocity.y - g * mult * delta, -max_fall_speed, max_fall_speed)
+	var prior := velocity.y
+	velocity.y = clampf(prior - g * mult * delta, -max_fall_speed, max_fall_speed)
 
 	# Cotton candy: updrafts cap upward speed at the zone's float_velocity.
 	if cotton_candy and _zone:
 		var cap: Variant = _zone.get(&"float_velocity")
 		if cap != null:
-			velocity.y = minf(velocity.y, float(cap))
+			var limit := float(cap)
+			if prior > limit:
+				# Entered faster than the cap (e.g. jumped in): keep the
+				# momentum and ease it down instead of clamping.
+				velocity.y = move_toward(prior, limit, float_overspeed_decay * delta)
+			else:
+				velocity.y = minf(velocity.y, limit)
 
 
 func _try_jump() -> void:

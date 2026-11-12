@@ -23,10 +23,10 @@ size = Vector3(1, 8, 1)
 collision_layer = 65536
 collision_mask = 0
 gravity_space_override = 3
-gravity_point_center = Vector3(0, 1, 0)
-gravity_direction = Vector3(0, 1, 0)
-gravity = -2.0
+gravity_point_unit_distance = 5.0
+gravity = 4.0
 script = ExtResource("1_8nirh")
+float_velocity = 2.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=222366728]
 amount = 24
