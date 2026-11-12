@@ -3,6 +3,7 @@ extends Resource
 
 var host: Player
 
+@export var upgrade_icon: Texture2D
 @export var upgrade_name : String
 @export var upgrade_message : String
 @export var upgrade_effects : Array[PlayerEffect]

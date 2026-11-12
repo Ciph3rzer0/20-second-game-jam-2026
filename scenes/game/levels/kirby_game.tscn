@@ -3,7 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://rxe83v08frni" path="res://scenes/game/player/player.tscn" id="1_o7uk8"]
 [ext_resource type="Texture2D" uid="uid://du72n1ikiej87" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_red_512x512.png" id="2_bfu6m"]
 [ext_resource type="PackedScene" uid="uid://dnk1epprcnqdl" path="res://scenes/game/pickup.tscn" id="2_lqk0u"]
+[ext_resource type="Resource" uid="uid://cwhrjbmmhrnn7" path="res://scenes/game/player/upgrades/speed_upgrade.tres" id="3_lqk0u"]
 [ext_resource type="Texture2D" uid="uid://lksj7mbcw2dp" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_lime_512x512.png" id="4_bfu6m"]
+[ext_resource type="Resource" uid="uid://dp2gng6k71tnm" path="res://scenes/game/player/upgrades/pancake_upgrade.tres" id="5_4gyht"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wvbpc"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -31,10 +33,10 @@ uv1_world_triplanar = true
 [node name="Kirby Game" type="Node3D" unique_id=219900912]
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
-transform = Transform3D(1, 0, 0, 0, 0.9667175, 0.25584632, 0, -0.25584632, 0.9667175, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=2141334000]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 10, 10)
+fov = 45.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1485879796]
 environment = SubResource("Environment_p045d")
@@ -45,6 +47,11 @@ shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1114472192 instance=ExtResource("1_o7uk8")]
 
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=401191725]
+remote_path = NodePath("../../CameraPivot")
+update_rotation = false
+update_scale = false
+
 [node name="Ground" type="CSGBox3D" parent="." unique_id=1904050769]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 material_override = SubResource("StandardMaterial3D_n3rlc")
@@ -53,6 +60,11 @@ size = Vector3(100, 1, 100)
 
 [node name="Pickup" parent="." unique_id=1048115677 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+upgrade = ExtResource("3_lqk0u")
+
+[node name="Pickup2" parent="." unique_id=1010732713 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5555043, 0, 4.1895313)
+upgrade = ExtResource("5_4gyht")
 
 [node name="Floor1" type="Node3D" parent="." unique_id=185398592]
 
@@ -62,8 +74,26 @@ material_override = SubResource("StandardMaterial3D_4gyht")
 use_collision = true
 size = Vector3(2, 1, 4)
 
+[node name="CSGBox3D3" type="CSGBox3D" parent="Floor1" unique_id=1588074955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 2.5)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(2, 1, 1)
+
 [node name="CSGBox3D2" type="CSGBox3D" parent="Floor1" unique_id=139964443]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
 material_override = SubResource("StandardMaterial3D_4gyht")
 use_collision = true
 size = Vector3(2, 2, 4)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Floor1" unique_id=1770229843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 5)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(2, 2, 4)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Floor1" unique_id=1413611745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 2.5, 5)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(1, 5, 4)

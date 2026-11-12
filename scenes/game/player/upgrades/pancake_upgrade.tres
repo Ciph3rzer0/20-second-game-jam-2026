@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="PlayerUpgrade" format=3 uid="uid://dp2gng6k71tnm"]
+
+[ext_resource type="Script" uid="uid://u8ihulyahn3r" path="res://scenes/game/player/player_upgrade.gd" id="1_seqbs"]
+[ext_resource type="Script" uid="uid://cojvk63sy5k3" path="res://scenes/game/player/effects/player_effect.gd" id="2_hv4c0"]
+[ext_resource type="Script" uid="uid://cww5hu8bu65gl" path="res://scenes/game/player/effects/pancake_effect.gd" id="3_seqbs"]
+[ext_resource type="Texture2D" uid="uid://bfh1p36k0yt2p" path="res://assets/flat/pancake.png" id="4_hv4c0"]
+
+[sub_resource type="Resource" id="Resource_n4y2n"]
+script = ExtResource("3_seqbs")
+speed_multiplier = 0.7999999999999999
+metadata/_custom_type_script = "uid://cww5hu8bu65gl"
+
+[resource]
+script = ExtResource("1_seqbs")
+upgrade_icon = ExtResource("4_hv4c0")
+upgrade_name = "Sugar"
+upgrade_message = "Gotta Go Fast"
+upgrade_effects = Array[ExtResource("2_hv4c0")]([SubResource("Resource_n4y2n")])
+metadata/_custom_type_script = "uid://u8ihulyahn3r"

@@ -2,25 +2,47 @@
 
 [ext_resource type="Script" uid="uid://bbm5sxfbhkypq" path="res://scenes/game/player/player.gd" id="1_4m2od"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4m2od"]
+render_priority = 1
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0.7294118, 0.27450982, 0.654902, 1)
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+stencil_reference = 123
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4y2n"]
+next_pass = SubResource("StandardMaterial3D_4m2od")
+stencil_mode = 2
+stencil_flags = 2
+stencil_reference = 123
+stencil_color = Color(0.7294118, 0.27450982, 0.654902, 1)
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_krb5w"]
-radius = 0.35
+radius = 0.25
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_krb5w"]
-top_radius = 0.35
-bottom_radius = 0.35
+top_radius = 0.25
+bottom_radius = 0.25
 height = 0.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_krb5w"]
+radius = 0.3
 
 [node name="Player" type="CharacterBody3D" unique_id=1114472192]
 script = ExtResource("1_4m2od")
 
 [node name="Body" type="MeshInstance3D" parent="." unique_id=1840168707]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_n4y2n")
 mesh = SubResource("CapsuleMesh_krb5w")
 
 [node name="Face" type="MeshInstance3D" parent="Body" unique_id=2050492861]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.1)
+material_override = SubResource("StandardMaterial3D_n4y2n")
 mesh = SubResource("CylinderMesh_krb5w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2056583201]

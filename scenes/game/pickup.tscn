@@ -1,7 +1,14 @@
 [gd_scene format=3 uid="uid://dnk1epprcnqdl"]
 
-[ext_resource type="Script" uid="uid://dosqdk4jpyp31" path="res://pickup.gd" id="1_kbw5p"]
-[ext_resource type="Resource" uid="uid://cwhrjbmmhrnn7" path="res://scenes/game/player/upgrades/speed_upgrade.tres" id="2_86qlm"]
+[ext_resource type="Script" uid="uid://dosqdk4jpyp31" path="res://scenes/game/pickup.gd" id="1_kbw5p"]
+[ext_resource type="Shader" uid="uid://ialsxl4krdqc" path="res://scenes/game/sprite_outline_shader.gdshader" id="3_86qlm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ux4dt"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_86qlm")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/width = 20.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8i87d"]
 
@@ -11,10 +18,16 @@
 
 [node name="Pickup" type="Area3D" unique_id=1048115677]
 script = ExtResource("1_kbw5p")
-upgrade = ExtResource("2_86qlm")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1174069528]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1, 0)
+material_override = SubResource("ShaderMaterial_ux4dt")
+billboard = 1
+double_sided = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1304640246]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.0068473816)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_8i87d")
 mesh = SubResource("SphereMesh_krb5w")
 
