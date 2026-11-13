@@ -17,6 +17,8 @@ shader_parameter/width = 20.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_krb5w"]
 
 [node name="Pickup" type="Area3D" unique_id=1048115677]
+collision_layer = 4096
+collision_mask = 256
 script = ExtResource("1_kbw5p")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1174069528]
