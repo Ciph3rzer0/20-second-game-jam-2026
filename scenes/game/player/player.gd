@@ -16,6 +16,7 @@ extends CharacterBody3D
 ## Area3D with a gravity override swaps [member gravity_vector]. Zones are
 ## assumed not to overlap.
 
+signal win
 signal jumped
 signal landed
 signal dash_started

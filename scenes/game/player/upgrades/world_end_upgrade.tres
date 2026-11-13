@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PlayerUpgrade" format=3 uid="uid://dby58yr82jbtr"]
+
+[ext_resource type="Script" uid="uid://u8ihulyahn3r" path="res://scenes/game/player/player_upgrade.gd" id="1_wo7vg"]
+[ext_resource type="Script" uid="uid://cojvk63sy5k3" path="res://scenes/game/player/effects/player_effect.gd" id="2_cnrbo"]
+[ext_resource type="Script" uid="uid://co028b5oqsmad" path="res://scenes/game/player/effects/world_end_effect.gd" id="3_wo7vg"]
+[ext_resource type="Texture2D" uid="uid://c0871bmynitos" path="res://assets/flat/world.png" id="4_wo7vg"]
+
+[sub_resource type="Resource" id="Resource_c5h7q"]
+script = ExtResource("3_wo7vg")
+metadata/_custom_type_script = "uid://co028b5oqsmad"
+
+[resource]
+script = ExtResource("1_wo7vg")
+upgrade_icon = ExtResource("4_wo7vg")
+upgrade_name = "World"
+upgrade_message = "Eat the World"
+upgrade_effects = Array[ExtResource("2_cnrbo")]([SubResource("Resource_c5h7q")])
+metadata/_custom_type_script = "uid://u8ihulyahn3r"

@@ -5,9 +5,9 @@
 [ext_resource type="Script" uid="uid://dsnj13xflehgy" path="res://scenes/game/levels/kirby_level.gd" id="1_vuxjq"]
 [ext_resource type="Texture2D" uid="uid://du72n1ikiej87" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_red_512x512.png" id="2_bfu6m"]
 [ext_resource type="PackedScene" uid="uid://dnk1epprcnqdl" path="res://scenes/game/pickup.tscn" id="2_lqk0u"]
-[ext_resource type="Resource" uid="uid://cwhrjbmmhrnn7" path="res://scenes/game/player/upgrades/speed_upgrade.tres" id="3_lqk0u"]
 [ext_resource type="Texture2D" uid="uid://lksj7mbcw2dp" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_lime_512x512.png" id="4_bfu6m"]
 [ext_resource type="Resource" uid="uid://dp2gng6k71tnm" path="res://scenes/game/player/upgrades/pancake_upgrade.tres" id="5_4gyht"]
+[ext_resource type="Resource" uid="uid://dby58yr82jbtr" path="res://scenes/game/player/upgrades/world_end_upgrade.tres" id="6_c5h7q"]
 [ext_resource type="Resource" uid="uid://bqnwoduq6d7dq" path="res://scenes/game/player/upgrades/cotton_candy_upgrade.tres" id="6_lu0cf"]
 [ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="7_gm86f"]
 [ext_resource type="PackedScene" uid="uid://dfifonwu0o5eb" path="res://scenes/game/level_objects/hide_trigger/hide_trigger.tscn" id="12_qoke0"]
@@ -148,7 +148,7 @@ size = Vector3(100, 1, 100)
 
 [node name="Pickup" parent="." unique_id=1048115677 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
-upgrade = ExtResource("3_lqk0u")
+upgrade = ExtResource("6_c5h7q")
 
 [node name="Pickup2" parent="." unique_id=1010732713 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5555043, 0, 4.1895313)
@@ -157,6 +157,10 @@ upgrade = ExtResource("5_4gyht")
 [node name="Pickup3" parent="." unique_id=661552777 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039504528, 1.0731442, -4.3148265)
 upgrade = ExtResource("6_lu0cf")
+
+[node name="PickupWorld" parent="." unique_id=897493893 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+upgrade = ExtResource("6_c5h7q")
 
 [node name="Level1" type="Node3D" parent="." unique_id=185398592]
 
@@ -215,4 +219,7 @@ material_override = SubResource("StandardMaterial3D_qoke0")
 use_collision = true
 size = Vector3(7, 2, 6)
 
+[node name="Node3D" type="Node3D" parent="." unique_id=2147304342]
+
 [connection signal="timeout" from="CanvasLayer/Control/GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="win" from="Player" to="." method="_on_player_win"]
