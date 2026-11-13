@@ -6,21 +6,21 @@ uniform vec4 slime_color : source_color =
 //uniform float frequency = 0.1;
 uniform float squish = 0.0;
 uniform float motion = 0.5;
-uniform float magnitude = .1;
+uniform float magnitude = .03;
 
 void vertex() {
     vec3 p = VERTEX;
 
     // Compress vertically when squishing.
-    // float clamp(1.0 - squish, 0.6, 1.5);
+    float sy = clamp(1.0 - squish, 0.6, 1.5);
 
     // Expand horizontally to approximately preserve volume.
-    //float sx = inversesqrt(sy);
-//
-    //p.x *= sx;
-    //p.z *= sx;
+    float sx = inversesqrt(sy);
 
-     //Keep the bottom of the sphere anchored.
+    p.x *= sx;
+    p.z *= sx;
+	
+    // Keep the bottom of the sphere anchored.
     //p.y = -1.0 + (p.y + 1.0) * sy;
 
     // Continuous surface wobble.
@@ -36,6 +36,13 @@ void vertex() {
 	
 	// compress height
 	//p.y *= 1. - clamp(squish, 0.5, 1.0);
+	
+	// SECONDARY MOTION LEANING:
+	// lean mask
+	float height_fraction = clamp((VERTEX.y - 0.2) / max(0.5, 0.001), 0.0, 1.0);
+
+	// Anchor the base and increase displacement toward the top.
+	p.xz += 0.2 * height_fraction;
 
     p += normalize(VERTEX)
         * mask

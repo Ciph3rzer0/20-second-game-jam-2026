@@ -23,7 +23,6 @@ func _ready():
 		push_error("Slime requires a ShaderMaterial on its mesh or in the material export.")
 		return
 
-	# Give each slime its own shader parameters.
 	material = material.duplicate() as ShaderMaterial
 	slime.material_override = material
 
@@ -32,10 +31,10 @@ func _physics_process(delta):
 
 	# Movement
 	var direction := Input.get_vector(
-		"ui_left",
-		"ui_right",
-		"ui_up",
-        "ui_down"
+		"move_left",
+		"move_right",
+		"move_forward",
+        "move_backward"
 	)
 
 	velocity.x = direction.x * move_speed
@@ -48,7 +47,7 @@ func _physics_process(delta):
 
 	if was_on_floor and Input.is_action_just_pressed("ui_accept"):
 		velocity.y = jump_speed
-		print("jumped")
+		#print("jumped")
 
 		# Stretch upward when jumping
 		squish_velocity -= 2.0
@@ -56,6 +55,15 @@ func _physics_process(delta):
 	var falling_speed := velocity.y
 
 	move_and_slide()
+
+	## SECONDARY MOTION FOR ACCELERATION
+	## spring code?
+	
+	## EATING ANIMATION
+	# size increase + slow top tilt in last moveDir?
+	
+	## JUMPING ANIMATION
+	 # remove the mask during jumps? lerp the removal over ~1s after the jump?
 
 	# Landing generates a deformation impulse
 	if not was_on_floor and is_on_floor():
@@ -76,10 +84,10 @@ func _physics_process(delta):
 	squish += squish_velocity * delta
 
 	squish = clamp(squish, -0.5, 0.75)
-
-	# Send parameters to shader
-	if material == null:
-		return
+#
+	## Send parameters to shader
+	#if material == null:
+		#return
 
 	material.set_shader_parameter(
 		"squish",
@@ -93,5 +101,5 @@ func _physics_process(delta):
 
 	material.set_shader_parameter(
 		"motion",
-		clamp(horizontal_speed / move_speed, 0.0, 1.0)
+		clamp(horizontal_speed / move_speed, 0.5, 1.0)
 	)
