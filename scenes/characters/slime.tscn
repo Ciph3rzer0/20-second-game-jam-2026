@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c0e1wdsc60uik"]
+
+[ext_resource type="Shader" uid="uid://yg4gfaqgtula" path="res://assets/materials/slime.gdshader" id="1_dm4hg"]
+[ext_resource type="Script" uid="uid://b5dj7ndgccivd" path="res://scripts/slime.gd" id="1_v1yb0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h45xw"]
+radius = 0.50515723
+
+[sub_resource type="SphereMesh" id="SphereMesh_h45xw"]
+is_hemisphere = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v1yb0"]
+render_priority = 0
+shader = ExtResource("1_dm4hg")
+shader_parameter/slime_color = Color(0.15, 0.85, 0.35, 1)
+shader_parameter/squish = 1.0
+shader_parameter/motion = 0.5
+shader_parameter/magnitude = 0.05
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=67822398]
+script = ExtResource("1_v1yb0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2118137153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117225975, 0)
+shape = SubResource("SphereShape3D_h45xw")
+
+[node name="slime" type="MeshInstance3D" parent="." unique_id=1951147541]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40062192, 0)
+mesh = SubResource("SphereMesh_h45xw")
+surface_material_override/0 = SubResource("ShaderMaterial_v1yb0")

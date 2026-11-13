@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://8yfljksupxij"]
+
+[ext_resource type="PackedScene" uid="uid://c0e1wdsc60uik" path="res://scenes/characters/slime.tscn" id="1_bgyt2"]
+[ext_resource type="AudioStream" uid="uid://k745texii8s6" path="res://assets/audio/music/bottleneck_20s.wav" id="2_6sq0m"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80iay"]
+
+[sub_resource type="Sky" id="Sky_0o143"]
+sky_material = SubResource("ProceduralSkyMaterial_80iay")
+
+[sub_resource type="Environment" id="Environment_6sq0m"]
+background_mode = 2
+sky = SubResource("Sky_0o143")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h45xw"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7j56n"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h45xw"]
+size = Vector3(1, 0.30517578, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6sq0m"]
+data = PackedVector3Array(-0.5, 0.15259999, 0.5, 0.5, 0.15259999, 0.5, -0.5, -0.15259999, 0.5, 0.5, 0.15259999, 0.5, 0.5, -0.15259999, 0.5, -0.5, -0.15259999, 0.5, 0.5, 0.15259999, -0.5, -0.5, 0.15259999, -0.5, 0.5, -0.15259999, -0.5, -0.5, 0.15259999, -0.5, -0.5, -0.15259999, -0.5, 0.5, -0.15259999, -0.5, 0.5, 0.15259999, 0.5, 0.5, 0.15259999, -0.5, 0.5, -0.15259999, 0.5, 0.5, 0.15259999, -0.5, 0.5, -0.15259999, -0.5, 0.5, -0.15259999, 0.5, -0.5, 0.15259999, -0.5, -0.5, 0.15259999, 0.5, -0.5, -0.15259999, -0.5, -0.5, 0.15259999, 0.5, -0.5, -0.15259999, 0.5, -0.5, -0.15259999, -0.5, 0.5, 0.15259999, 0.5, -0.5, 0.15259999, 0.5, 0.5, 0.15259999, -0.5, -0.5, 0.15259999, 0.5, -0.5, 0.15259999, -0.5, 0.5, 0.15259999, -0.5, -0.5, -0.15259999, 0.5, 0.5, -0.15259999, 0.5, -0.5, -0.15259999, -0.5, 0.5, -0.15259999, 0.5, 0.5, -0.15259999, -0.5, -0.5, -0.15259999, -0.5)
+
+[node name="AkTestLevel" type="Node3D" unique_id=2039550169]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1242465219]
+environment = SubResource("Environment_6sq0m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1707748746]
+transform = Transform3D(0.94005454, -0.15436909, 0.3040852, -0.32649782, -0.66487914, 0.6718147, 0.098472446, -0.73082554, -0.67542374, 1.8404851, 7.2895746, -1.2464454)
+
+[node name="BGM" type="AudioStreamPlayer3D" parent="." unique_id=906821578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17049113, 2.2495687, -0.0030790567)
+stream = ExtResource("2_6sq0m")
+attenuation_model = 3
+volume_db = -15.0
+panning_strength = 0.1
+bus = &"Music"
+attenuation_filter_cutoff_hz = 20500.0
+
+[node name="camera" type="Camera3D" parent="." unique_id=983508559]
+transform = Transform3D(1, 0, 0, 0, 0.8512842, 0.5247049, 0, -0.5247049, 0.8512842, 0.21654387, 2.081986, 3.561291)
+
+[node name="CharacterBody3D" parent="." unique_id=67822398 instance=ExtResource("1_bgyt2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0057103336, 0.4047255, 0.21658881)
+
+[node name="obstacles" type="Node3D" parent="." unique_id=1537738809]
+
+[node name="floor" type="MeshInstance3D" parent="obstacles" unique_id=603533079]
+transform = Transform3D(2.6266289, 0, 0, 0, 2.6266289, 0, 0, 0, 2.6266289, 0, 0, 0)
+mesh = SubResource("PlaneMesh_h45xw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="obstacles/floor" unique_id=398300689]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="obstacles/floor/StaticBody3D" unique_id=1498469797]
+shape = SubResource("ConvexPolygonShape3D_7j56n")
+
+[node name="wall_1" type="MeshInstance3D" parent="obstacles" unique_id=381177654]
+transform = Transform3D(-1.14813595e-07, 2.6266289, 0, -2.6266289, -1.14813595e-07, 0, 0, 0, 2.6266289, -2.6229532, 2.6237543, 0)
+mesh = SubResource("PlaneMesh_h45xw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="obstacles/wall_1" unique_id=1416970279]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="obstacles/wall_1/StaticBody3D" unique_id=442130093]
+shape = SubResource("ConvexPolygonShape3D_7j56n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="obstacles" unique_id=1627267739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1053462, 0.17395592, -0.10193491)
+mesh = SubResource("BoxMesh_h45xw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="obstacles/MeshInstance3D" unique_id=1878380890]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="obstacles/MeshInstance3D/StaticBody3D" unique_id=1109570113]
+shape = SubResource("ConcavePolygonShape3D_6sq0m")
