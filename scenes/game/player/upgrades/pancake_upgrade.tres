@@ -7,6 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_n4y2n"]
 script = ExtResource("3_seqbs")
+shrink_multiplier = 0.2
 speed_multiplier = 0.7999999999999999
 jump_multiplier = 0.5
 metadata/_custom_type_script = "uid://cww5hu8bu65gl"
