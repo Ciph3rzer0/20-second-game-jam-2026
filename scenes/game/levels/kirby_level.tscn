@@ -89,6 +89,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="GameTimer" type="Timer" parent="CanvasLayer/Control" unique_id=168978992 node_paths=PackedStringArray("progress_bar")]
 wait_time = 20.0

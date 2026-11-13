@@ -119,6 +119,52 @@ func _ready() -> void:
 	_air_speed = move_speed
 	_was_on_floor = is_on_floor()
 
+var held_item : Node3D
+
+func pickup_item(node: Node3D) -> void:
+	assert(not held_item)
+	print(" :: Picking up item ", node.name)
+	
+	if node is RigidBody3D:
+		(node as RigidBody3D).freeze = true
+		held_item = node
+		held_item.reparent($PickupArea)
+		held_item.position = Vector3.ZERO
+
+func drop_item() -> void:
+	assert(held_item)
+	print(" :: Dropping item ", held_item.name)
+	if held_item is RigidBody3D:
+		(held_item as RigidBody3D).freeze = false
+		held_item.reparent(get_parent())
+		held_item = null
+	
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pc_interact"):
+		
+		if held_item:
+			print(" Dropping item ")
+			drop_item()
+		else:
+			#Get overlapping bodies
+			var bodies: Array[Node3D] = $PickupArea.get_overlapping_bodies()
+			
+			if bodies.size() <= 0:
+				pass
+			elif bodies.size() == 1:
+				pickup_item(bodies[0])
+				pass
+			else:
+				pickup_item(bodies[0])
+				#for body in bodies:
+					## Find body closest to center
+					#pass
+			
+			# attach body to PickupArea
+			pass
+		
+
 
 func _physics_process(delta: float) -> void:
 	var on_floor := is_on_floor()
