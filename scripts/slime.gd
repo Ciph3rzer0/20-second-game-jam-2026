@@ -15,9 +15,17 @@ var squish := 0.0
 var squish_velocity := 0.0
 
 
-#func _ready():
-	#material = slime.material_override.duplicate()
-	#slime.material_override = material
+func _ready():
+	if material == null:
+		material = slime.get_active_material(0) as ShaderMaterial
+
+	if material == null:
+		push_error("Slime requires a ShaderMaterial on its mesh or in the material export.")
+		return
+
+	# Give each slime its own shader parameters.
+	material = material.duplicate() as ShaderMaterial
+	slime.material_override = material
 
 
 func _physics_process(delta):
@@ -69,18 +77,21 @@ func _physics_process(delta):
 
 	squish = clamp(squish, -0.5, 0.75)
 
-	### Send parameters to shader
-	#material.set_shader_parameter(
-		#"squish",
-		#squish
-	#)
+	# Send parameters to shader
+	if material == null:
+		return
+
+	material.set_shader_parameter(
+		"squish",
+		squish
+	)
 
 	var horizontal_speed := Vector2(
 		velocity.x,
 		velocity.z
 	).length()
 
-	#material.set_shader_parameter(
-		#"motion",
-		#clamp(horizontal_speed / move_speed, 0.0, 1.0)
-	#)
+	material.set_shader_parameter(
+		"motion",
+		clamp(horizontal_speed / move_speed, 0.0, 1.0)
+	)
