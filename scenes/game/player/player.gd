@@ -137,6 +137,7 @@ func drop_item() -> void:
 	if held_item is RigidBody3D:
 		(held_item as RigidBody3D).freeze = false
 		held_item.reparent(get_parent())
+		held_item.linear_velocity = velocity * 0.6
 		held_item = null
 
 func modify_scale(height: float, width: float) -> void:
