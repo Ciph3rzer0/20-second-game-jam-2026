@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dsnj13xflehgy" path="res://scenes/game/levels/kirby_level.gd" id="1_vuxjq"]
 [ext_resource type="Texture2D" uid="uid://du72n1ikiej87" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_red_512x512.png" id="2_bfu6m"]
 [ext_resource type="PackedScene" uid="uid://dnk1epprcnqdl" path="res://scenes/game/pickup.tscn" id="2_lqk0u"]
+[ext_resource type="Resource" uid="uid://cwhrjbmmhrnn7" path="res://scenes/game/player/upgrades/speed_upgrade.tres" id="3_lqk0u"]
 [ext_resource type="Texture2D" uid="uid://lksj7mbcw2dp" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_lime_512x512.png" id="4_bfu6m"]
 [ext_resource type="Resource" uid="uid://dp2gng6k71tnm" path="res://scenes/game/player/upgrades/pancake_upgrade.tres" id="5_4gyht"]
 [ext_resource type="Resource" uid="uid://dby58yr82jbtr" path="res://scenes/game/player/upgrades/world_end_upgrade.tres" id="6_c5h7q"]
@@ -12,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="7_gm86f"]
 [ext_resource type="PackedScene" uid="uid://dfifonwu0o5eb" path="res://scenes/game/level_objects/hide_trigger/hide_trigger.tscn" id="12_qoke0"]
 [ext_resource type="Texture2D" uid="uid://3wu1lbkmlqr3" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_orange_512x512.png" id="12_vuxjq"]
+[ext_resource type="PackedScene" uid="uid://c4p0gtba5xyvr" path="res://scenes/game/level_objects/crate/crate.tscn" id="14_2q3qm"]
 
 [sub_resource type="Gradient" id="Gradient_c5i6r"]
 interpolation_mode = 2
@@ -148,10 +150,10 @@ size = Vector3(100, 1, 100)
 
 [node name="Pickup" parent="." unique_id=1048115677 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
-upgrade = ExtResource("6_c5h7q")
+upgrade = ExtResource("3_lqk0u")
 
 [node name="Pickup2" parent="." unique_id=1010732713 instance=ExtResource("2_lqk0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5555043, 0, 4.1895313)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 7.5)
 upgrade = ExtResource("5_4gyht")
 
 [node name="Pickup3" parent="." unique_id=661552777 instance=ExtResource("2_lqk0u")]
@@ -159,13 +161,49 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039504528, 1.0731442, -4.31
 upgrade = ExtResource("6_lu0cf")
 
 [node name="PickupWorld" parent="." unique_id=897493893 instance=ExtResource("2_lqk0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5642209, 0, -31.27665)
 upgrade = ExtResource("6_c5h7q")
 
 [node name="Level1" type="Node3D" parent="." unique_id=185398592]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Level1" unique_id=1192259765]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(2, 1, 4)
+
+[node name="Node3D" type="Node3D" parent="Level1" unique_id=583390475]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 1, -2)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Level1/Node3D" unique_id=621205878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 2)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(2, 1, 4)
+
+[node name="Node3D2" type="Node3D" parent="Level1" unique_id=1778194241]
+transform = Transform3D(1, 0, 0, 0, 0.86602545, -0.50000006, 0, 0.50000006, 0.86602545, -2, 0, 1.7315571)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Level1/Node3D2" unique_id=1664287704]
+transform = Transform3D(1, 0, 0, 0, 1.0000012, 0, 0, 0, 1.0000012, 0, -0.49990234, -1.8632544)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(2, 1, 4)
+
+[node name="Node3D3" type="Node3D" parent="Level1" unique_id=139861333]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.7071068, 0, 0.7071068, 0.70710677, -4, 0, 1.7315571)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Level1/Node3D3" unique_id=1106105259]
+transform = Transform3D(1, 0, 0, 0, 1.0000012, 0, 0, 0, 1.0000012, 0, -0.49990234, -1.8632544)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(2, 1, 4)
+
+[node name="Node3D4" type="Node3D" parent="Level1" unique_id=246095935]
+transform = Transform3D(1, 0, 0, 0, 0.49999994, -0.86602545, 0, 0.86602545, 0.49999994, -6, 0, 1.7315571)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Level1/Node3D4" unique_id=553210577]
+transform = Transform3D(1, 0, 0, 0, 1.0000012, 0, 0, 0, 1.0000012, 0, -0.49990234, -1.8632544)
 material_override = SubResource("StandardMaterial3D_4gyht")
 use_collision = true
 size = Vector3(2, 1, 4)
@@ -221,5 +259,13 @@ size = Vector3(7, 2, 6)
 
 [node name="Node3D" type="Node3D" parent="." unique_id=2147304342]
 
-[connection signal="timeout" from="CanvasLayer/Control/GameTimer" to="." method="_on_game_timer_timeout"]
+[node name="Box" parent="Node3D" unique_id=2091715048 instance=ExtResource("14_2q3qm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6683042, 0.375, 4.944521)
+
+[node name="Box2" parent="Node3D" unique_id=777414740 instance=ExtResource("14_2q3qm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8878026, 0.375, 5.322118)
+
+[node name="Box3" parent="Node3D" unique_id=1601907543 instance=ExtResource("14_2q3qm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.411929, 1.125, 4.967903)
+
 [connection signal="win" from="Player" to="." method="_on_player_win"]

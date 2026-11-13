@@ -320,9 +320,42 @@ func _move(delta: float, on_floor: bool) -> void:
 	# Zone drift is added only for this move so input control stays independent of it.
 	velocity += _drift
 	if not (on_floor and velocity.y <= 0.0 and _try_step_up(delta)):
+		var pre_slide := velocity
 		move_and_slide()
+		_push_bodies(pre_slide)
 	velocity -= _drift
 
+## Fraction of the player's speed a pushed rigid body moves at (lower feels heavier).
+@export_range(0.0, 1.0) var push_speed_factor := 0.8
+
+func _push_bodies(pre_slide: Vector3) -> void:
+	var pushed: Array[RigidBody3D] = []
+	for i in get_slide_collision_count():
+		var c := get_slide_collision(i)
+		var body := c.get_collider() as RigidBody3D
+		if body == null or body in pushed:
+			continue
+		var normal := c.get_normal()
+		# Standing on (or bumping under) the box is not a push.
+		if absf(normal.dot(up_direction)) > 0.7:
+			continue
+		var dir := -normal
+		dir -= up_direction * dir.dot(up_direction)
+		if dir.length_squared() < 0.01:
+			continue
+		dir = dir.normalized()
+		var push_speed := pre_slide.dot(dir) * push_speed_factor
+		if push_speed <= 0.0:
+			continue
+		pushed.append(body)
+		# Bring the box up to push speed along dir (never slow it down).
+		var box_speed := body.linear_velocity.dot(dir)
+		if box_speed < push_speed:
+			body.apply_central_impulse(dir * (push_speed - box_speed) * body.mass)
+		# Give back the speed the slide stripped, so we keep walking with the box instead of stutter-stepping.
+		var my_speed := velocity.dot(dir)
+		if my_speed < push_speed:
+			velocity += dir * (push_speed - my_speed)
 
 func _update_floor_transition() -> void:
 	var on_floor := is_on_floor()

@@ -36,6 +36,10 @@ radius = 0.3
 radius = 0.1
 height = 1.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_uhg71"]
+height = 1.4000001
+radius = 0.6
+
 [node name="Player" type="CharacterBody3D" unique_id=1114472192 node_paths=PackedStringArray("field_detector")]
 collision_layer = 257
 script = ExtResource("1_4m2od")
@@ -63,3 +67,12 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FieldDetector" unique_id=1813357813]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_8i87d")
+
+[node name="PickupArea" type="Area3D" parent="." unique_id=1504329808]
+collision_layer = 0
+collision_mask = 8192
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea" unique_id=688843753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -0.7)
+shape = SubResource("CylinderShape3D_uhg71")
