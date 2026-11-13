@@ -138,7 +138,13 @@ func drop_item() -> void:
 		(held_item as RigidBody3D).freeze = false
 		held_item.reparent(get_parent())
 		held_item = null
-	
+
+func modify_scale(height: float, width: float) -> void:
+	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).height *= height
+	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).radius *= width
+	$Body.scale.y *= height
+	$Body.scale.x *= width
+	$Body.scale.z *= width
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pc_interact"):

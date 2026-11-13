@@ -130,6 +130,7 @@ grow_horizontal = 2
 max_value = 20.0
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, -15.862)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=2141334000]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 10, 10)
@@ -144,6 +145,7 @@ light_energy = 0.5
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1114472192 instance=ExtResource("1_o7uk8")]
+transform = Transform3D(-0.9659258, 0, 0.25881913, 0, 1, 0, -0.25881913, 0, -0.9659258, 1.5, 8, -15.862)
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=401191725]
 remote_path = NodePath("../../CameraPivot")
@@ -155,13 +157,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 material_override = SubResource("StandardMaterial3D_n3rlc")
 use_collision = true
 size = Vector3(100, 1, 100)
+metadata/_edit_lock_ = true
 
 [node name="Pickup" parent="." unique_id=1048115677 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 upgrade = ExtResource("3_lqk0u")
 
 [node name="Pickup2" parent="." unique_id=1010732713 instance=ExtResource("2_lqk0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 7.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, 1.5)
 upgrade = ExtResource("5_4gyht")
 
 [node name="Pickup3" parent="." unique_id=661552777 instance=ExtResource("2_lqk0u")]
@@ -169,7 +172,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039504528, 1.0731442, -4.31
 upgrade = ExtResource("6_lu0cf")
 
 [node name="PickupWorld" parent="." unique_id=897493893 instance=ExtResource("2_lqk0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5642209, 0, -31.27665)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5, -13.6)
 upgrade = ExtResource("6_c5h7q")
 
 [node name="Level1" type="Node3D" parent="." unique_id=185398592]
@@ -255,6 +258,9 @@ size = Vector3(1, 5, 4)
 [node name="Updraft" parent="." unique_id=1952319572 instance=ExtResource("7_gm86f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, 5.5)
 
+[node name="Updraft2" parent="." unique_id=232462664 instance=ExtResource("7_gm86f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -12.5)
+
 [node name="HideTrigger" parent="." unique_id=1283546342 node_paths=PackedStringArray("nodes_to_hide") instance=ExtResource("12_qoke0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 0.5)
 nodes_to_hide = [NodePath("../Level2")]
@@ -286,10 +292,34 @@ size = Vector3(7, 0.2, 1.5)
 [node name="Level3" type="Node3D" parent="." unique_id=1054887994]
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Level3" unique_id=121359662]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 4, -16)
 material_override = SubResource("StandardMaterial3D_qoke0")
 use_collision = true
-size = Vector3(7, 2, 6)
+size = Vector3(7, 8, 6)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Level3/CSGBox3D6" unique_id=1022497830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2.9047909)
+operation = 2
+radius = 1.5
+sides = 16
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Level3" unique_id=792499059]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.3499997, -8.095209)
+operation = 2
+radius = 0.3
+height = 7.3
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Level3" unique_id=343184476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3.3499997, -8.095209)
+operation = 2
+radius = 0.3
+height = 7.3
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Level3" unique_id=25193784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 6.5, -9)
+material_override = SubResource("StandardMaterial3D_qoke0")
+use_collision = true
+size = Vector3(7, 1, 6)
 
 [node name="Node3D" type="Node3D" parent="." unique_id=2147304342]
 

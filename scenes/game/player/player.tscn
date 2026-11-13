@@ -30,6 +30,7 @@ bottom_radius = 0.25
 height = 0.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_krb5w"]
+resource_local_to_scene = true
 radius = 0.3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8i87d"]
