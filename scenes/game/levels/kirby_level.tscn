@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://di0qejwprb2fr" path="res://scenes/game/hud/timer.gd" id="1_c5i6r"]
 [ext_resource type="PackedScene" uid="uid://rxe83v08frni" path="res://scenes/game/player/player.tscn" id="1_o7uk8"]
+[ext_resource type="Script" uid="uid://dsnj13xflehgy" path="res://scenes/game/levels/kirby_level.gd" id="1_vuxjq"]
 [ext_resource type="Texture2D" uid="uid://du72n1ikiej87" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_red_512x512.png" id="2_bfu6m"]
 [ext_resource type="PackedScene" uid="uid://dnk1epprcnqdl" path="res://scenes/game/pickup.tscn" id="2_lqk0u"]
 [ext_resource type="Resource" uid="uid://cwhrjbmmhrnn7" path="res://scenes/game/player/upgrades/speed_upgrade.tres" id="3_lqk0u"]
@@ -75,6 +76,7 @@ uv1_triplanar = true
 uv1_world_triplanar = true
 
 [node name="Kirby Game" type="Node3D" unique_id=219900912]
+script = ExtResource("1_vuxjq")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1094618587]
 
@@ -86,7 +88,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Timer" type="Timer" parent="CanvasLayer/Control" unique_id=168978992 node_paths=PackedStringArray("progress_bar")]
+[node name="GameTimer" type="Timer" parent="CanvasLayer/Control" unique_id=168978992 node_paths=PackedStringArray("progress_bar")]
 wait_time = 20.0
 one_shot = true
 autostart = true
@@ -212,3 +214,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 5, 4)
 material_override = SubResource("StandardMaterial3D_qoke0")
 use_collision = true
 size = Vector3(7, 2, 6)
+
+[connection signal="timeout" from="CanvasLayer/Control/GameTimer" to="." method="_on_game_timer_timeout"]

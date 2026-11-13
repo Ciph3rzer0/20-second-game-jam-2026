@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="20 Second game - josh & anthony"
-run/main_scene="uid://dicu4yguy0o6m"
+run/main_scene="uid://dw8qysr1hx66l"
 config/features=PackedStringArray("4.7")
+boot_splash/bg_color=Color(0.57676476, 0.40948027, 0.6513068, 1)
+boot_splash/show_image=false
 config/icon="res://icon.png"
 
 [autoload]
