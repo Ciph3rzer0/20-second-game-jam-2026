@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://d1t5dv38plefj"]
+
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_5u0b0"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_rjqyc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uhg71"]
+resource_local_to_scene = true
+size = Vector3(10, 4, 8)
+
+[sub_resource type="Resource" id="Resource_pht6c"]
+resource_local_to_scene = true
+script = ExtResource("2_rjqyc")
+
+[node name="AreaCameraTrigger" type="Area3D" unique_id=1066658657]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1391710269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.0000002, 0)
+shape = SubResource("BoxShape3D_uhg71")
+
+[node name="PCam-Behind" type="Node3D" parent="." unique_id=1357355425]
+transform = Transform3D(1.0000002, 0, 0, 1.776357e-15, 0.8660269, 0.50000006, 3.0767453e-15, -0.5000001, 0.8660268, 0, 3, 5)
+script = ExtResource("1_5u0b0")
+tween_resource = SubResource("Resource_pht6c")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[connection signal="body_entered" from="." to="PCam-Behind" method="set_priority" binds= [100] unbinds=1]
+[connection signal="body_exited" from="." to="PCam-Behind" method="set_priority" binds= [0] unbinds=1]

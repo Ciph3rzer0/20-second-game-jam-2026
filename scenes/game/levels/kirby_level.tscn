@@ -5,9 +5,13 @@
 [ext_resource type="Script" uid="uid://dsnj13xflehgy" path="res://scenes/game/levels/kirby_level.gd" id="1_vuxjq"]
 [ext_resource type="Texture2D" uid="uid://du72n1ikiej87" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_red_512x512.png" id="2_bfu6m"]
 [ext_resource type="PackedScene" uid="uid://dnk1epprcnqdl" path="res://scenes/game/pickup.tscn" id="2_lqk0u"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_ec8vc"]
 [ext_resource type="Resource" uid="uid://cwhrjbmmhrnn7" path="res://scenes/game/player/upgrades/speed_upgrade.tres" id="3_lqk0u"]
 [ext_resource type="Texture2D" uid="uid://lksj7mbcw2dp" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_lime_512x512.png" id="4_bfu6m"]
+[ext_resource type="PackedScene" uid="uid://d1t5dv38plefj" path="res://scenes/game/level_objects/camera_triggers/area_camera_trigger.tscn" id="4_mryis"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_tn5tm"]
 [ext_resource type="Resource" uid="uid://dp2gng6k71tnm" path="res://scenes/game/player/upgrades/pancake_upgrade.tres" id="5_4gyht"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_mryis"]
 [ext_resource type="Resource" uid="uid://dby58yr82jbtr" path="res://scenes/game/player/upgrades/world_end_upgrade.tres" id="6_c5h7q"]
 [ext_resource type="Resource" uid="uid://bqnwoduq6d7dq" path="res://scenes/game/player/upgrades/cotton_candy_upgrade.tres" id="6_lu0cf"]
 [ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="7_gm86f"]
@@ -44,6 +48,21 @@ colors = PackedColorArray(0, 0.0653737, 0, 1, 0, 0, 0, 0.7137255, 1, 0.050000012
 gradient = SubResource("Gradient_11ovw")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tn5tm"]
+resource_local_to_scene = true
+size = Vector3(10, 4, 8)
+
+[sub_resource type="Resource" id="Resource_mryis"]
+resource_local_to_scene = true
+script = ExtResource("4_tn5tm")
+duration = 0.35
+
+[sub_resource type="Resource" id="Resource_pht6c"]
+script = ExtResource("4_tn5tm")
+duration = 0.4
+transition = 8
+ease = 1
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wvbpc"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -85,6 +104,17 @@ uv1_world_triplanar = true
 
 [node name="Kirby Game" type="Node3D" unique_id=219900912]
 script = ExtResource("1_vuxjq")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2141334000]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 1.5, 18, -5.8620005)
+top_level = true
+fov = 45.0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1783810064]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("5_mryis")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1094618587]
 
@@ -129,12 +159,25 @@ offset_bottom = 27.0
 grow_horizontal = 2
 max_value = 20.0
 
+[node name="AreaCameraTrigger" parent="." unique_id=1066658657 instance=ExtResource("4_mryis")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 10, 0, -6)
+
+[node name="CollisionShape3D" parent="AreaCameraTrigger" index="0" unique_id=1391710269]
+shape = SubResource("BoxShape3D_tn5tm")
+
+[node name="PCam-Behind" parent="AreaCameraTrigger" index="1" unique_id=1357355425]
+transform = Transform3D(1.0000002, 0, 0, 1.776357e-15, 0.86602694, 0.50000006, 3.0767455e-15, -0.5000001, 0.8660269, 0, 3, 4.9912405)
+tween_resource = SubResource("Resource_mryis")
+
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, -15.862)
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=2141334000]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 10, 10)
-fov = 45.0
+[node name="PhantomCamera3D" type="Node3D" parent="CameraPivot" unique_id=1722917239]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 10, 10)
+script = ExtResource("3_ec8vc")
+priority = 10
+tween_resource = SubResource("Resource_pht6c")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1485879796]
 environment = SubResource("Environment_p045d")
@@ -144,8 +187,9 @@ transform = Transform3D(-0.551937, 0.7221663, -0.41694286, 0, 0.49999997, 0.8660
 light_energy = 0.5
 shadow_enabled = true
 
-[node name="Player" parent="." unique_id=1114472192 instance=ExtResource("1_o7uk8")]
+[node name="Player" parent="." unique_id=1114472192 node_paths=PackedStringArray("camera") instance=ExtResource("1_o7uk8")]
 transform = Transform3D(-0.9659258, 0, 0.25881913, 0, 1, 0, -0.25881913, 0, -0.9659258, 1.5, 8, -15.862)
+camera = NodePath("../Camera3D")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=401191725]
 remote_path = NodePath("../../CameraPivot")
@@ -368,4 +412,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8878026, 0.375, 5.322118)
 [node name="Box3" parent="Node3D" unique_id=1601907543 instance=ExtResource("14_2q3qm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.411929, 1.125, 4.967903)
 
+[node name="Node3D2" type="Node3D" parent="." unique_id=1618067081]
+
 [connection signal="win" from="Player" to="." method="_on_player_win"]
+
+[editable path="AreaCameraTrigger"]
