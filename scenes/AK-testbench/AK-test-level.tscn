@@ -81,4 +81,4 @@ shape = SubResource("ConcavePolygonShape3D_6sq0m")
 transform = Transform3D(-0.002104111, 0, -0.37837136, 0, 0.3783772, 0, 0.37837136, 0, -0.002104111, 0.0064068437, 0.008067651, -1.692645)
 
 [node name="Pickup" parent="." unique_id=197158917 instance=ExtResource("4_0x40s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.832803, 0.5691291, -2.1963062)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8051887, 0.5691289, -1.7623535)

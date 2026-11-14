@@ -7,6 +7,9 @@ uniform vec4 slime_color : source_color =
 uniform float squish = 0.0;
 uniform float motion = 0.5;
 uniform float magnitude = .03;
+uniform vec2 lean = vec2(0.0);
+uniform float lean_base_y = 0.0;
+uniform float lean_height = 1.0;
 
 void vertex() {
     vec3 p = VERTEX;
@@ -37,18 +40,28 @@ void vertex() {
 	// compress height
 	//p.y *= 1. - clamp(squish, 0.5, 1.0);
 	
-	// SECONDARY MOTION LEANING:
-	// lean mask
-	float height_fraction = clamp((VERTEX.y - 0.2) / max(0.5, 0.001), 0.0, 1.0);
 
-	// Anchor the base and increase displacement toward the top.
-	p.xz += 0.2 * height_fraction;
 
     p += normalize(VERTEX)
         * mask
 		* wave
         * motion
         * magnitude;
+
+    // Anchor the lean at the base and bend more strongly toward the top.
+    float height_fraction = clamp(
+        (VERTEX.y - lean_base_y) / max(lean_height, 0.001),
+        0.0,
+        1.0
+    );
+    p.xz += lean * height_fraction * height_fraction;
+
+    // Adjust the surface normal for the horizontal stretch and lean.
+    vec3 bent_normal = NORMAL;
+    bent_normal.xz /= sx;
+    vec2 lean_slope = lean * 2.0 * height_fraction / max(lean_height, 0.001);
+    bent_normal.y -= dot(bent_normal.xz, lean_slope);
+    NORMAL = normalize(bent_normal);
 
     VERTEX = p;
 }

@@ -7,12 +7,21 @@ extends CharacterBody3D
 @export var stiffness := 26.0
 @export var damping := 7.0
 
+@export var lean_response := 1.0
+@export var lean_stiffness := 55.0
+@export var lean_damping := 10.0
+@export var max_lean := 0.18
+
 @onready var slime: MeshInstance3D = $slime
 
 @export var material: ShaderMaterial
 
 var squish := 0.0
 var squish_velocity := 0.0
+
+var lean := Vector2.ZERO
+var lean_velocity := Vector2.ZERO
+var previous_horizontal_velocity := Vector2.ZERO
 
 
 func _ready():
@@ -25,6 +34,10 @@ func _ready():
 
 	material = material.duplicate() as ShaderMaterial
 	slime.material_override = material
+
+	var bounds := slime.mesh.get_aabb()
+	material.set_shader_parameter("lean_base_y", bounds.position.y)
+	material.set_shader_parameter("lean_height", bounds.size.y)
 
 
 func _physics_process(delta):
@@ -56,8 +69,17 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-	## SECONDARY MOTION FOR ACCELERATION
-	## spring code?
+	# Horizontal velocity changes give the lean spring an impulse.
+	var actual_velocity := get_real_velocity()
+	var horizontal_velocity := Vector2(actual_velocity.x, actual_velocity.z)
+	var velocity_change := horizontal_velocity - previous_horizontal_velocity
+	previous_horizontal_velocity = horizontal_velocity
+	lean_velocity -= velocity_change * lean_response
+
+	var lean_acceleration := -lean_stiffness * lean - lean_damping * lean_velocity
+	lean_velocity += lean_acceleration * delta
+	lean += lean_velocity * delta
+	lean = lean.limit_length(max_lean)
 	
 	## EATING ANIMATION
 	# size increase + slow top tilt in last moveDir?
@@ -74,7 +96,7 @@ func _physics_process(delta):
 				1.8
 			)
 
-	# Spring simulation
+	# Spring sim
 	var acceleration := (
 		-stiffness * squish
 		-damping * squish_velocity
@@ -84,10 +106,14 @@ func _physics_process(delta):
 	squish += squish_velocity * delta
 
 	squish = clamp(squish, -0.5, 0.75)
-#
-	## Send parameters to shader
-	#if material == null:
-		#return
+
+	# Send parameters to shader.
+	if material == null:
+		return
+
+	# spring uses world space, while shader vertices use mesh-local space.
+	var local_lean := slime.global_basis.inverse() * Vector3(lean.x, 0.0, lean.y)
+	material.set_shader_parameter("lean", Vector2(local_lean.x, local_lean.z))
 
 	material.set_shader_parameter(
 		"squish",
