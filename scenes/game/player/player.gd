@@ -502,3 +502,11 @@ func _find_interact_target() -> Node3D:
 			best_dist = d
 			best = node
 	return best
+
+
+# --- Transformations -------------------------------------------------------
+
+func become_cotton_candy():
+	cotton_candy = true
+	$Body.material_overlay = preload("uid://cfqpg500558gd")
+	$Body/Face.material_overlay = preload("uid://cfqpg500558gd")
