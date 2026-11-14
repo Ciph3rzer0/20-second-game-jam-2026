@@ -16,6 +16,9 @@ shader_parameter/slime_color = Color(0.15, 0.85, 0.35, 1)
 shader_parameter/squish = 1.0
 shader_parameter/motion = 0.5
 shader_parameter/magnitude = 0.05
+shader_parameter/lean = Vector2(0, 0)
+shader_parameter/lean_base_y = 0.0
+shader_parameter/lean_height = 1.0
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=67822398]
 script = ExtResource("1_v1yb0")

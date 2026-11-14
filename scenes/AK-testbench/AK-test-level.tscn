@@ -4,6 +4,10 @@
 [ext_resource type="AudioStream" uid="uid://k745texii8s6" path="res://assets/audio/music/bottleneck_20s.wav" id="2_6sq0m"]
 [ext_resource type="PackedScene" uid="uid://c6m3trggojsjc" path="res://scenes/pickup.tscn" id="4_0x40s"]
 [ext_resource type="PackedScene" uid="uid://cxyymjistm34y" path="res://assets/mesh/characters/bull.glb" id="4_o4vfe"]
+[ext_resource type="PackedScene" uid="uid://bkhyb7bmtrtan" path="res://assets/mesh/environment/rock.glb" id="5_0x40s"]
+[ext_resource type="PackedScene" uid="uid://c434hrgpevwwg" path="res://assets/mesh/environment/brickwall.glb" id="6_fe038"]
+[ext_resource type="PackedScene" uid="uid://cqq5dwcouri50" path="res://assets/mesh/interactables/pancakes.glb" id="7_pk7e2"]
+[ext_resource type="PackedScene" uid="uid://dcsoixep2djeg" path="res://assets/mesh/interactables/cottonCandy.glb" id="8_jm1ih"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80iay"]
 
@@ -60,7 +64,7 @@ mesh = SubResource("PlaneMesh_h45xw")
 shape = SubResource("ConvexPolygonShape3D_7j56n")
 
 [node name="wall_1" type="MeshInstance3D" parent="obstacles" unique_id=381177654]
-transform = Transform3D(-1.14813595e-07, 2.6266289, 0, -2.6266289, -1.14813595e-07, 0, 0, 0, 2.6266289, -2.6229532, 2.6237543, 0)
+transform = Transform3D(-6.122469e-08, 2.6266289, 0, -1.4006577, -1.14813595e-07, 0, 0, 0, 3.9367483, -2.6229532, 1.4478796, -0.35984176)
 mesh = SubResource("PlaneMesh_h45xw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="obstacles/wall_1" unique_id=1416970279]
@@ -82,3 +86,15 @@ transform = Transform3D(-0.002104111, 0, -0.37837136, 0, 0.3783772, 0, 0.3783713
 
 [node name="Pickup" parent="." unique_id=197158917 instance=ExtResource("4_0x40s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8051887, 0.5691289, -1.7623535)
+
+[node name="rock" parent="." unique_id=1965645340 instance=ExtResource("5_0x40s")]
+transform = Transform3D(0.13261718, 0, 0.17106219, 0, 0.21644765, 0, -0.17106219, 0, 0.13261718, -2.049482, 0.22368765, 1.58234)
+
+[node name="brickwall" parent="." unique_id=627724997 instance=ExtResource("6_fe038")]
+transform = Transform3D(-2.3514193e-08, 0, 0.53794205, 0, 0.53794205, 0, -0.53794205, 0, -2.3514193e-08, -2.590436, 0.116930485, 0.16251755)
+
+[node name="pancakes" parent="." unique_id=2037841239 instance=ExtResource("7_pk7e2")]
+transform = Transform3D(0.3184947, 0, 0, 0, 0.3184947, 0, 0, 0, 0.3184947, 1.8889654, 0.2562222, -0.9245448)
+
+[node name="cottonCandy" parent="." unique_id=1833495501 instance=ExtResource("8_jm1ih")]
+transform = Transform3D(0.19756734, 0.15841296, 0.073353514, -0.16213319, 0.20757358, -0.011589348, -0.06471658, -0.036425456, 0.25296882, -1.5068967, 0.9610671, -1.8228277)
