@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cxyymjistm34y" path="res://assets/mesh/characters/bull.glb" id="4_o4vfe"]
 [ext_resource type="PackedScene" uid="uid://cqq5dwcouri50" path="res://assets/mesh/interactables/pancakes.glb" id="7_pk7e2"]
 [ext_resource type="PackedScene" uid="uid://dcsoixep2djeg" path="res://assets/mesh/interactables/cottonCandy.glb" id="8_jm1ih"]
+[ext_resource type="Texture2D" uid="uid://bsp7ninynrk83" path="res://assets/materials/flower.png" id="9_aeyoe"]
 [ext_resource type="PackedScene" uid="uid://bw488skp1kbsa" path="res://assets/mesh/environment/plane_cobble.glb" id="9_uvvm0"]
 [ext_resource type="PackedScene" uid="uid://dhqoo2i4ktbvk" path="res://assets/mesh/environment/plane_grassBase.glb" id="10_7ay7m"]
 [ext_resource type="PackedScene" uid="uid://djlq28crjprtr" path="res://scenes/environment/brickwall.tscn" id="11_7ay7m"]
@@ -164,6 +165,84 @@ transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 16.13616
 transform = Transform3D(0.12622552, 0.41712272, -0.077937685, -0.4237406, 0.12822814, 9.313226e-09, 0.022573806, 0.07459697, 0.435803, -2.372414, 0.20230217, -4.6127915)
 
 [node name="floor" type="Node3D" parent="." unique_id=166139780]
+
+[node name="flowers" type="Node3D" parent="floor" unique_id=119390578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0439825, -0.07838905, -9.559429)
+
+[node name="flower" type="Sprite3D" parent="floor/flowers" unique_id=1785718678]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, 0.30481148, 0.21398555, 1.2426395)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower2" type="Sprite3D" parent="floor/flowers" unique_id=1817257320]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, 1.456889, 0.21398555, 0.12465)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower3" type="Sprite3D" parent="floor/flowers" unique_id=1694825625]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, -0.6988028, 0.21398555, -1.1038064)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower4" type="Sprite3D" parent="floor/flowers" unique_id=1745895886]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, 2.4544249, 0.21398555, -3.1528497)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower5" type="Sprite3D" parent="floor/flowers" unique_id=373060569]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, 0.5111629, 0.21398555, -5.1580486)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower6" type="Sprite3D" parent="floor/flowers" unique_id=117910930]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, -1.4539222, 0.21398555, -8.702463)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower7" type="Sprite3D" parent="floor/flowers" unique_id=444341773]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, 2.6635056, 0.21398555, -11.079308)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower8" type="Sprite3D" parent="floor/flowers" unique_id=1496442510]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, 2.3352127, 0.21398555, -11.33852)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower9" type="Sprite3D" parent="floor/flowers" unique_id=278646661]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, 2.7768593, 0.21398555, -11.878304)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower10" type="Sprite3D" parent="floor/flowers" unique_id=655154332]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, 2.6683426, 0.21398555, 3.2685738)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower11" type="Sprite3D" parent="floor/flowers" unique_id=350461448]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, -1.5572, 0.21398555, 2.753562)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower12" type="Sprite3D" parent="floor/flowers" unique_id=1798366133]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, 0.59298944, 0.21398555, 4.860797)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower13" type="Sprite3D" parent="floor/flowers" unique_id=1922011580]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, 3.4898646, 0.21398555, 10.493993)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower14" type="Sprite3D" parent="floor/flowers" unique_id=134343886]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, -0.85413337, 0.21398555, 12.790607)
+billboard = 1
+texture = ExtResource("9_aeyoe")
+
+[node name="flower15" type="Sprite3D" parent="floor/flowers" unique_id=876254034]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, 2.5838854, 0.21398555, 15.002511)
+billboard = 1
+texture = ExtResource("9_aeyoe")
 
 [node name="plane_cobble" parent="floor" unique_id=1598379750 instance=ExtResource("9_uvvm0")]
 transform = Transform3D(1.9775246, 0, 0, 0, 1, 0, 0, 0, 1.9775246, 4.136, 0.23894882, -0.056)
