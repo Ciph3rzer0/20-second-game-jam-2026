@@ -88,7 +88,11 @@ var is_dashing := false
 var gravity_vector := Vector3.DOWN * 9.8
 
 ## When true, gravity zones push the opposite way (low-gravity updrafts lift the player).
-var cotton_candy := false
+var can_float := false
+var can_stick := false
+var can_dash := false
+var can_push := false
+var can_grapple := false
 
 var _gravity := 9.8  # base gravity magnitude, also used for the jump impulse
 var _default_gravity := Vector3.DOWN * 9.8
@@ -139,13 +143,6 @@ func drop_item() -> void:
 		held_item.reparent(get_parent())
 		held_item.linear_velocity = velocity * 0.6
 		held_item = null
-
-func modify_scale(height: float, width: float) -> void:
-	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).height *= height
-	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).radius *= width
-	$Body.scale.y *= height
-	$Body.scale.x *= width
-	$Body.scale.z *= width
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pc_interact"):
@@ -237,7 +234,7 @@ func _update_gravity(delta: float) -> void:
 		else:
 			dir = _zone.gravity_direction.normalized()
 		var zone_gravity := dir * _zone.gravity * gravity_scale
-		if cotton_candy:
+		if can_float:
 			zone_gravity = -zone_gravity / 3.0
 		gravity_vector = zone_gravity
 		if _zone.gravity_space_override == Area3D.SPACE_OVERRIDE_COMBINE:
@@ -261,7 +258,7 @@ func _apply_gravity(delta: float, on_floor: bool) -> void:
 	velocity.y = clampf(prior - g * mult * delta, -max_fall_speed, max_fall_speed)
 
 	# Cotton candy: updrafts cap upward speed at the zone's float_velocity.
-	if cotton_candy and _zone:
+	if can_float and _zone:
 		var cap: Variant = _zone.get(&"float_velocity")
 		if cap != null:
 			var limit := float(cap)
@@ -298,7 +295,7 @@ func _near_floor() -> bool:
 
 func _apply_horizontal(delta: float, on_floor: bool) -> void:
 	# Lifted slightly by an updraft counts as grounded for control purposes.
-	var grounded: bool = on_floor or (cotton_candy and _zone != null and _near_floor())
+	var grounded: bool = on_floor or (can_float and _zone != null and _near_floor())
 
 	var dir := move_direction
 	var speed := move_speed if grounded else _air_speed
@@ -377,9 +374,6 @@ func _move(delta: float, on_floor: bool) -> void:
 		move_and_slide()
 		_push_bodies(pre_slide)
 	velocity -= _drift
-
-## Fraction of the player's speed a pushed rigid body moves at (lower feels heavier).
-@export_range(0.0, 1.0) var push_speed_factor := 0.8
 
 func _push_bodies(pre_slide: Vector3) -> void:
 	var pushed: Array[RigidBody3D] = []
@@ -506,7 +500,71 @@ func _find_interact_target() -> Node3D:
 
 # --- Transformations -------------------------------------------------------
 
+@export_group("Transformations")
+
+func modify_scale(height: float, width: float) -> void:
+	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).height *= height
+	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).radius *= width
+	$Body.scale.y *= height
+	$Body.scale.x *= width
+	$Body.scale.z *= width
+
+# Set the effect shader for whole model
+func set_material_overlay_recursive(material: Material, node: Node = self) -> void:
+	for child in node.get_children():
+		print(child.name)
+		if child is GeometryInstance3D:
+			print(child.name, " is material")
+			child.material_overlay = material
+		set_material_overlay_recursive(material, child)
+
+
+# Fraction of the player's speed a pushed rigid body moves at (lower feels heavier).
+@export_range(0.0, 1.0, 0.05) var push_speed_factor := 0.3
+
+func become_jello():
+	pass
+
+
+
+@export_range(1.0, 4.0, 0.25) var hot_tamale_speed_multiplier := 2
+
+func become_hot_tamale():
+	can_dash = true
+	move_speed *= hot_tamale_speed_multiplier
+
+
+
+@export_range(0.1, 1.0, 0.05) var pancake_shrink_multiplier := 0.2
+@export_range(1.0, 2.0, 0.10) var pancake_widen_multiplier := 2.0
+@export_range(0.1, 1.0, 0.05) var pancake_speed_multiplier := 0.8
+@export_range(0.1, 1.0, 0.05) var pancake_jump_multiplier := 0.5
+
+func become_pancake():
+	modify_scale(pancake_shrink_multiplier, pancake_widen_multiplier)
+	move_speed *= pancake_speed_multiplier
+	jump_height *= pancake_jump_multiplier
+
+
+
 func become_cotton_candy():
-	cotton_candy = true
-	$Body.material_overlay = preload("uid://cfqpg500558gd")
-	$Body/Face.material_overlay = preload("uid://cfqpg500558gd")
+	can_float = true
+	set_material_overlay_recursive(preload("uid://cfqpg500558gd"))
+
+
+
+@export_range(0.0, 1.0, 0.05) var beef_push_speed_factor := 0.8
+func become_beef():
+	can_push = true
+	push_speed_factor = beef_push_speed_factor
+	%BeefyArms.visible = true
+
+
+
+func become_honey():
+	can_stick = true
+
+
+
+func become_spaghetti():
+	can_grapple = true

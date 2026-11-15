@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="7_gm86f"]
 [ext_resource type="PackedScene" uid="uid://dfifonwu0o5eb" path="res://scenes/game/level_objects/hide_trigger/hide_trigger.tscn" id="12_qoke0"]
 [ext_resource type="Texture2D" uid="uid://3wu1lbkmlqr3" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_orange_512x512.png" id="12_vuxjq"]
+[ext_resource type="Resource" uid="uid://cy16v56v04n5u" path="res://scenes/game/player/upgrades/beef_upgrade.tres" id="13_mryis"]
 [ext_resource type="PackedScene" uid="uid://c4p0gtba5xyvr" path="res://scenes/game/level_objects/crate/crate.tscn" id="14_2q3qm"]
 
 [sub_resource type="Gradient" id="Gradient_c5i6r"]
@@ -203,19 +204,23 @@ use_collision = true
 size = Vector3(100, 1, 100)
 metadata/_edit_lock_ = true
 
-[node name="Pickup" parent="." unique_id=1048115677 instance=ExtResource("2_lqk0u")]
+[node name="FOOD Hot Tamale" parent="." unique_id=1048115677 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 3.5)
 upgrade = ExtResource("3_lqk0u")
 
-[node name="Pickup2" parent="." unique_id=1010732713 instance=ExtResource("2_lqk0u")]
+[node name="FOOD Pancake" parent="." unique_id=1010732713 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 upgrade = ExtResource("5_4gyht")
 
-[node name="Pickup3" parent="." unique_id=661552777 instance=ExtResource("2_lqk0u")]
+[node name="FOOD Cotton Candy" parent="." unique_id=661552777 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0368266, 0.072999954, 5.7305427)
 upgrade = ExtResource("6_lu0cf")
 
-[node name="PickupWorld" parent="." unique_id=897493893 instance=ExtResource("2_lqk0u")]
+[node name="FOOD Beef" parent="." unique_id=1655287682 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.625298, 5.7784624, 2.7305427)
+upgrade = ExtResource("13_mryis")
+
+[node name="FOOD End The World" parent="." unique_id=897493893 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5, -13.6)
 upgrade = ExtResource("6_c5h7q")
 
