@@ -116,7 +116,8 @@ uv1_world_triplanar = true
 script = ExtResource("1_vuxjq")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2141334000]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 1.5, 18, -5.8620005)
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, 1.5, 11.248513, 1.4079413)
 top_level = true
 fov = 45.0
 
@@ -171,6 +172,7 @@ max_value = 20.0
 
 [node name="AreaCameraTrigger" parent="." unique_id=1066658657 instance=ExtResource("4_mryis")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 10, 0, -6)
+monitoring = false
 
 [node name="CollisionShape3D" parent="AreaCameraTrigger" index="0" unique_id=1391710269]
 shape = SubResource("BoxShape3D_mryis")
@@ -181,13 +183,14 @@ tween_resource = SubResource("Resource_y8jjf")
 
 [node name="ACam - Spawn" parent="." unique_id=522325614 instance=ExtResource("4_mryis")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1.5, 8, -16)
+monitoring = false
 
 [node name="CollisionShape3D" parent="ACam - Spawn" index="0" unique_id=1391710269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9206276e-05, 1.999939, 0)
 shape = SubResource("BoxShape3D_8vwo3")
 
 [node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425 node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 1.5, 14.071067, -8.790934)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 1.5, 7.31958, 1.4790082)
 top_level = true
 follow_mode = 5
 follow_target = NodePath("../../Player")
@@ -201,15 +204,25 @@ spring_length = 10.0
 align_transform_with_view = Callable()
 align_position_with_view = Callable()
 
-[node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, -15.862)
-
-[node name="PhantomCamera3D" type="Node3D" parent="CameraPivot" unique_id=1722917239]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 10, 10)
+[node name="PlayerFollowCamera" type="Node3D" parent="." unique_id=1722917239 node_paths=PackedStringArray("follow_target", "look_at_target")]
+transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, 1.5, 11.248513, 1.4079413)
+top_level = true
 script = ExtResource("3_ec8vc")
 priority = 10
+follow_mode = 2
+follow_target = NodePath("../Player")
+look_at_mode = 2
+look_at_target = NodePath("../Player")
 tween_resource = SubResource("Resource_pht6c")
+follow_offset = Vector3(0, 10, 7)
+follow_damping = true
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.2485132, -5.5920587)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1485879796]
 environment = SubResource("Environment_p045d")
@@ -220,7 +233,7 @@ light_energy = 0.5
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1114472192 node_paths=PackedStringArray("camera") instance=ExtResource("1_o7uk8")]
-transform = Transform3D(-0.9659258, 0, 0.25881913, 0, 1, 0, -0.25881913, 0, -0.9659258, 1.5, 8, -15.862)
+transform = Transform3D(-0.9659258, 0, 0.25881913, 0, 1, 0, -0.25881913, 0, -0.9659258, 1.5, 1.2485132, -5.5920587)
 camera = NodePath("../Camera3D")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=401191725]
