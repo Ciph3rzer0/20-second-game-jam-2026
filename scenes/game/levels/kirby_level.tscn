@@ -59,6 +59,15 @@ resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pht6c"]
+resource_local_to_scene = true
+size = Vector3(7, 4, 6)
+
+[sub_resource type="Resource" id="Resource_8vwo3"]
+resource_local_to_scene = true
+script = ExtResource("4_tn5tm")
+duration = 0.35
+
 [sub_resource type="Resource" id="Resource_pht6c"]
 script = ExtResource("4_tn5tm")
 duration = 0.4
@@ -169,6 +178,17 @@ shape = SubResource("BoxShape3D_mryis")
 [node name="PCam-Behind" parent="AreaCameraTrigger" index="1" unique_id=1357355425]
 transform = Transform3D(1.0000002, 0, 0, 1.776357e-15, 0.86602694, 0.50000006, 3.0767455e-15, -0.5000001, 0.8660269, 0, 3, 4.9912405)
 tween_resource = SubResource("Resource_y8jjf")
+
+[node name="ACam - Spawn" parent="." unique_id=522325614 instance=ExtResource("4_mryis")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1.5, 8, -16)
+
+[node name="CollisionShape3D" parent="ACam - Spawn" index="0" unique_id=1391710269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9206276e-05, 1.999939, 0)
+shape = SubResource("BoxShape3D_pht6c")
+
+[node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -5.6743622e-05, 5.499938, 6.5002966)
+tween_resource = SubResource("Resource_8vwo3")
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, -15.862)
@@ -426,3 +446,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.411929, 1.125, 4.967903)
 [connection signal="win" from="Player" to="." method="_on_player_win"]
 
 [editable path="AreaCameraTrigger"]
+[editable path="ACam - Spawn"]
