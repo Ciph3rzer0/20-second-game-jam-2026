@@ -59,11 +59,11 @@ resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_pht6c"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_8vwo3"]
 resource_local_to_scene = true
 size = Vector3(7, 4, 6)
 
-[sub_resource type="Resource" id="Resource_8vwo3"]
+[sub_resource type="Resource" id="Resource_tmtgi"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
@@ -184,11 +184,22 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1.
 
 [node name="CollisionShape3D" parent="ACam - Spawn" index="0" unique_id=1391710269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9206276e-05, 1.999939, 0)
-shape = SubResource("BoxShape3D_pht6c")
+shape = SubResource("BoxShape3D_8vwo3")
 
-[node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -5.6743622e-05, 5.499938, 6.5002966)
-tween_resource = SubResource("Resource_8vwo3")
+[node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425 node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 1.5, 14.071067, -8.790934)
+top_level = true
+follow_mode = 5
+follow_target = NodePath("../../Player")
+tween_resource = SubResource("Resource_tmtgi")
+follow_offset = Vector3(0, -1, 0)
+follow_damping = true
+follow_damping_value = Vector3(0.15, 0.15, 0.15)
+follow_axis_lock = 6
+follow_distance = 10.0
+spring_length = 10.0
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, -15.862)
