@@ -13,7 +13,7 @@ signal level_changed(level_path : String)
 var level_state : LevelState
 
 func open_tutorials() -> void:
-	if not %TutorialManager: return
+	if not find_child("TutorialManager"): return
 	%TutorialManager.open_tutorials()
 	level_state.tutorial_read = true
 	GlobalState.save()
