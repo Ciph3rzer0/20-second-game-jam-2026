@@ -66,7 +66,7 @@ const DIRECTION_COUNT := 8
 @export var dash_duration: float = 0.35
 ## Starts counting when the dash ends (timeout, cancel, or jump).
 @export var dash_cooldown: float = 0.4
-@export var dash_in_air: bool = false
+@export var dash_in_air: bool = true
 ## A jump started mid-dash keeps dash speed as its air speed until landing.
 @export var dash_jump_keeps_speed: bool = true
 
@@ -184,7 +184,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("pc_jump"):
 		_jump_buffer_timer = jump_buffer_time
-	if Input.is_action_just_pressed("pc_dash"):
+	if Input.is_action_just_pressed("pc_dash") and can_dash:
 		if is_dashing:
 			_end_dash()
 		elif _dash_cooldown_timer <= 0.0 and (on_floor or dash_in_air):
@@ -533,7 +533,7 @@ func become_jello():
 
 
 
-@export_range(1.0, 4.0, 0.25) var hot_tamale_speed_multiplier := 2
+@export_range(1.0, 4.0, 0.25) var hot_tamale_speed_multiplier := 1.3
 
 func become_hot_tamale():
 	can_dash = true
