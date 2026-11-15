@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cr4smfn2hc2v1"]
+
+[ext_resource type="Texture2D" uid="uid://dl0fimums0ea6" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_pink_512x512.png" id="1_uijdf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pht6c"]
+albedo_texture = ExtResource("1_uijdf")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="Ramp45" type="CSGBox3D" unique_id=1946020142]
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1071180233]
+transform = Transform3D(0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0, 1, -0.5, 0.5, 0)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=300674572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.50000006, -0.70000005, 0)
+size = Vector3(1, 1.6, 8)

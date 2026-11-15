@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://6vxpynpg3rsr"]
+
+[ext_resource type="Texture2D" uid="uid://dl0fimums0ea6" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_pink_512x512.png" id="1_u702k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pht6c"]
+albedo_texture = ExtResource("1_u702k")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="Block" type="CSGBox3D" unique_id=1946020142]
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true

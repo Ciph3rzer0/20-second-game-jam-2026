@@ -19,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://3wu1lbkmlqr3" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_orange_512x512.png" id="12_vuxjq"]
 [ext_resource type="Resource" uid="uid://cy16v56v04n5u" path="res://scenes/game/player/upgrades/beef_upgrade.tres" id="13_mryis"]
 [ext_resource type="PackedScene" uid="uid://c4p0gtba5xyvr" path="res://scenes/game/level_objects/crate/crate.tscn" id="14_2q3qm"]
+[ext_resource type="Texture2D" uid="uid://dl0fimums0ea6" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_pink_512x512.png" id="15_mryis"]
+[ext_resource type="PackedScene" uid="uid://6vxpynpg3rsr" path="res://scenes/game/proto_blocks/block.tscn" id="16_8vwo3"]
+[ext_resource type="PackedScene" uid="uid://cr4smfn2hc2v1" path="res://scenes/game/proto_blocks/ramp45.tscn" id="17_8vwo3"]
+[ext_resource type="PackedScene" uid="uid://caqn2b5sqx7u5" path="res://scenes/game/proto_blocks/ramp26.tscn" id="17_tmtgi"]
 
 [sub_resource type="Gradient" id="Gradient_c5i6r"]
 interpolation_mode = 2
@@ -50,20 +54,20 @@ gradient = SubResource("Gradient_11ovw")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mryis"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_tmtgi"]
 resource_local_to_scene = true
 size = Vector3(10, 4, 8)
 
-[sub_resource type="Resource" id="Resource_y8jjf"]
+[sub_resource type="Resource" id="Resource_33xl3"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8vwo3"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_pbnmf"]
 resource_local_to_scene = true
 size = Vector3(7, 4, 6)
 
-[sub_resource type="Resource" id="Resource_tmtgi"]
+[sub_resource type="Resource" id="Resource_w32m7"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
@@ -97,6 +101,12 @@ uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pht6c"]
+albedo_texture = ExtResource("15_mryis")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gyht"]
 albedo_texture = ExtResource("4_bfu6m")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
@@ -117,7 +127,7 @@ script = ExtResource("1_vuxjq")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2141334000]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, 1.5, 11.248513, 1.4079413)
+transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, -19.85308, 10, -5.4809704)
 top_level = true
 fov = 45.0
 
@@ -175,11 +185,11 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 10
 monitoring = false
 
 [node name="CollisionShape3D" parent="AreaCameraTrigger" index="0" unique_id=1391710269]
-shape = SubResource("BoxShape3D_mryis")
+shape = SubResource("BoxShape3D_tmtgi")
 
 [node name="PCam-Behind" parent="AreaCameraTrigger" index="1" unique_id=1357355425]
 transform = Transform3D(1.0000002, 0, 0, 1.776357e-15, 0.86602694, 0.50000006, 3.0767455e-15, -0.5000001, 0.8660269, 0, 3, 4.9912405)
-tween_resource = SubResource("Resource_y8jjf")
+tween_resource = SubResource("Resource_33xl3")
 
 [node name="ACam - Spawn" parent="." unique_id=522325614 instance=ExtResource("4_mryis")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1.5, 8, -16)
@@ -187,14 +197,14 @@ monitoring = false
 
 [node name="CollisionShape3D" parent="ACam - Spawn" index="0" unique_id=1391710269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9206276e-05, 1.999939, 0)
-shape = SubResource("BoxShape3D_8vwo3")
+shape = SubResource("BoxShape3D_pbnmf")
 
 [node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425 node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 1.5, 7.31958, 1.4790082)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, -19.85308, 6.071067, -5.4099035)
 top_level = true
 follow_mode = 5
 follow_target = NodePath("../../Player")
-tween_resource = SubResource("Resource_tmtgi")
+tween_resource = SubResource("Resource_w32m7")
 follow_offset = Vector3(0, -1, 0)
 follow_damping = true
 follow_damping_value = Vector3(0.15, 0.15, 0.15)
@@ -205,7 +215,7 @@ align_transform_with_view = Callable()
 align_position_with_view = Callable()
 
 [node name="PlayerFollowCamera" type="Node3D" parent="." unique_id=1722917239 node_paths=PackedStringArray("follow_target", "look_at_target")]
-transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, 1.5, 11.248513, 1.4079413)
+transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, -19.85308, 10, -5.4809704)
 top_level = true
 script = ExtResource("3_ec8vc")
 priority = 10
@@ -222,7 +232,7 @@ align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.2485132, -5.5920587)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.85308, 0, -12.48097)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1485879796]
 environment = SubResource("Environment_p045d")
@@ -233,7 +243,7 @@ light_energy = 0.5
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1114472192 node_paths=PackedStringArray("camera") instance=ExtResource("1_o7uk8")]
-transform = Transform3D(-0.9659258, 0, 0.25881913, 0, 1, 0, -0.25881913, 0, -0.9659258, 1.5, 1.2485132, -5.5920587)
+transform = Transform3D(0.7071067, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071067, -19.85308, 0, -12.48097)
 camera = NodePath("../Camera3D")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=401191725]
@@ -264,13 +274,57 @@ upgrade = ExtResource("6_lu0cf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.625298, 5.7784624, 2.7305427)
 upgrade = ExtResource("13_mryis")
 
-[node name="FOOD Beef2" parent="." unique_id=161445826 instance=ExtResource("2_lqk0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5150442, 0.039477825, 0.73054266)
-upgrade = ExtResource("13_mryis")
-
 [node name="FOOD End The World" parent="." unique_id=897493893 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5, -13.6)
 upgrade = ExtResource("6_c5h7q")
+
+[node name="Starter Area" type="Node3D" parent="." unique_id=486367744]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -20, 0, -20)
+
+[node name="FOOD Beef2" parent="Starter Area" unique_id=161445826 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.5, -2.5)
+upgrade = ExtResource("13_mryis")
+
+[node name="Crate" parent="Starter Area" unique_id=2091715048 instance=ExtResource("14_2q3qm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.12190819, 1.3749999, 0.26688194)
+
+[node name="Ramp45" parent="Starter Area" unique_id=1012068162 instance=ExtResource("17_8vwo3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, 1.5)
+size = Vector3(1, 1, 3)
+
+[node name="Ramp46" parent="Starter Area" unique_id=1612963089 instance=ExtResource("17_tmtgi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -1.5)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Starter Area" unique_id=1934726284]
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+
+[node name="CSGBox3D-S1" type="CSGBox3D" parent="Starter Area/CSGCombiner3D" unique_id=544043495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, -0.5)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+size = Vector3(1, 1, 7)
+
+[node name="CSGBox3D-S2" type="CSGBox3D" parent="Starter Area/CSGCombiner3D" unique_id=1058534040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -0.5)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+size = Vector3(1, 1, 5)
+
+[node name="CSGBox3D-S3" type="CSGBox3D" parent="Starter Area/CSGCombiner3D" unique_id=2065525498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, -0.5)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+size = Vector3(1, 1, 3)
+
+[node name="CSGBox3D-S4" type="CSGBox3D" parent="Starter Area/CSGCombiner3D" unique_id=716596207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1, -0.49999046)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+size = Vector3(1, 2, 3)
+
+[node name="Block" parent="Starter Area/CSGCombiner3D" unique_id=1946020142 instance=ExtResource("16_8vwo3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.5, -2.5)
 
 [node name="Level1" type="Node3D" parent="." unique_id=185398592]
 
@@ -456,7 +510,7 @@ size = Vector3(7, 1, 6)
 
 [node name="Node3D" type="Node3D" parent="." unique_id=2147304342]
 
-[node name="Box" parent="Node3D" unique_id=2091715048 instance=ExtResource("14_2q3qm")]
+[node name="Box" parent="Node3D" unique_id=435482076 instance=ExtResource("14_2q3qm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6683042, 0.375, 4.944521)
 
 [node name="Box2" parent="Node3D" unique_id=777414740 instance=ExtResource("14_2q3qm")]
