@@ -50,11 +50,11 @@ gradient = SubResource("Gradient_11ovw")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tn5tm"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_mryis"]
 resource_local_to_scene = true
 size = Vector3(10, 4, 8)
 
-[sub_resource type="Resource" id="Resource_mryis"]
+[sub_resource type="Resource" id="Resource_y8jjf"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
@@ -164,11 +164,11 @@ max_value = 20.0
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 10, 0, -6)
 
 [node name="CollisionShape3D" parent="AreaCameraTrigger" index="0" unique_id=1391710269]
-shape = SubResource("BoxShape3D_tn5tm")
+shape = SubResource("BoxShape3D_mryis")
 
 [node name="PCam-Behind" parent="AreaCameraTrigger" index="1" unique_id=1357355425]
 transform = Transform3D(1.0000002, 0, 0, 1.776357e-15, 0.86602694, 0.50000006, 3.0767455e-15, -0.5000001, 0.8660269, 0, 3, 4.9912405)
-tween_resource = SubResource("Resource_mryis")
+tween_resource = SubResource("Resource_y8jjf")
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, -15.862)
@@ -218,6 +218,10 @@ upgrade = ExtResource("6_lu0cf")
 
 [node name="FOOD Beef" parent="." unique_id=1655287682 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.625298, 5.7784624, 2.7305427)
+upgrade = ExtResource("13_mryis")
+
+[node name="FOOD Beef2" parent="." unique_id=161445826 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5150442, 0.039477825, 0.73054266)
 upgrade = ExtResource("13_mryis")
 
 [node name="FOOD End The World" parent="." unique_id=897493893 instance=ExtResource("2_lqk0u")]

@@ -126,20 +126,26 @@ func _ready() -> void:
 var held_item : Node3D
 
 func pickup_item(node: Node3D) -> void:
+	if (not can_push): return
 	assert(not held_item)
 	print(" :: Picking up item ", node.name)
 	
 	if node is RigidBody3D:
-		(node as RigidBody3D).freeze = true
 		held_item = node
+		(held_item as RigidBody3D).freeze = true
+		(held_item.find_child("CollisionShape3D") as CollisionShape3D).disabled = true
+		$PickupAreaCollision.disabled = false
 		held_item.reparent($PickupArea)
 		held_item.position = Vector3.ZERO
 
 func drop_item() -> void:
+	if (not can_push): return
 	assert(held_item)
 	print(" :: Dropping item ", held_item.name)
 	if held_item is RigidBody3D:
 		(held_item as RigidBody3D).freeze = false
+		(held_item.find_child("CollisionShape3D") as CollisionShape3D).disabled = false
+		$PickupAreaCollision.disabled = true
 		held_item.reparent(get_parent())
 		held_item.linear_velocity = velocity * 0.6
 		held_item = null
@@ -554,15 +560,19 @@ func become_cotton_candy():
 
 
 @export_range(0.0, 1.0, 0.05) var beef_push_speed_factor := 0.8
+const beef_body_scale := 1.4
+
 func become_beef():
 	can_push = true
 	push_speed_factor = beef_push_speed_factor
-	
-	%Body.scale.x *= 1.4
-	%Body.scale.z *= 1.4
-	# Double hit-box width
-	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).radius *= 2
+	%Body.scale.x *= beef_body_scale
+	%Body.scale.z *= beef_body_scale
 	%BeefyArms.visible = true
+	
+	# Double hit-box width
+	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).radius *= beef_body_scale
+	#$"BeefyArms CollisionL".set_deferred("disabled", false)
+	#$"BeefyArms CollisionR".set_deferred("disabled", false)
 
 
 

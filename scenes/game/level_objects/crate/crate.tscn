@@ -23,7 +23,7 @@ _surfaces = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_uhg71"]
 size = Vector3(0.75, 0.75, 0.75)
 
-[node name="Box" type="RigidBody3D" unique_id=2091715048]
+[node name="Crate" type="RigidBody3D" unique_id=2091715048]
 collision_layer = 8193
 mass = 15.0
 physics_material_override = SubResource("PhysicsMaterial_2cuqi")
