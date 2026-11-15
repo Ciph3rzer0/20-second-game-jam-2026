@@ -505,9 +505,9 @@ func _find_interact_target() -> Node3D:
 func modify_scale(height: float, width: float) -> void:
 	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).height *= height
 	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).radius *= width
-	$Body.scale.y *= height
-	$Body.scale.x *= width
-	$Body.scale.z *= width
+	$Model.scale.y *= height
+	$Model.scale.x *= width
+	$Model.scale.z *= width
 
 # Set the effect shader for whole model
 func set_material_overlay_recursive(material: Material, node: Node = self) -> void:
@@ -557,6 +557,11 @@ func become_cotton_candy():
 func become_beef():
 	can_push = true
 	push_speed_factor = beef_push_speed_factor
+	
+	%Body.scale.x *= 1.4
+	%Body.scale.z *= 1.4
+	# Double hit-box width
+	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).radius *= 2
 	%BeefyArms.visible = true
 
 
