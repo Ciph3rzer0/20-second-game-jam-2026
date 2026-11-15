@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://djlq28crjprtr"]
+
+[ext_resource type="PackedScene" uid="uid://c434hrgpevwwg" path="res://assets/mesh/environment/brickwall.glb" id="1_740ts"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h45xw"]
+size = Vector3(15.435364, 5.3789673, 0.31356812)
+
+[node name="Brickwall" type="Node3D" unique_id=514877560]
+
+[node name="brickwall" parent="." unique_id=1702112106 instance=ExtResource("1_740ts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14899337, 1.1920929e-07, -0.08560467)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="brickwall" unique_id=271981713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14899337, -1.1920929e-07, 0.08560467)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="brickwall/StaticBody3D" unique_id=966026867]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8765564, 2.5708313, -0.08595276)
+shape = SubResource("BoxShape3D_h45xw")

@@ -4,10 +4,14 @@
 [ext_resource type="AudioStream" uid="uid://k745texii8s6" path="res://assets/audio/music/bottleneck_20s.wav" id="2_6sq0m"]
 [ext_resource type="PackedScene" uid="uid://c6m3trggojsjc" path="res://scenes/pickup.tscn" id="4_0x40s"]
 [ext_resource type="PackedScene" uid="uid://cxyymjistm34y" path="res://assets/mesh/characters/bull.glb" id="4_o4vfe"]
-[ext_resource type="PackedScene" uid="uid://bkhyb7bmtrtan" path="res://assets/mesh/environment/rock.glb" id="5_0x40s"]
-[ext_resource type="PackedScene" uid="uid://c434hrgpevwwg" path="res://assets/mesh/environment/brickwall.glb" id="6_fe038"]
 [ext_resource type="PackedScene" uid="uid://cqq5dwcouri50" path="res://assets/mesh/interactables/pancakes.glb" id="7_pk7e2"]
 [ext_resource type="PackedScene" uid="uid://dcsoixep2djeg" path="res://assets/mesh/interactables/cottonCandy.glb" id="8_jm1ih"]
+[ext_resource type="PackedScene" uid="uid://bw488skp1kbsa" path="res://assets/mesh/environment/plane_cobble.glb" id="9_uvvm0"]
+[ext_resource type="PackedScene" uid="uid://dhqoo2i4ktbvk" path="res://assets/mesh/environment/plane_grassBase.glb" id="10_7ay7m"]
+[ext_resource type="PackedScene" uid="uid://djlq28crjprtr" path="res://scenes/environment/brickwall.tscn" id="11_7ay7m"]
+[ext_resource type="PackedScene" uid="uid://hcagk8fscmh8" path="res://assets/mesh/environment/plane_gravel.glb" id="11_j8xii"]
+[ext_resource type="PackedScene" uid="uid://bohpyhvrb68ue" path="res://scenes/environment/rock.tscn" id="12_aeyoe"]
+[ext_resource type="PackedScene" uid="uid://dd27khdsl6hmw" path="res://scenes/environment/stonewall.tscn" id="12_j8xii"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80iay"]
 
@@ -37,25 +41,40 @@ environment = SubResource("Environment_6sq0m")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1707748746]
 transform = Transform3D(0.94005454, -0.15436909, 0.3040852, -0.32649782, -0.66487914, 0.6718147, 0.098472446, -0.73082554, -0.67542374, 1.8404851, 7.2895746, -1.2464454)
 
-[node name="BGM" type="AudioStreamPlayer3D" parent="." unique_id=906821578]
+[node name="bgm" type="AudioStreamPlayer3D" parent="." unique_id=906821578]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17049113, 2.2495687, -0.0030790567)
 stream = ExtResource("2_6sq0m")
 attenuation_model = 3
 volume_db = -15.0
+autoplay = true
 panning_strength = 0.1
 bus = &"Music"
 attenuation_filter_cutoff_hz = 20500.0
 
-[node name="camera" type="Camera3D" parent="." unique_id=983508559]
-transform = Transform3D(1, 0, 0, 0, 0.8512842, 0.5247049, 0, -0.5247049, 0.8512842, 0.21654387, 2.081986, 3.561291)
-
-[node name="CharacterBody3D" parent="." unique_id=67822398 instance=ExtResource("1_bgyt2")]
+[node name="player" parent="." unique_id=67822398 instance=ExtResource("1_bgyt2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0057103336, 0.4047255, 0.21658881)
+
+[node name="camera" type="Camera3D" parent="player" unique_id=983508559]
+transform = Transform3D(1, 0, 0, 0, 0.6770646, 0.7359237, 0, -0.7359237, 0.6770646, 0.3387413, 7.335613, 5.2785563)
+
+[node name="interactables" type="Node3D" parent="." unique_id=1865506180]
+
+[node name="bull" parent="interactables" unique_id=587914192 instance=ExtResource("4_o4vfe")]
+transform = Transform3D(0.7793351, 0, -0.0043338235, 0, 0.7793471, 0, 0.0043338235, 0, 0.7793351, 15.113622, 0.008067651, -18.367779)
+
+[node name="powerup_meat" parent="interactables" unique_id=197158917 instance=ExtResource("4_0x40s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6797204, 0.5691298, -3.8101993)
+
+[node name="pancakes" parent="interactables" unique_id=2037841239 instance=ExtResource("7_pk7e2")]
+transform = Transform3D(0.3184947, 0, 0, 0, 0.3184947, 0, 0, 0, 0.3184947, 9.318562, 0.25622314, -5.7052555)
+
+[node name="cottonCandy" parent="interactables" unique_id=1833495501 instance=ExtResource("8_jm1ih")]
+transform = Transform3D(0.19756734, 0.15841296, 0.073353514, -0.16213319, 0.20757358, -0.011589348, -0.06471658, -0.036425456, 0.25296882, 15.692569, 0.8488268, -6.6985736)
 
 [node name="obstacles" type="Node3D" parent="." unique_id=1537738809]
 
 [node name="floor" type="MeshInstance3D" parent="obstacles" unique_id=603533079]
-transform = Transform3D(2.6266289, 0, 0, 0, 2.6266289, 0, 0, 0, 2.6266289, 0, 0, 0)
+transform = Transform3D(17.188358, 0, 0, 0, 2.6266289, 0, 0, 0, 17.188358, 14.342514, 0, -10.652678)
 mesh = SubResource("PlaneMesh_h45xw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="obstacles/floor" unique_id=398300689]
@@ -63,17 +82,35 @@ mesh = SubResource("PlaneMesh_h45xw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="obstacles/floor/StaticBody3D" unique_id=1498469797]
 shape = SubResource("ConvexPolygonShape3D_7j56n")
 
-[node name="wall_1" type="MeshInstance3D" parent="obstacles" unique_id=381177654]
-transform = Transform3D(-6.122469e-08, 2.6266289, 0, -1.4006577, -1.14813595e-07, 0, 0, 0, 3.9367483, -2.6229532, 1.4478796, -0.35984176)
+[node name="floor2" type="MeshInstance3D" parent="obstacles" unique_id=847046212]
+transform = Transform3D(17.188358, 0, 0, 0, 2.6266289, 0, 0, 0, 17.188358, -20.396063, 5.4204483, -10.48984)
 mesh = SubResource("PlaneMesh_h45xw")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="obstacles/wall_1" unique_id=1416970279]
+[node name="StaticBody3D" type="StaticBody3D" parent="obstacles/floor2" unique_id=392805124]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="obstacles/wall_1/StaticBody3D" unique_id=442130093]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="obstacles/floor2/StaticBody3D" unique_id=451077750]
+shape = SubResource("ConvexPolygonShape3D_7j56n")
+
+[node name="floor3" type="MeshInstance3D" parent="obstacles" unique_id=1160490235]
+transform = Transform3D(17.188358, 0, 0, 0, 2.6266289, 0, 0, 0, 17.188358, 48.121407, 5.4204483, -10.48984)
+mesh = SubResource("PlaneMesh_h45xw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="obstacles/floor3" unique_id=1020029701]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="obstacles/floor3/StaticBody3D" unique_id=503938697]
+shape = SubResource("ConvexPolygonShape3D_7j56n")
+
+[node name="floor4" type="MeshInstance3D" parent="obstacles" unique_id=1703871315]
+transform = Transform3D(17.188358, 0, 0, 0, 2.6266289, 0, 0, 0, 17.188358, 14.019039, 5.4204445, -41.729248)
+mesh = SubResource("PlaneMesh_h45xw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="obstacles/floor4" unique_id=1159238401]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="obstacles/floor4/StaticBody3D" unique_id=1203697880]
 shape = SubResource("ConvexPolygonShape3D_7j56n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="obstacles" unique_id=1627267739]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1053462, 0.17395592, -0.10193491)
+transform = Transform3D(1, 0, 0, 0, 1.8496792, 0, 0, 0, 1, 9.928022, 0.17395592, -1.9948263)
 mesh = SubResource("BoxMesh_h45xw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="obstacles/MeshInstance3D" unique_id=1878380890]
@@ -81,20 +118,79 @@ mesh = SubResource("BoxMesh_h45xw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="obstacles/MeshInstance3D/StaticBody3D" unique_id=1109570113]
 shape = SubResource("ConcavePolygonShape3D_6sq0m")
 
-[node name="bull" parent="." unique_id=587914192 instance=ExtResource("4_o4vfe")]
-transform = Transform3D(-0.002104111, 0, -0.37837136, 0, 0.3783772, 0, 0.37837136, 0, -0.002104111, 0.0064068437, 0.008067651, -1.692645)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="obstacles" unique_id=340409438]
+transform = Transform3D(1, 0, 0, 0, 1.8496792, 0, 0, 0, 1, 11.2838, 0.76737404, -1.9948263)
+mesh = SubResource("BoxMesh_h45xw")
 
-[node name="Pickup" parent="." unique_id=197158917 instance=ExtResource("4_0x40s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8051887, 0.5691289, -1.7623535)
+[node name="StaticBody3D" type="StaticBody3D" parent="obstacles/MeshInstance3D2" unique_id=822585217]
 
-[node name="rock" parent="." unique_id=1965645340 instance=ExtResource("5_0x40s")]
-transform = Transform3D(0.13261718, 0, 0.17106219, 0, 0.21644765, 0, -0.17106219, 0, 0.13261718, -2.049482, 0.22368765, 1.58234)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="obstacles/MeshInstance3D2/StaticBody3D" unique_id=70331288]
+shape = SubResource("ConcavePolygonShape3D_6sq0m")
 
-[node name="brickwall" parent="." unique_id=627724997 instance=ExtResource("6_fe038")]
-transform = Transform3D(-2.3514193e-08, 0, 0.53794205, 0, 0.53794205, 0, -0.53794205, 0, -2.3514193e-08, -2.590436, 0.116930485, 0.16251755)
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="obstacles" unique_id=1761703457]
+transform = Transform3D(1, 0, 0, 0, 1.8496792, 0, 0, 0, 1, 12.611112, 1.4520283, -1.9948263)
+mesh = SubResource("BoxMesh_h45xw")
 
-[node name="pancakes" parent="." unique_id=2037841239 instance=ExtResource("7_pk7e2")]
-transform = Transform3D(0.3184947, 0, 0, 0, 0.3184947, 0, 0, 0, 0.3184947, 1.8889654, 0.2562222, -0.9245448)
+[node name="StaticBody3D" type="StaticBody3D" parent="obstacles/MeshInstance3D3" unique_id=119697379]
 
-[node name="cottonCandy" parent="." unique_id=1833495501 instance=ExtResource("8_jm1ih")]
-transform = Transform3D(0.19756734, 0.15841296, 0.073353514, -0.16213319, 0.20757358, -0.011589348, -0.06471658, -0.036425456, 0.25296882, -1.5068967, 0.9610671, -1.8228277)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="obstacles/MeshInstance3D3/StaticBody3D" unique_id=32024017]
+shape = SubResource("ConcavePolygonShape3D_6sq0m")
+
+[node name="Brickwall" parent="obstacles" unique_id=514877560 instance=ExtResource("11_7ay7m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.9699488, 0.116930485, -0.06320381)
+
+[node name="Brickwall2" parent="obstacles" unique_id=1396505522 instance=ExtResource("11_7ay7m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.9699495, 0.116930485, -15.489944)
+
+[node name="Brickwall5" parent="obstacles" unique_id=1446911366 instance=ExtResource("11_7ay7m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 31.030052, 0.116930485, -0.063205294)
+
+[node name="Brickwall6" parent="obstacles" unique_id=436054042 instance=ExtResource("11_7ay7m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 31.03005, 0.116930485, -15.489946)
+
+[node name="Brickwall3" parent="obstacles" unique_id=1094760904 instance=ExtResource("11_7ay7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9786475, 0.116930485, -24.293787)
+
+[node name="Brickwall4" parent="obstacles" unique_id=2024705722 instance=ExtResource("11_7ay7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.393356, 0.116930485, -24.293787)
+
+[node name="Brickwall7" parent="obstacles" unique_id=1905460222 instance=ExtResource("11_7ay7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.393356, 0.116930485, -24.293787)
+
+[node name="Rock" parent="obstacles" unique_id=661573425 instance=ExtResource("12_aeyoe")]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 16.136166, 1.1096709, -0.10123503)
+
+[node name="Rock2" parent="obstacles" unique_id=1521815544 instance=ExtResource("12_aeyoe")]
+transform = Transform3D(0.12622552, 0.41712272, -0.077937685, -0.4237406, 0.12822814, 9.313226e-09, 0.022573806, 0.07459697, 0.435803, -2.372414, 0.20230217, -4.6127915)
+
+[node name="floor" type="Node3D" parent="." unique_id=166139780]
+
+[node name="plane_cobble" parent="floor" unique_id=1598379750 instance=ExtResource("9_uvvm0")]
+transform = Transform3D(1.9775246, 0, 0, 0, 1, 0, 0, 0, 1.9775246, 4.136, 0.23894882, -0.056)
+
+[node name="plane_cobble2" parent="floor" unique_id=1800944590 instance=ExtResource("9_uvvm0")]
+transform = Transform3D(1.9775246, 0, 0, 0, 1, 0, 0, 0, 1.9775246, 4.136, 0.23894882, -13.396298)
+
+[node name="plane_cobble3" parent="floor" unique_id=235664345 instance=ExtResource("9_uvvm0")]
+transform = Transform3D(1.9775246, 0, 0, 0, 1, 0, 0, 0, 1.9775246, 4.136, 0.23894882, -26.692894)
+
+[node name="plane_grassBase" parent="floor" unique_id=1450133192 instance=ExtResource("10_7ay7m")]
+transform = Transform3D(1.1977135, 0, 0, 0, 1, 0, 0, 0, 1.1977135, 14.844627, 0.23894978, 2.5793457)
+
+[node name="plane_grassBase2" parent="floor" unique_id=369177069 instance=ExtResource("10_7ay7m")]
+transform = Transform3D(1.1977135, 0, 0, 0, 1, 0, 0, 0, 1.1977135, 14.844627, 0.23894978, -5.507162)
+
+[node name="plane_grassBase3" parent="floor" unique_id=518385685 instance=ExtResource("10_7ay7m")]
+transform = Transform3D(1.1977135, 0, 0, 0, 1, 0, 0, 0, 1.1977135, 14.844627, 0.23894978, -13.554182)
+
+[node name="plane_grassBase4" parent="floor" unique_id=1994789087 instance=ExtResource("10_7ay7m")]
+transform = Transform3D(1.1977135, 0, 0, 0, 1, 0, 0, 0, 1.1977135, 14.844627, 0.23894978, -21.64069)
+
+[node name="plane_gravel" parent="floor" unique_id=1188448925 instance=ExtResource("11_j8xii")]
+transform = Transform3D(1.8927803, 0, 0, 0, 1, 0, 0, 0, 1.8927803, 26.894636, 0.23894882, 0.22040176)
+
+[node name="plane_gravel2" parent="floor" unique_id=767642841 instance=ExtResource("11_j8xii")]
+transform = Transform3D(1.8927803, 0, 0, 0, 1, 0, 0, 0, 1.8927803, 26.894636, 0.23894882, -12.558631)
+
+[node name="Stonewall" parent="." unique_id=609999834 instance=ExtResource("12_j8xii")]
+transform = Transform3D(0.5655671, 0, -0.8247024, 0, 1, 0, 0.8247024, 0, 0.5655671, 4.2900853, 0.393597, -9.078602)
