@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://caqn2b5sqx7u5"]
+[gd_scene format=4 uid="uid://caqn2b5sqx7u5"]
 
 [ext_resource type="Texture2D" uid="uid://dl0fimums0ea6" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_pink_512x512.png" id="1_akb24"]
 
@@ -8,15 +8,17 @@ uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[node name="Ramp45" type="CSGBox3D" unique_id=1946020142]
+[sub_resource type="ArrayMesh" id="ArrayMesh_akb24"]
+_surfaces = [{
+"aabb": AABB(-1, -0.5, -0.5, 2, 1, 1),
+"attribute_data": PackedByteArray("AACAPwAAAACSy3oyAAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAAAAAAAAAgD8AAIA/AACAPwAAAAAAAAAAb+s5OwAAgD8AAIA/AACAPwAAgD8AAIA/kst6MgAAAAAAAIA/AACAPwAAgD+Sy3oyAAAAAJLLejIAAIA/AACAPwAAAAAAAAAAAAAAAAAAAABv6zk7AACAPwAAgD8VRn8/AAAAABVGfz8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAgD8AAIA/kst6MgAAAAAVRn8/AACAPwAAgD8AAIA/AAAAABVGfz8AAAAAxaoqPQAA4D6lC3k/AADgPsWqKj0AABA/pQt5PwAAED/Fqio9AAAQP6ULeT8AAOA+"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AACAvwAAAL8AAAC/AACAvwAAAD8AAAC/AACAvwAAAL8AAAA/AACAvwAAAL8AAAC/AACAvwAAAL8AAAA/AACAPwAAAL8AAAC/AACAvwAAAL8AAAC/AACAPymM/r4AAAC/AACAvwAAAD8AAAC/AACAvwAAAL8AAAA/AACAvwAAAD8AAAA/AACAPwAAAL8AAAA/AACAvwAAAL8AAAA/AACAvwAAAD8AAAC/AACAvwAAAD8AAAA/AACAvwAAAL8AAAC/AACAPwAAAL8AAAC/AACAPymM/r4AAAC/AACAPwAAAL8AAAC/AACAPymM/r4AAAA/AACAPymM/r4AAAC/AACAvwAAAL8AAAA/AACAPwAAAL8AAAA/AACAPwAAAL8AAAC/AACAPwAAAL8AAAA/AACAvwAAAD8AAAA/AACAPymM/r4AAAA/AACAPwAAAL8AAAC/AACAPwAAAL8AAAA/AACAPymM/r4AAAA/AACAvwAAAD8AAAC/AACAPymM/r4AAAC/AACAvwAAAD8AAAA/AACAPymM/r4AAAA/AACAvwAAAD8AAAA/AACAPymM/r4AAAC/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8//3//fwAA/z//f/9/AAD/P/9//38AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//////wAA/z//////AAD/P/////8AAP8/////f/9//n////9//3/+f////3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5/lapp1WnVtKqVqmnVadW0qpWqadVp1bSqlapp1WnVtKqVqmnVadW0qpWqadVp1bSq")
+}]
+
+[node name="CSGMesh3D" type="CSGMesh3D" unique_id=1124810618]
 material_override = SubResource("StandardMaterial3D_pht6c")
-use_collision = true
-size = Vector3(2, 1, 1)
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1071180233]
-transform = Transform3D(0.4461977, -0.8949342, 0, 0.8949342, 0.4461977, 0, 0, 0, 1, -1, 0.5, 0)
-operation = 2
-
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=300674572]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000001, 0.49999988, -1.0999997, 0)
-size = Vector3(1, 2.4, 8)
+mesh = SubResource("ArrayMesh_akb24")
