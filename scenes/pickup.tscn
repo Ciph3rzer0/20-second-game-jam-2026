@@ -29,10 +29,14 @@ transform = Transform3D(0.15344831, 0.20939483, 0, -0.20939483, 0.15344831, 0, 0
 [node name="Cylinder" parent="meat" index="0" unique_id=1369834582]
 surface_material_override/0 = SubResource("ShaderMaterial_ujk5d")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="meat" unique_id=243112994]
+[node name="CollectionArea" type="Area3D" parent="meat" unique_id=243112994]
 transform = Transform3D(3.852068, 0, 0, 0, 3.852068, 0, 0, 0, 3.852068, 0, 0, 0.027467873)
+collision_layer = 0
+monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="meat/StaticBody3D" unique_id=148809898]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="meat/CollectionArea" unique_id=148809898]
 shape = SubResource("SphereShape3D_h45xw")
+
+[connection signal="body_entered" from="meat/CollectionArea" to="." method="_on_body_entered"]
 
 [editable path="meat"]

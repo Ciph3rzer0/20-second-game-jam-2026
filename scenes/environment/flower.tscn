@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c1n8jq18delbm"]
+
+[ext_resource type="Texture2D" uid="uid://bsp7ninynrk83" path="res://assets/materials/flower.png" id="1_hickb"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_h45xw"]
+radial_segments = 8
+rings = 8
+is_hemisphere = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgwly"]
+albedo_color = Color(0.27769536, 0.116454504, 0.03413825, 1)
+
+[node name="Flower" type="Node3D" unique_id=71163189]
+
+[node name="flower" type="Sprite3D" parent="." unique_id=1631240890]
+transform = Transform3D(0.44103998, 0, 0, 0, 0.4537289, 0, 0, 0, 0.44103998, 0.0033516884, 0.26685148, -0.0008646548)
+billboard = 2
+shaded = true
+texture_filter = 0
+texture = ExtResource("1_hickb")
+
+[node name="dirtPile" type="MeshInstance3D" parent="." unique_id=353037066]
+transform = Transform3D(0.21275344, 0, 0, 0, 0.058514483, 0, 0, 0, 0.21275344, 0, 0, 0)
+mesh = SubResource("SphereMesh_h45xw")
+surface_material_override/0 = SubResource("StandardMaterial3D_dgwly")

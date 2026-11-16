@@ -1,4 +1,7 @@
+class_name Slime
 extends CharacterBody3D
+
+const JUMP_SOUND = preload("res://assets/audio/sfx/squelch_07.wav")
 
 @export var move_speed := 4.0
 @export var jump_speed := 6.0
@@ -60,7 +63,7 @@ func _physics_process(delta):
 
 	if was_on_floor and Input.is_action_just_pressed("ui_accept"):
 		velocity.y = jump_speed
-		#print("jumped")
+		play_sound(JUMP_SOUND)
 
 		# Stretch upward when jumping
 		squish_velocity -= 2.0
@@ -85,7 +88,8 @@ func _physics_process(delta):
 	# size increase + slow top tilt in last moveDir?
 	
 	## JUMPING ANIMATION
-	 # remove the mask during jumps? lerp the removal over ~1s after the jump?
+	 # remove the mask during jumps? 
+	   # lerp removal over ~1s after the jump?
 
 	# Landing generates a deformation impulse
 	if not was_on_floor and is_on_floor():
@@ -129,3 +133,13 @@ func _physics_process(delta):
 		"motion",
 		clamp(horizontal_speed / move_speed, 0.5, 1.0)
 	)
+
+
+func play_sound(stream: AudioStream) -> void:
+	# Keep sounds on the slime so removing an absorbed pickup won't cut them off.
+	var player := AudioStreamPlayer.new()
+	player.stream = stream
+	player.bus = &"SFX"
+	add_child(player)
+	player.finished.connect(player.queue_free)
+	player.play()

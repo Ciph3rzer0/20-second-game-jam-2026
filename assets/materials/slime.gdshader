@@ -1,5 +1,6 @@
 shader_type spatial;
 
+
 uniform vec4 slime_color : source_color =
     vec4(0.15, 0.85, 0.35, 1.0);
 
