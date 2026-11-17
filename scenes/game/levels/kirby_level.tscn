@@ -155,7 +155,9 @@ uv1_world_triplanar = true
 script = ExtResource("1_vuxjq")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2141334000]
+physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, -11.508371, 12.246487, -27.210533)
+top_level = true
 fov = 45.0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1783810064]
@@ -236,6 +238,8 @@ follow_damping_value = Vector3(0.15, 0.15, 0.15)
 follow_axis_lock = 6
 follow_distance = 10.0
 spring_length = 10.0
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
 
 [node name="PlayerFollowCamera" type="Node3D" parent="." unique_id=1722917239 node_paths=PackedStringArray("follow_target", "look_at_target")]
 transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, -11.508371, 12.246487, -27.210533)
@@ -249,6 +253,9 @@ look_at_target = NodePath("../Player")
 tween_resource = SubResource("Resource_pht6c")
 follow_offset = Vector3(0, 10, 7)
 follow_damping = true
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
@@ -596,10 +603,16 @@ material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 size = Vector3(4, 8, 6)
 
+[node name="Lip" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Node3D/Tower" unique_id=1086981167]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2960162, 3.155696)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+size = Vector3(2, 0.1, 0.4)
+
 [node name="CSGBox3D" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Node3D/Tower" unique_id=126223937]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034240723, -0.085647106, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034240723, -0.085647106, 0)
 operation = 2
-size = Vector3(2, 2, 10)
+size = Vector3(2, 2, 6.2000003)
 
 [node name="CrateReceiver" parent="Starter Area/Starter Puzzle 2" unique_id=1668070214 instance=ExtResource("26_3iby6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -11)

@@ -23,7 +23,7 @@ func _on_body_entered(node: Node3D):
 	_tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	_tween.tween_method(step, 0.0, 1.0, duration)
 	
-	monitoring = false
+	set_deferred("monitoring", false)
 	## not working...
 	#await _tween.finished
 	#print ("tween finished ")
