@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_mryis"]
 [ext_resource type="Resource" uid="uid://dby58yr82jbtr" path="res://scenes/game/player/upgrades/world_end_upgrade.tres" id="6_c5h7q"]
 [ext_resource type="Resource" uid="uid://bqnwoduq6d7dq" path="res://scenes/game/player/upgrades/cotton_candy_upgrade.tres" id="6_lu0cf"]
-[ext_resource type="Environment" uid="uid://cjbeltvqmf7a5" path="res://scenes/game/level_objects/default_env.tres" id="7_g60af"]
+[ext_resource type="Environment" uid="uid://cjbeltvqmf7a5" path="res://default_env.tres" id="7_g60af"]
 [ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="7_gm86f"]
 [ext_resource type="PackedScene" uid="uid://dfifonwu0o5eb" path="res://scenes/game/level_objects/hide_trigger/hide_trigger.tscn" id="12_qoke0"]
 [ext_resource type="Texture2D" uid="uid://3wu1lbkmlqr3" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_orange_512x512.png" id="12_vuxjq"]
@@ -24,9 +24,9 @@
 [ext_resource type="PackedScene" uid="uid://6vxpynpg3rsr" path="res://scenes/game/proto_blocks/block.tscn" id="16_8vwo3"]
 [ext_resource type="PackedScene" uid="uid://cr4smfn2hc2v1" path="res://scenes/game/proto_blocks/ramp45.tscn" id="17_8vwo3"]
 [ext_resource type="PackedScene" uid="uid://caqn2b5sqx7u5" path="res://scenes/game/proto_blocks/ramp26.tscn" id="17_tmtgi"]
-[ext_resource type="PackedScene" uid="uid://b42bfqq0rgodu" path="res://scenes/game/level_objects/spinny_thing.tscn" id="19_33xl3"]
+[ext_resource type="PackedScene" uid="uid://b42bfqq0rgodu" path="res://scenes/game/level_objects/spinny_thing/spinny_thing.tscn" id="19_33xl3"]
 [ext_resource type="PackedScene" uid="uid://bp5f603i8yra2" path="res://scenes/game/proto_blocks/csg_ramp_proto.tscn" id="22_pbnmf"]
-[ext_resource type="PackedScene" uid="uid://bd1ylq1nkm0gt" path="res://scenes/game/level_objects/flippy_thing.tscn" id="23_w32m7"]
+[ext_resource type="PackedScene" uid="uid://bd1ylq1nkm0gt" path="res://scenes/game/level_objects/flippy_thing/flippy_thing.tscn" id="23_w32m7"]
 
 [sub_resource type="Gradient" id="Gradient_c5i6r"]
 interpolation_mode = 2
@@ -94,6 +94,11 @@ uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
+[sub_resource type="Curve" id="Curve_o3xl8"]
+resource_local_to_scene = true
+_data = [Vector2(0, 0), 0.0, 4.458296, 0, 0, Vector2(0.99544424, 0.87640446), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_uhg71"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gyht"]
@@ -115,9 +120,7 @@ uv1_world_triplanar = true
 script = ExtResource("1_vuxjq")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2141334000]
-physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, -11.544913, 9.999999, -29.046112)
-top_level = true
 fov = 45.0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1783810064]
@@ -447,6 +450,7 @@ size = Vector3(12, 0.90000004, 5)
 [node name="FlippyThing" parent="Starter Area/Starter Puzzle 2" unique_id=33473175 instance=ExtResource("23_w32m7")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.1, 0)
 flip_duration = 0.2
+flip_curve = SubResource("Curve_o3xl8")
 
 [node name="Area3D" type="Area3D" parent="Starter Area/Starter Puzzle 2" unique_id=217014028]
 collision_layer = 0

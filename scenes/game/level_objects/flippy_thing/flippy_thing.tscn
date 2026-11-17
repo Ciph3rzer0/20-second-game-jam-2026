@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bd1ylq1nkm0gt"]
 
-[ext_resource type="Script" uid="uid://ddhkfryot8pct" path="res://scenes/game/level_objects/flippy_thing.gd" id="1_a4k04"]
+[ext_resource type="Script" uid="uid://ddhkfryot8pct" path="res://scenes/game/level_objects/flippy_thing/flippy_thing.gd" id="1_a4k04"]
 
 [sub_resource type="Curve" id="Curve_a4k04"]
 resource_local_to_scene = true

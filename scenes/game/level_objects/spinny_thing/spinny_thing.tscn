@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b42bfqq0rgodu"]
 
-[ext_resource type="Script" uid="uid://b0c5br1u30eqn" path="res://scenes/game/level_objects/spinny_thing.gd" id="2_4lt8s"]
+[ext_resource type="Script" uid="uid://b0c5br1u30eqn" path="res://scenes/game/level_objects/spinny_thing/spinny_thing.gd" id="2_4lt8s"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_32ncx"]
 top_radius = 0.2
