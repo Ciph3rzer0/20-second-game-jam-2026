@@ -8,10 +8,18 @@
 
 config_version=5
 
+[animation]
+
+compatibility/enable_alt_space_menu=false
+compatibility/size/initial_position=Vector2i(100, -192)
+compatibility/size/initial_position_type=0
+compatibility/size/no_focus=false
+
 [application]
 
 config/name="20 Second game - josh & anthony"
 run/main_scene="uid://dw8qysr1hx66l"
+run/enable_alt_space_menu=true
 config/features=PackedStringArray("4.7")
 boot_splash/bg_color=Color(0.57676476, 0.40948027, 0.6513068, 1)
 boot_splash/show_image=false
@@ -37,6 +45,7 @@ copy_path="res://"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/always_on_top=true
 window/stretch/mode="viewport"
 
 [editor_plugins]
@@ -191,4 +200,4 @@ renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 anti_aliasing/quality/msaa_3d=1
-environment/defaults/default_environment="res://default_env.tres"
+environment/defaults/default_environment="uid://dg6gkweta8kyo"

@@ -1,0 +1,18 @@
+[gd_resource type="Environment" format=3 uid="uid://cjbeltvqmf7a5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wvbpc"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ripiw"]
+sky_material = SubResource("ProceduralSkyMaterial_wvbpc")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_ripiw")
+ambient_light_source = 2
+ambient_light_color = Color(0.68075407, 0.7384699, 0.7418215, 1)
+ambient_light_energy = 0.4
+tonemap_mode = 1
+tonemap_exposure = 0.9
+tonemap_white = 1.1

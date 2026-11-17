@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_mryis"]
 [ext_resource type="Resource" uid="uid://dby58yr82jbtr" path="res://scenes/game/player/upgrades/world_end_upgrade.tres" id="6_c5h7q"]
 [ext_resource type="Resource" uid="uid://bqnwoduq6d7dq" path="res://scenes/game/player/upgrades/cotton_candy_upgrade.tres" id="6_lu0cf"]
+[ext_resource type="Environment" uid="uid://cjbeltvqmf7a5" path="res://scenes/game/level_objects/default_env.tres" id="7_g60af"]
 [ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="7_gm86f"]
 [ext_resource type="PackedScene" uid="uid://dfifonwu0o5eb" path="res://scenes/game/level_objects/hide_trigger/hide_trigger.tscn" id="12_qoke0"]
 [ext_resource type="Texture2D" uid="uid://3wu1lbkmlqr3" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_orange_512x512.png" id="12_vuxjq"]
@@ -23,6 +24,9 @@
 [ext_resource type="PackedScene" uid="uid://6vxpynpg3rsr" path="res://scenes/game/proto_blocks/block.tscn" id="16_8vwo3"]
 [ext_resource type="PackedScene" uid="uid://cr4smfn2hc2v1" path="res://scenes/game/proto_blocks/ramp45.tscn" id="17_8vwo3"]
 [ext_resource type="PackedScene" uid="uid://caqn2b5sqx7u5" path="res://scenes/game/proto_blocks/ramp26.tscn" id="17_tmtgi"]
+[ext_resource type="PackedScene" uid="uid://b42bfqq0rgodu" path="res://scenes/game/level_objects/spinny_thing.tscn" id="19_33xl3"]
+[ext_resource type="PackedScene" uid="uid://bp5f603i8yra2" path="res://scenes/game/proto_blocks/csg_ramp_proto.tscn" id="22_pbnmf"]
+[ext_resource type="PackedScene" uid="uid://bd1ylq1nkm0gt" path="res://scenes/game/level_objects/flippy_thing.tscn" id="23_w32m7"]
 
 [sub_resource type="Gradient" id="Gradient_c5i6r"]
 interpolation_mode = 2
@@ -54,20 +58,20 @@ gradient = SubResource("Gradient_11ovw")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tmtgi"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_warmu"]
 resource_local_to_scene = true
 size = Vector3(10, 4, 8)
 
-[sub_resource type="Resource" id="Resource_33xl3"]
+[sub_resource type="Resource" id="Resource_g60af"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_pbnmf"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3iby6"]
 resource_local_to_scene = true
 size = Vector3(7, 4, 6)
 
-[sub_resource type="Resource" id="Resource_w32m7"]
+[sub_resource type="Resource" id="Resource_ryyfu"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
@@ -77,23 +81,6 @@ script = ExtResource("4_tn5tm")
 duration = 0.4
 transition = 8
 ease = 1
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wvbpc"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_ripiw"]
-sky_material = SubResource("ProceduralSkyMaterial_wvbpc")
-
-[sub_resource type="Environment" id="Environment_p045d"]
-background_mode = 2
-sky = SubResource("Sky_ripiw")
-ambient_light_source = 2
-ambient_light_color = Color(0.68075407, 0.7384699, 0.7418215, 1)
-ambient_light_energy = 0.5
-tonemap_mode = 1
-tonemap_exposure = 0.9
-tonemap_white = 1.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3rlc"]
 albedo_texture = ExtResource("2_bfu6m")
@@ -106,6 +93,8 @@ albedo_texture = ExtResource("15_mryis")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 uv1_world_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uhg71"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gyht"]
 albedo_texture = ExtResource("4_bfu6m")
@@ -127,7 +116,7 @@ script = ExtResource("1_vuxjq")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2141334000]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, -19.85308, 10, -5.4809704)
+transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, -11.544913, 9.999999, -29.046112)
 top_level = true
 fov = 45.0
 
@@ -182,29 +171,27 @@ max_value = 20.0
 
 [node name="AreaCameraTrigger" parent="." unique_id=1066658657 instance=ExtResource("4_mryis")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 10, 0, -6)
-monitoring = false
 
 [node name="CollisionShape3D" parent="AreaCameraTrigger" index="0" unique_id=1391710269]
-shape = SubResource("BoxShape3D_tmtgi")
+shape = SubResource("BoxShape3D_warmu")
 
 [node name="PCam-Behind" parent="AreaCameraTrigger" index="1" unique_id=1357355425]
 transform = Transform3D(1.0000002, 0, 0, 1.776357e-15, 0.86602694, 0.50000006, 3.0767455e-15, -0.5000001, 0.8660269, 0, 3, 4.9912405)
-tween_resource = SubResource("Resource_33xl3")
+tween_resource = SubResource("Resource_g60af")
 
 [node name="ACam - Spawn" parent="." unique_id=522325614 instance=ExtResource("4_mryis")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1.5, 8, -16)
-monitoring = false
 
 [node name="CollisionShape3D" parent="ACam - Spawn" index="0" unique_id=1391710269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9206276e-05, 1.999939, 0)
-shape = SubResource("BoxShape3D_pbnmf")
+shape = SubResource("BoxShape3D_3iby6")
 
 [node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425 node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, -19.85308, 6.071067, -5.4099035)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, -11.544913, 6.071066, -28.975044)
 top_level = true
 follow_mode = 5
 follow_target = NodePath("../../Player")
-tween_resource = SubResource("Resource_w32m7")
+tween_resource = SubResource("Resource_ryyfu")
 follow_offset = Vector3(0, -1, 0)
 follow_damping = true
 follow_damping_value = Vector3(0.15, 0.15, 0.15)
@@ -215,7 +202,7 @@ align_transform_with_view = Callable()
 align_position_with_view = Callable()
 
 [node name="PlayerFollowCamera" type="Node3D" parent="." unique_id=1722917239 node_paths=PackedStringArray("follow_target", "look_at_target")]
-transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, -19.85308, 10, -5.4809704)
+transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, -11.544913, 9.999999, -29.046112)
 top_level = true
 script = ExtResource("3_ec8vc")
 priority = 10
@@ -232,18 +219,18 @@ align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.85308, 0, -12.48097)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.544913, -9.536743e-07, -36.046112)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1485879796]
-environment = SubResource("Environment_p045d")
+environment = ExtResource("7_g60af")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1928852811]
 transform = Transform3D(-0.551937, 0.7221663, -0.41694286, 0, 0.49999997, 0.86602545, 0.8338858, 0.47799146, -0.27596846, 0, 0, 0)
-light_energy = 0.5
+light_energy = 0.22
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1114472192 node_paths=PackedStringArray("camera") instance=ExtResource("1_o7uk8")]
-transform = Transform3D(0.7071067, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071067, -19.85308, 0, -12.48097)
+transform = Transform3D(0.7071067, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071067, -11.544913, -9.536743e-07, -36.046112)
 camera = NodePath("../Camera3D")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=401191725]
@@ -252,11 +239,16 @@ update_rotation = false
 update_scale = false
 
 [node name="Ground" type="CSGBox3D" parent="." unique_id=1904050769]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 15.5)
 material_override = SubResource("StandardMaterial3D_n3rlc")
 use_collision = true
-size = Vector3(100, 1, 100)
+size = Vector3(100, 1, 69)
 metadata/_edit_lock_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ground" unique_id=2125330884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.499998, 0.15, -24.4)
+operation = 2
+size = Vector3(4.4, 0.90000004, 1.2)
 
 [node name="FOOD Hot Tamale" parent="." unique_id=1048115677 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 3.5)
@@ -281,18 +273,52 @@ upgrade = ExtResource("6_c5h7q")
 [node name="Starter Area" type="Node3D" parent="." unique_id=486367744]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -20, 0, -20)
 
+[node name="Ground2" type="CSGBox3D" parent="Starter Area" unique_id=1541857766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.500004, -0.5, 9.000002)
+material_override = SubResource("StandardMaterial3D_n3rlc")
+use_collision = true
+size = Vector3(51, 1, 42)
+metadata/_edit_lock_ = true
+
+[node name="Spotlight1" type="SpotLight3D" parent="Starter Area" unique_id=1356235810]
+transform = Transform3D(-4.371139e-08, -0.6427877, 0.76604444, 1.7763568e-15, 0.76604444, 0.6427877, -1, 2.8097142e-08, -3.3484866e-08, -1.002142, 2.7821624, -0.54447174)
+shadow_bias = 0.365
+
 [node name="FOOD Beef2" parent="Starter Area" unique_id=161445826 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.5, -2.5)
+upgrade = ExtResource("13_mryis")
+
+[node name="FOOD Beef3" parent="Starter Area" unique_id=1556051106 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.814972, -0.5, -9.450752)
 upgrade = ExtResource("13_mryis")
 
 [node name="Crate" parent="Starter Area" unique_id=2091715048 instance=ExtResource("14_2q3qm")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.12190819, 1.3749999, 0.26688194)
 
-[node name="Ramp45" parent="Starter Area" unique_id=1012068162 instance=ExtResource("17_8vwo3")]
+[node name="Crate2" parent="Starter Area" unique_id=1351512662 instance=ExtResource("14_2q3qm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.121908, 1.3749999, 1.2668877)
+
+[node name="Ramp26" parent="Starter Area" unique_id=1012068162 instance=ExtResource("17_8vwo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3, 2.5, 0.5, 1.5)
 
-[node name="Ramp46" parent="Starter Area" unique_id=1612963089 instance=ExtResource("17_tmtgi")]
+[node name="Ramp45" parent="Starter Area" unique_id=1612963089 instance=ExtResource("17_tmtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0014477, 0.49999988, -1.4884892)
+
+[node name="FOOD Hot Tamale" parent="Starter Area" unique_id=1129110136 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -12.849659, -0.5, -11.996302)
+upgrade = ExtResource("3_lqk0u")
+
+[node name="FOOD Pancake" parent="Starter Area" unique_id=868952379 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -3, -1.5, -0.49997902)
+upgrade = ExtResource("5_4gyht")
+
+[node name="FOOD Cotton Candy" parent="Starter Area" unique_id=571511311 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -19.19785, 4.1866245, -4.7589245)
+upgrade = ExtResource("6_lu0cf")
+
+[node name="FOOD End The World" parent="Starter Area" unique_id=1285381444 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -20.084381, 8.232913, 1.5413837)
+upgrade = ExtResource("6_c5h7q")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Starter Area" unique_id=1934726284]
 material_override = SubResource("StandardMaterial3D_pht6c")
@@ -303,6 +329,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, -0.5)
 material_override = SubResource("StandardMaterial3D_pht6c")
 use_collision = true
 size = Vector3(1, 1, 7)
+
+[node name="CSGBox3D-S5" type="CSGBox3D" parent="Starter Area/CSGCombiner3D" unique_id=1540154038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5000057, 1.5, 1.5)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+
+[node name="CSGBox3D-S6" type="CSGBox3D" parent="Starter Area/CSGCombiner3D" unique_id=1797514714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5000057, 1.5, 1.5)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+
+[node name="CSGBox3D-S7" type="CSGBox3D" parent="Starter Area/CSGCombiner3D" unique_id=292220593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49999428, 1.5, 1.5)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+
+[node name="CSGBox3D-S8" type="CSGBox3D" parent="Starter Area/CSGCombiner3D" unique_id=164288804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4999943, 1.5, 1.7500076)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+size = Vector3(5, 1, 0.5)
+
+[node name="CSGBox3D-S9" type="CSGBox3D" parent="Starter Area/CSGCombiner3D" unique_id=529526896]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4999943, 1.5, -2.7499905)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+size = Vector3(5, 1, 0.5)
+
+[node name="CSGBox3D-S10" type="CSGBox3D" parent="Starter Area/CSGCombiner3D" unique_id=452366448]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 3.5, -0.4999981)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+size = Vector3(5, 1, 0.5)
 
 [node name="CSGBox3D-S2" type="CSGBox3D" parent="Starter Area/CSGCombiner3D" unique_id=1058534040]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -0.5)
@@ -316,14 +375,105 @@ material_override = SubResource("StandardMaterial3D_pht6c")
 use_collision = true
 size = Vector3(1, 1, 3)
 
+[node name="SpinnyThing" parent="Starter Area/CSGCombiner3D" unique_id=1531368671 instance=ExtResource("19_33xl3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -0.40000004, -2.1999683)
+rotation_ease = -2.0
+
+[node name="SpinnyThing2" parent="Starter Area/CSGCombiner3D" unique_id=542642159 instance=ExtResource("19_33xl3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -0.40000004, 1.2000275)
+rotation_ease = -2.0
+
+[node name="SpinnyThing3" parent="Starter Area/CSGCombiner3D" unique_id=443515111 instance=ExtResource("19_33xl3")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -15, -0.40000004, -2.1999607)
+rotation_ease = -2.0
+
+[node name="SpinnyThing9" parent="Starter Area/CSGCombiner3D" unique_id=224458071 instance=ExtResource("19_33xl3")]
+transform = Transform3D(-8.742278e-08, -4.371139e-08, -1, 1, -4.371139e-08, -8.742278e-08, -4.3711385e-08, -1, 4.3711392e-08, -17.950684, 1.5999999, -3.472784)
+rotation_ease = -2.0
+
+[node name="SpinnyThing5" parent="Starter Area/CSGCombiner3D" unique_id=1699617845 instance=ExtResource("19_33xl3")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -20, -0.40000004, 1.8000412)
+rotation_ease = -2.0
+
+[node name="SpinnyThing6" parent="Starter Area/CSGCombiner3D" unique_id=2142084837 instance=ExtResource("19_33xl3")]
+transform = Transform3D(0.50000006, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, 0.50000006, -20, 1.5999999, 1.8000488)
+rotation_ease = -2.0
+
+[node name="SpinnyThing7" parent="Starter Area/CSGCombiner3D" unique_id=1834665360 instance=ExtResource("19_33xl3")]
+transform = Transform3D(0.86602545, 0, -0.5, 0, 1, 0, 0.5, 0, 0.86602545, -20, 3.6, 1.8000507)
+rotation_ease = -2.0
+
+[node name="SpinnyThing8" parent="Starter Area/CSGCombiner3D" unique_id=1268234873 instance=ExtResource("19_33xl3")]
+transform = Transform3D(1.0000002, 0, -1.5893246e-08, 0, 1, 0, 1.5893246e-08, 0, 1.0000002, -20, 5.6, 1.8000546)
+rotation_ease = -2.0
+
+[node name="SpinnyThing4" parent="Starter Area/CSGCombiner3D" unique_id=1229634504 instance=ExtResource("19_33xl3")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -15, -0.40000004, 1.2000332)
+rotation_ease = -2.0
+
 [node name="CSGBox3D-S4" type="CSGBox3D" parent="Starter Area/CSGCombiner3D" unique_id=716596207]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1, -0.49999046)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1, -0.49998283)
 material_override = SubResource("StandardMaterial3D_pht6c")
 use_collision = true
-size = Vector3(1, 2, 3)
+size = Vector3(1, 2, 4)
 
 [node name="Block" parent="Starter Area/CSGCombiner3D" unique_id=1946020142 instance=ExtResource("16_8vwo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.5, -2.5)
+
+[node name="Ramp26d" parent="Starter Area/CSGCombiner3D" unique_id=1124810618 instance=ExtResource("17_tmtgi")]
+transform = Transform3D(-1.9999996, 0, -7.54979e-07, 0, 2, 0, 3.0199155e-07, 0, -5, -8, 0.5, -0.49998283)
+
+[node name="Updraft" parent="Starter Area" unique_id=1952319572 instance=ExtResource("7_gm86f")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 1, 0, -3, 0, -1.3113416e-07, -20.024357, 0, 1.9764099)
+
+[node name="Ramp46" parent="Starter Area" unique_id=998039118 instance=ExtResource("22_pbnmf")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.4258461, 0.5262465, -5.458254)
+
+[node name="Starter Puzzle 2" type="Node3D" parent="Starter Area" unique_id=708855063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.971752, 0, -11.99969)
+
+[node name="Ground3" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2" unique_id=1752299582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.528248, -0.5, -29.000313)
+material_override = SubResource("StandardMaterial3D_n3rlc")
+use_collision = true
+size = Vector3(51, 1, 58)
+metadata/_edit_lock_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/Ground3" unique_id=398073713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.300003, 0.15, 13.700001)
+operation = 2
+size = Vector3(12, 0.90000004, 5)
+
+[node name="FlippyThing" parent="Starter Area/Starter Puzzle 2" unique_id=33473175 instance=ExtResource("23_w32m7")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.1, 0)
+flip_duration = 0.2
+
+[node name="Area3D" type="Area3D" parent="Starter Area/Starter Puzzle 2" unique_id=217014028]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Starter Area/Starter Puzzle 2/Area3D" unique_id=2107846481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+shape = SubResource("BoxShape3D_uhg71")
+
+[node name="Crate" parent="Starter Area/Starter Puzzle 2" unique_id=2119002066 instance=ExtResource("14_2q3qm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5317338, 0)
+
+[node name="Crate2" parent="Starter Area/Starter Puzzle 2" unique_id=458719906 instance=ExtResource("14_2q3qm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.927353, 1.5317338, 3.3196678)
+
+[node name="Crate3" parent="Starter Area/Starter Puzzle 2" unique_id=843735016 instance=ExtResource("14_2q3qm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.981781, 1.5317338, 2.042304)
+
+[node name="Crate4" parent="Starter Area/Starter Puzzle 2" unique_id=742924200 instance=ExtResource("14_2q3qm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.950714, 1.5317338, 0.44167328)
+
+[node name="Crate6" parent="Starter Area/Starter Puzzle 2" unique_id=797875814 instance=ExtResource("14_2q3qm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.950714, 1.5317338, -10.528766)
+
+[node name="Crate5" parent="Starter Area/Starter Puzzle 2" unique_id=2040046169 instance=ExtResource("14_2q3qm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6101494, 0.62332654, 3.2957125)
 
 [node name="Level1" type="Node3D" parent="." unique_id=185398592]
 
@@ -435,7 +585,7 @@ material_override = SubResource("StandardMaterial3D_4gyht")
 use_collision = true
 size = Vector3(1, 3.5, 4)
 
-[node name="Updraft" parent="." unique_id=1952319572 instance=ExtResource("7_gm86f")]
+[node name="Updraft" parent="." unique_id=441556459 instance=ExtResource("7_gm86f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, 5.5)
 
 [node name="Updraft2" parent="." unique_id=232462664 instance=ExtResource("7_gm86f")]
@@ -521,6 +671,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.411929, 1.125, 4.967903)
 [node name="Node3D2" type="Node3D" parent="." unique_id=1618067081]
 
 [connection signal="win" from="Player" to="." method="_on_player_win"]
+[connection signal="body_entered" from="Starter Area/Starter Puzzle 2/Area3D" to="Starter Area/Starter Puzzle 2/FlippyThing" method="flip" unbinds=1]
 
 [editable path="AreaCameraTrigger"]
 [editable path="ACam - Spawn"]
