@@ -283,6 +283,18 @@ func _try_jump() -> void:
 	_coyote_timer = 0.0
 	_jumping = true
 	velocity.y = sqrt(2.0 * _gravity * jump_height)
+	
+	# Reduce horizontal speed when jumping
+	var h_velocity = velocity * Vector3(1, 0, 1)
+	var h_speed = h_velocity.length()
+	
+	var v_velocity = velocity * Vector3(0, 1, 0)
+	var v_speed = v_velocity.length()
+	
+	var new_h_speed = h_speed - v_speed / 4.0
+	velocity = h_velocity.normalized() * new_h_speed
+	velocity.y = v_velocity.y
+	
 	if is_dashing:
 		_air_speed = dash_speed if dash_jump_keeps_speed else move_speed
 		_end_dash()
@@ -345,6 +357,10 @@ func _start_dash() -> void:
 	_dash_direction = move_direction if move_direction != Vector3.ZERO else facing_direction
 	velocity.x = _dash_direction.x * dash_speed
 	velocity.z = _dash_direction.z * dash_speed
+
+	# Dash velocity boost
+	velocity.y = jump_height * 3
+
 	dash_started.emit()
 
 
