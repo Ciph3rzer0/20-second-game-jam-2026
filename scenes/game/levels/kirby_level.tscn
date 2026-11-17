@@ -120,7 +120,9 @@ uv1_world_triplanar = true
 script = ExtResource("1_vuxjq")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2141334000]
+physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, -11.544913, 9.999999, -29.046112)
+top_level = true
 fov = 45.0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1783810064]

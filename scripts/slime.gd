@@ -45,12 +45,8 @@ func _ready():
 func _physics_process(delta):
 
 	# Movement
-	var direction := Input.get_vector(
-		"move_left",
-		"move_right",
-		"move_forward",
-        "move_backward"
-	)
+	var direction := Input.get_vector(&"pc_move_left", &"pc_move_right", &"pc_move_up", &"pc_move_down")
+
 
 	velocity.x = direction.x * move_speed
 	velocity.z = direction.y * move_speed
@@ -88,7 +84,7 @@ func _physics_process(delta):
 	
 	## JUMPING ANIMATION
 	 # remove the mask during jumps? 
-	   # lerp removal over ~1s after the jump?
+		 # lerp removal over ~1s after the jump?
 
 	# Landing generates a deformation impulse
 	if not was_on_floor and is_on_floor():

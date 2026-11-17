@@ -107,6 +107,29 @@ var _air_speed := 0.0
 var _jumping := false
 var _was_on_floor := false
 
+@export_group("Slime")
+@export var jump_sound: AudioStream
+
+@export var stiffness := 26.0
+@export var damping := 7.0
+
+@export var lean_response := 1.0
+@export var lean_stiffness := 55.0
+@export var lean_damping := 10.0
+@export var max_lean := 0.18
+
+@export var slime: MeshInstance3D
+@export var buff_slime_mesh: Mesh
+
+var material: ShaderMaterial
+
+var squish := 0.0
+var squish_velocity := 0.0
+
+var lean := Vector2.ZERO
+var lean_velocity := Vector2.ZERO
+var previous_horizontal_velocity := Vector2.ZERO
+
 
 func _ready() -> void:
 	_gravity = float(ProjectSettings.get_setting("physics/3d/default_gravity")) * gravity_scale
@@ -122,6 +145,21 @@ func _ready() -> void:
 	facing_direction = -global_basis.z
 	_air_speed = move_speed
 	_was_on_floor = is_on_floor()
+
+	# Slime Ready
+	if material == null:
+		material = slime.get_active_material(0) as ShaderMaterial
+
+	if material == null:
+		push_error("Slime requires a ShaderMaterial on its mesh or in the material export.")
+		return
+
+	material = material.duplicate() as ShaderMaterial
+	slime.material_override = material
+
+	var bounds := slime.mesh.get_aabb()
+	material.set_shader_parameter("lean_base_y", bounds.position.y)
+	material.set_shader_parameter("lean_height", bounds.size.y)
 
 var held_item : Node3D
 
@@ -198,8 +236,67 @@ func _physics_process(delta: float) -> void:
 		velocity.y *= jump_cut
 	_apply_horizontal(delta, on_floor)
 	_update_facing(delta)
+	var falling_speed := velocity.y  # before move_and_slide zeroes it on landing
 	_move(delta, on_floor)
+	_slime_physics_process(delta, on_floor, falling_speed)
 	_update_floor_transition()
+
+
+func _slime_physics_process(delta: float, was_on_floor: bool, falling_speed: float):
+	# Horizontal velocity changes give the lean spring an impulse.
+	var actual_velocity := get_real_velocity()
+	var horizontal_velocity := Vector2(actual_velocity.x, actual_velocity.z)
+	var velocity_change := horizontal_velocity - previous_horizontal_velocity
+	previous_horizontal_velocity = horizontal_velocity
+	lean_velocity -= velocity_change * lean_response
+
+	var lean_acceleration := -lean_stiffness * lean - lean_damping * lean_velocity
+	lean_velocity += lean_acceleration * delta
+	lean += lean_velocity * delta
+	lean = lean.limit_length(max_lean)
+
+	# Landing generates a deformation impulse
+	if not was_on_floor and is_on_floor():
+
+		if falling_speed < 0.0:
+			squish_velocity += min(
+				-falling_speed * 0.16,
+				1.8
+			)
+
+	# spring
+	var acceleration := (
+		-stiffness * squish
+		-damping * squish_velocity
+	)
+
+	squish_velocity += acceleration * delta
+	squish += squish_velocity * delta
+
+	squish = clamp(squish, -0.5, 0.75)
+
+	# Send parameters to shader.
+	if material == null:
+		return
+
+	# spring uses world space; shader vertices use mesh-local space
+	var local_lean := slime.global_basis.inverse() * Vector3(lean.x, 0.0, lean.y)
+	material.set_shader_parameter("lean", Vector2(local_lean.x, local_lean.z))
+
+	material.set_shader_parameter(
+		"squish",
+		squish
+	)
+
+	var horizontal_speed := Vector2(
+		velocity.x,
+		velocity.z
+	).length()
+
+	material.set_shader_parameter(
+		"motion",
+		clamp(horizontal_speed / move_speed, 0.5, 1.0)
+	)
 
 
 # --- Input -----------------------------------------------------------------
@@ -291,7 +388,7 @@ func _try_jump() -> void:
 	var v_velocity = velocity * Vector3(0, 1, 0)
 	var v_speed = v_velocity.length()
 	
-	var new_h_speed = h_speed - v_speed / 4.0
+	var new_h_speed = h_speed - v_speed / 3.0
 	velocity = h_velocity.normalized() * new_h_speed
 	velocity.y = v_velocity.y
 	
@@ -300,6 +397,11 @@ func _try_jump() -> void:
 		_end_dash()
 	else:
 		_air_speed = maxf(move_speed, Vector2(velocity.x, velocity.z).length())
+	
+	play_sound(jump_sound)
+	# Stretch upward when jumping
+	squish_velocity -= 2.0
+
 	jumped.emit()
 
 
@@ -524,6 +626,13 @@ func _find_interact_target() -> Node3D:
 
 @export_group("Transformations")
 
+func set_slime_mesh(mesh: Mesh) -> void:
+	slime.mesh = mesh
+	# The lean shader is set up from the mesh bounds in _ready; redo it for the new shape.
+	var bounds := mesh.get_aabb()
+	material.set_shader_parameter("lean_base_y", bounds.position.y)
+	material.set_shader_parameter("lean_height", bounds.size.y)
+
 func modify_scale(height: float, width: float) -> void:
 	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).height *= height
 	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).radius *= width
@@ -576,20 +685,20 @@ func become_cotton_candy():
 
 
 @export_range(0.0, 1.0, 0.05) var beef_push_speed_factor := 0.8
-const beef_body_scale := 1.4
+@export var beef_body_scale := 1.4
 
 func become_beef():
 	can_push = true
 	push_speed_factor = beef_push_speed_factor
-	%Body.scale.x *= beef_body_scale
-	%Body.scale.z *= beef_body_scale
-	%BeefyArms.visible = true
+	set_slime_mesh(buff_slime_mesh)
+	
+	slime.scale *= beef_body_scale * 1/2 # Adust for mesh size
+	slime.scale.z = -slime.scale.z
 	
 	# Double hit-box width
-	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).radius *= beef_body_scale
+	(($CollisionShape3D as CollisionShape3D).shape as SphereShape3D).radius *= beef_body_scale
 	#$"BeefyArms CollisionL".set_deferred("disabled", false)
 	#$"BeefyArms CollisionR".set_deferred("disabled", false)
-
 
 
 func become_honey():
@@ -599,3 +708,13 @@ func become_honey():
 
 func become_spaghetti():
 	can_grapple = true
+
+
+
+func play_sound(stream: AudioStream) -> void:
+	var player := AudioStreamPlayer.new()
+	player.stream = stream
+	player.bus = &"SFX"
+	add_child(player)
+	player.finished.connect(player.queue_free)
+	player.play()
