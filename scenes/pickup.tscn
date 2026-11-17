@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c6m3trggojsjc"]
+
+[ext_resource type="PackedScene" uid="uid://dvvn02wmjvxuq" path="res://assets/mesh/interactables/meat.glb" id="1_enknb"]
+[ext_resource type="Script" uid="uid://cbrfkyb2ik0rl" path="res://scripts/pickup.gd" id="1_jp4se"]
+[ext_resource type="Shader" uid="uid://dwi0q0mo5aht6" path="res://assets/materials/dissolve.gdshader" id="3_gyxxy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ujk5d"]
+render_priority = 0
+shader = ExtResource("3_gyxxy")
+shader_parameter/albedo = Color(0.60187566, 0.31093833, 0.14872384, 1)
+shader_parameter/roughness = 0.426000020235
+shader_parameter/metallic = 0.0
+shader_parameter/dissolve = 0.0
+shader_parameter/edge_width = 0.06
+shader_parameter/edge_color = Color(1, 0.45, 0.1, 1)
+shader_parameter/edge_energy = 5.6510002684225
+shader_parameter/noise_scale = 2.5
+shader_parameter/use_world_space = false
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h45xw"]
+radius = 0.7037515
+
+[node name="Pickup" type="Node3D" unique_id=197158917]
+script = ExtResource("1_jp4se")
+
+[node name="meat" parent="." unique_id=960225455 instance=ExtResource("1_enknb")]
+transform = Transform3D(0.15344831, 0.20939483, 0, -0.20939483, 0.15344831, 0, 0, 0, 0.25960082, 0, 0, -0.0071306825)
+
+[node name="Cylinder" parent="meat" index="0" unique_id=1369834582]
+surface_material_override/0 = SubResource("ShaderMaterial_ujk5d")
+
+[node name="CollectionArea" type="Area3D" parent="meat" unique_id=243112994]
+transform = Transform3D(3.852068, 0, 0, 0, 3.852068, 0, 0, 0, 3.852068, 0, 0, 0.027467873)
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="meat/CollectionArea" unique_id=148809898]
+shape = SubResource("SphereShape3D_h45xw")
+
+[connection signal="body_entered" from="meat/CollectionArea" to="." method="_on_body_entered"]
+
+[editable path="meat"]
