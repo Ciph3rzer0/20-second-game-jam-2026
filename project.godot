@@ -153,6 +153,7 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 3d_physics/layer_13="Upgrades"
 3d_physics/layer_14="Pick Up Items"
 3d_physics/layer_17="GravityFields"
+3d_physics/layer_21="Crate"
 
 [maaacks_game_template]
 

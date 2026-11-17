@@ -24,7 +24,7 @@ _surfaces = [{
 size = Vector3(0.75, 0.75, 0.75)
 
 [node name="Crate" type="RigidBody3D" unique_id=2091715048]
-collision_layer = 8193
+collision_layer = 1056769
 mass = 15.0
 physics_material_override = SubResource("PhysicsMaterial_2cuqi")
 linear_damp = 0.1

@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://bp5f603i8yra2" path="res://scenes/game/proto_blocks/csg_ramp_proto.tscn" id="22_pbnmf"]
 [ext_resource type="PackedScene" uid="uid://bd1ylq1nkm0gt" path="res://scenes/game/level_objects/flippy_thing/flippy_thing.tscn" id="23_w32m7"]
 [ext_resource type="Texture2D" uid="uid://ytlo0xn1st4q" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_black_512x512.png" id="25_g60af"]
+[ext_resource type="PackedScene" uid="uid://c2et26yfvi85o" path="res://scenes/game/level_objects/crate_receiver/crate_receiver.tscn" id="26_3iby6"]
 
 [sub_resource type="Gradient" id="Gradient_c5i6r"]
 interpolation_mode = 2
@@ -59,20 +60,20 @@ gradient = SubResource("Gradient_11ovw")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_g60af"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3iby6"]
 resource_local_to_scene = true
 size = Vector3(10, 4, 8)
 
-[sub_resource type="Resource" id="Resource_3iby6"]
+[sub_resource type="Resource" id="Resource_ryyfu"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ryyfu"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_o3xl8"]
 resource_local_to_scene = true
 size = Vector3(7, 4, 6)
 
-[sub_resource type="Resource" id="Resource_o3xl8"]
+[sub_resource type="Resource" id="Resource_utioa"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
@@ -95,9 +96,13 @@ uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uhg71"]
+[sub_resource type="BoxMesh" id="BoxMesh_32ncx"]
+size = Vector3(0.75, 0.1, 0.75)
 
-[sub_resource type="Curve" id="Curve_utioa"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_uhg71"]
+size = Vector3(0.75, 2, 0.75)
+
+[sub_resource type="Curve" id="Curve_ejchr"]
 resource_local_to_scene = true
 _data = [Vector2(0, 0), 0.0, 4.458296, 0, 0, Vector2(0.99544424, 0.87640446), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -126,6 +131,11 @@ albedo_color = Color(0.66656864, 0.6665687, 0.66656864, 0.5411765)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_o3xl8"]
 data = PackedVector3Array(-0.19999999, 1.1999999, 5.35, 0.19999999, 1.1999999, 5.35, -0.19999999, -1.1999999, 5.35, 0.19999999, 1.1999999, 5.35, 0.19999999, -1.1999999, 5.35, -0.19999999, -1.1999999, 5.35, 0.19999999, 1.1999999, -5.35, -0.19999999, 1.1999999, -5.35, 0.19999999, -1.1999999, -5.35, -0.19999999, 1.1999999, -5.35, -0.19999999, -1.1999999, -5.35, 0.19999999, -1.1999999, -5.35, 0.19999999, 1.1999999, 5.35, 0.19999999, 1.1999999, -5.35, 0.19999999, -1.1999999, 5.35, 0.19999999, 1.1999999, -5.35, 0.19999999, -1.1999999, -5.35, 0.19999999, -1.1999999, 5.35, -0.19999999, 1.1999999, -5.35, -0.19999999, 1.1999999, 5.35, -0.19999999, -1.1999999, -5.35, -0.19999999, 1.1999999, 5.35, -0.19999999, -1.1999999, 5.35, -0.19999999, -1.1999999, -5.35, 0.19999999, 1.1999999, 5.35, -0.19999999, 1.1999999, 5.35, 0.19999999, 1.1999999, -5.35, -0.19999999, 1.1999999, 5.35, -0.19999999, 1.1999999, -5.35, 0.19999999, 1.1999999, -5.35, -0.19999999, -1.1999999, 5.35, 0.19999999, -1.1999999, 5.35, -0.19999999, -1.1999999, -5.35, 0.19999999, -1.1999999, 5.35, 0.19999999, -1.1999999, -5.35, -0.19999999, -1.1999999, -5.35)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g60af"]
+albedo_texture = ExtResource("25_g60af")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gyht"]
 albedo_texture = ExtResource("4_bfu6m")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
@@ -145,9 +155,7 @@ uv1_world_triplanar = true
 script = ExtResource("1_vuxjq")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2141334000]
-physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, -11.508371, 11.246487, -29.210533)
-top_level = true
+transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, -11.508371, 12.246487, -27.210533)
 fov = 45.0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1783810064]
@@ -203,36 +211,34 @@ max_value = 20.0
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 10, 0, -6)
 
 [node name="CollisionShape3D" parent="AreaCameraTrigger" index="0" unique_id=1391710269]
-shape = SubResource("BoxShape3D_g60af")
+shape = SubResource("BoxShape3D_3iby6")
 
 [node name="PCam-Behind" parent="AreaCameraTrigger" index="1" unique_id=1357355425]
 transform = Transform3D(1.0000002, 0, 0, 1.776357e-15, 0.86602694, 0.50000006, 3.0767455e-15, -0.5000001, 0.8660269, 0, 3, 4.9912405)
-tween_resource = SubResource("Resource_3iby6")
+tween_resource = SubResource("Resource_ryyfu")
 
 [node name="ACam - Spawn" parent="." unique_id=522325614 instance=ExtResource("4_mryis")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1.5, 8, -16)
 
 [node name="CollisionShape3D" parent="ACam - Spawn" index="0" unique_id=1391710269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9206276e-05, 1.999939, 0)
-shape = SubResource("BoxShape3D_ryyfu")
+shape = SubResource("BoxShape3D_o3xl8")
 
 [node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425 node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, -11.508371, 7.317554, -29.139465)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, -11.508371, 8.317554, -27.139465)
 top_level = true
 follow_mode = 5
 follow_target = NodePath("../../Player")
-tween_resource = SubResource("Resource_o3xl8")
+tween_resource = SubResource("Resource_utioa")
 follow_offset = Vector3(0, -1, 0)
 follow_damping = true
 follow_damping_value = Vector3(0.15, 0.15, 0.15)
 follow_axis_lock = 6
 follow_distance = 10.0
 spring_length = 10.0
-align_transform_with_view = Callable()
-align_position_with_view = Callable()
 
 [node name="PlayerFollowCamera" type="Node3D" parent="." unique_id=1722917239 node_paths=PackedStringArray("follow_target", "look_at_target")]
-transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, -11.508371, 11.246487, -29.210533)
+transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, -11.508371, 12.246487, -27.210533)
 top_level = true
 script = ExtResource("3_ec8vc")
 priority = 10
@@ -243,13 +249,10 @@ look_at_target = NodePath("../Player")
 tween_resource = SubResource("Resource_pht6c")
 follow_offset = Vector3(0, 10, 7)
 follow_damping = true
-align_transform_with_view = Callable()
-align_position_with_view = Callable()
-align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.508371, 1.2464871, -36.210533)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.508371, 2.2464871, -34.210533)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1485879796]
 environment = ExtResource("7_g60af")
@@ -260,7 +263,7 @@ light_energy = 0.22
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1114472192 node_paths=PackedStringArray("camera") instance=ExtResource("1_o7uk8")]
-transform = Transform3D(0.7071067, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071067, -11.508371, 1.2464871, -36.210533)
+transform = Transform3D(0.7071067, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071067, -11.508371, 2.2464871, -34.210533)
 camera = NodePath("../Camera3D")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=401191725]
@@ -323,10 +326,6 @@ shadow_bias = 0.365
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.5, -2.5)
 upgrade = ExtResource("13_mryis")
 
-[node name="FOOD Beef3" parent="Starter Area" unique_id=1556051106 instance=ExtResource("2_lqk0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.814972, -0.5, -9.450752)
-upgrade = ExtResource("13_mryis")
-
 [node name="Crate" parent="Starter Area" unique_id=2091715048 instance=ExtResource("14_2q3qm")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.12190819, 1.3749999, 0.26688194)
 
@@ -338,10 +337,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3, 2.5, 0.5, 1.5)
 
 [node name="Ramp45" parent="Starter Area" unique_id=1612963089 instance=ExtResource("17_tmtgi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0014477, 0.49999988, -1.4884892)
-
-[node name="FOOD Hot Tamale" parent="Starter Area" unique_id=1129110136 instance=ExtResource("2_lqk0u")]
-transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -9.849659, -0.5, -11.996302)
-upgrade = ExtResource("3_lqk0u")
 
 [node name="FOOD Pancake" parent="Starter Area" unique_id=868952379 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -3, -1.5, -0.49997902)
@@ -459,45 +454,58 @@ transform = Transform3D(-1.3113416e-07, 0, 3, 0, 1, 0, -3, 0, -1.3113416e-07, -2
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.4258461, 0.5262465, -5.458254)
 
 [node name="Starter Puzzle 2" type="CSGCombiner3D" parent="Starter Area" unique_id=828239492]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.971752, 0, -11.99969)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -12.999998)
 material_override = SubResource("StandardMaterial3D_n3rlc")
 operation = 2
 use_collision = true
 
+[node name="FOOD Beef3" parent="Starter Area/Starter Puzzle 2" unique_id=1556051106 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.185028, 0.5, 3.5492473)
+upgrade = ExtResource("13_mryis")
+
+[node name="FOOD Hot Tamale" parent="Starter Area/Starter Puzzle 2" unique_id=1129110136 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 6.150341, 0.5, 1.0036969)
+upgrade = ExtResource("3_lqk0u")
+
 [node name="Ground3" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2" unique_id=1752299582]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.528248, -0.5, -29.000313)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -6.5)
 material_override = SubResource("StandardMaterial3D_n3rlc")
 use_collision = true
-size = Vector3(51, 1, 58)
+size = Vector3(14, 1, 23)
 metadata/_edit_lock_ = true
 
 [node name="Begin" type="Node3D" parent="Starter Area/Starter Puzzle 2" unique_id=902284964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.028247833, 1.0928907, 1.00032)
 
 [node name="Area3D" type="Area3D" parent="Starter Area/Starter Puzzle 2/Begin" unique_id=217014028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -0.50000334)
 collision_layer = 0
 collision_mask = 256
 monitorable = false
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Starter Area/Starter Puzzle 2/Begin/Area3D" unique_id=1917356319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.049999714, 9.536743e-07)
+mesh = SubResource("BoxMesh_32ncx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Starter Area/Starter Puzzle 2/Begin/Area3D" unique_id=2107846481]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 9.536743e-07)
 shape = SubResource("BoxShape3D_uhg71")
 
 [node name="Crate2" parent="Starter Area/Starter Puzzle 2/Begin" unique_id=458719906 instance=ExtResource("14_2q3qm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.927353, 1.5317338, 3.3196678)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.81629944, 1.125, 2.1124134)
 
 [node name="Crate3" parent="Starter Area/Starter Puzzle 2/Begin" unique_id=843735016 instance=ExtResource("14_2q3qm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.981781, 1.5317338, 2.042304)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018218994, 0.375, 2.042304)
 
 [node name="Crate4" parent="Starter Area/Starter Puzzle 2/Begin" unique_id=742924200 instance=ExtResource("14_2q3qm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.950714, 1.5317338, 0.44167328)
-
-[node name="Crate6" parent="Starter Area/Starter Puzzle 2/Begin" unique_id=797875814 instance=ExtResource("14_2q3qm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.950714, 1.5317338, -10.528766)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7270775, 0.375, 1.7581501)
 
 [node name="Crate5" parent="Starter Area/Starter Puzzle 2/Begin" unique_id=2040046169 instance=ExtResource("14_2q3qm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6101494, 0.62332654, 3.2957125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75743866, 0.375, 2.6690626)
 
 [node name="Mid" type="CSGCombiner3D" parent="Starter Area/Starter Puzzle 2" unique_id=1269062498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.028247833, 1.0928907, 1.00032)
 operation = 2
 
 [node name="Hole" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/Mid" unique_id=705842580]
@@ -507,7 +515,7 @@ size = Vector3(1.5, 1.659961, 8.6)
 [node name="FlippyThing" parent="Starter Area/Starter Puzzle 2/Mid" unique_id=33473175 instance=ExtResource("23_w32m7")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.1, 0)
 flip_duration = 0.2
-flip_curve = SubResource("Curve_utioa")
+flip_curve = SubResource("Curve_ejchr")
 
 [node name="Crate" parent="Starter Area/Starter Puzzle 2/Mid" unique_id=2119002066 instance=ExtResource("14_2q3qm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5317338, 0)
@@ -551,15 +559,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.3, -4.650001)
 shape = SubResource("ConcavePolygonShape3D_o3xl8")
 
 [node name="End" type="CSGCombiner3D" parent="Starter Area/Starter Puzzle 2" unique_id=194438457]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.028247833, 1.0928907, 1.00032)
 operation = 2
 
 [node name="Dip" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End" unique_id=398073713]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22824478, -0.35, -15.300312)
-size = Vector3(12, 0.90000004, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22824478, -0.9, -15.300312)
+size = Vector3(12, 2, 5)
 
 [node name="BoxHole" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End" unique_id=1819610590]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028244019, -1.8425293, -14.200314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028244019, -1.8425293, -14.300314)
 size = Vector3(3, 3.8850586, 3)
+
+[node name="Node3D" type="Node3D" parent="Starter Area/Starter Puzzle 2/End" unique_id=1618708101]
+
+[node name="Steps" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Node3D" unique_id=281592663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -12)
+material_override = SubResource("StandardMaterial3D_8d3sp")
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="Steps2" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Node3D" unique_id=227695311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, -11.5)
+material_override = SubResource("StandardMaterial3D_8d3sp")
+use_collision = true
+size = Vector3(1, 3, 2)
+
+[node name="Steps3" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Node3D" unique_id=1102456165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -12)
+material_override = SubResource("StandardMaterial3D_8d3sp")
+use_collision = true
+size = Vector3(1, 4, 1)
+
+[node name="Tower" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Node3D" unique_id=1263880140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -21)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+size = Vector3(4, 8, 6)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Node3D/Tower" unique_id=126223937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034240723, -0.085647106, -1.5)
+operation = 2
+size = Vector3(2, 2, 10)
+
+[node name="CrateReceiver" parent="Starter Area/Starter Puzzle 2" unique_id=1668070214 instance=ExtResource("26_3iby6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -11)
 
 [node name="Level1" type="Node3D" parent="." unique_id=185398592]
 
