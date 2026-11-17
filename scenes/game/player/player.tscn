@@ -7,6 +7,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dev6gv4nxy2n0" path="res://buff_slime_mesh.mesh" id="3_prej5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_abehh"]
+resource_local_to_scene = true
 radius = 0.50515723
 
 [sub_resource type="SphereMesh" id="SphereMesh_prej5"]
@@ -83,12 +84,14 @@ radius = 0.6
 collision_layer = 257
 script = ExtResource("1_4m2od")
 field_detector = NodePath("FieldDetector")
+move_speed = 5.0
 ground_acceleration = 40.0
 ground_deceleration = 80.0
 air_acceleration = 10.0
 air_deceleration = 32.0
 jump_height = 1.2
 max_fall_speed = 20.0
+dash_speed = 8.0
 max_slope_degrees = 30.0
 jump_sound = ExtResource("2_abehh")
 slime = NodePath("Model/slime")
