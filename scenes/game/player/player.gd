@@ -195,23 +195,28 @@ func _unhandled_input(event: InputEvent) -> void:
 			print(" Dropping item ")
 			drop_item()
 		else:
-			#Get overlapping bodies
-			var bodies: Array[Node3D] = $PickupArea.get_overlapping_bodies()
-			
-			if bodies.size() <= 0:
-				pass
-			elif bodies.size() == 1:
-				pickup_item(bodies[0])
-				pass
-			else:
-				pickup_item(bodies[0])
-				#for body in bodies:
-					## Find body closest to center
-					#pass
-			
-			# attach body to PickupArea
-			pass
-		
+			var target := _find_pickup_target()
+			if target:
+				pickup_item(target)
+
+## Closest body in PickupArea that we can see
+func _find_pickup_target() -> Node3D:
+	var space := get_world_3d().direct_space_state
+	var from: Vector3 = ($CollisionShape3D as Node3D).global_position
+	var best: Node3D = null
+	var best_dist := INF
+	for body: Node3D in $PickupArea.get_overlapping_bodies():
+		var query := PhysicsRayQueryParameters3D.create(from, body.global_position, collision_mask, [get_rid()])
+		var hit := space.intersect_ray(query)
+		# Blocked if the ray hits something other than the item itself.
+		if not hit.is_empty() and hit.collider != body:
+			continue
+		var d := from.distance_squared_to(body.global_position)
+		if d < best_dist:
+			best_dist = d
+			best = body
+	return best
+
 
 
 func _physics_process(delta: float) -> void:

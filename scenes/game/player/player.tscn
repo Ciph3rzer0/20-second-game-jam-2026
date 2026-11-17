@@ -73,6 +73,9 @@ height = 1.0
 radius = 0.1
 height = 1.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_prej5"]
+height = 1.4000001
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_abehh"]
 height = 1.0
 
@@ -178,8 +181,17 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_8i87d")
 
-[node name="PickupAreaCollision" type="CollisionShape3D" parent="." unique_id=1193375654]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.70000005)
+[node name="PickupAreaCollision" type="CollisionShape3D" parent="." unique_id=2105459782]
+transform = Transform3D(1, 0, 0, 0, 0.5735764, 0.81915206, 0, -0.81915206, 0.5735764, 0, 0.48528472, -0.5361696)
+shape = SubResource("CapsuleShape3D_prej5")
+disabled = true
+debug_color = Color(0.88235295, 0.28627452, 0.47058824, 0.7490196)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1889135056]
+transform = Transform3D(1, 0, 0, 0, 0.5735764, 0.81915206, 0, -0.81915206, 0.5735764, 0, 0.6, -0.70000005)
+
+[node name="PickupAreaCollision" type="CollisionShape3D" parent="Node3D" unique_id=1193375654]
+transform = Transform3D(1, 0, 0, 0, 0.57357645, -0.8191522, 0, 0.8191522, 0.57357645, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_abehh")
 disabled = true
 debug_color = Color(0.88235295, 0.28627452, 0.47058824, 0.7490196)
