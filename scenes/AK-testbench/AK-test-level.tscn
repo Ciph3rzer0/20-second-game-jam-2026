@@ -246,7 +246,7 @@ transform = Transform3D(1.9775246, 0, 0, 0, 1, 0, 0, 0, 1.9775246, 4.136, 0.2389
 transform = Transform3D(1.9775246, 0, 0, 0, 1, 0, 0, 0, 1.9775246, 4.136, 0.23894882, -13.377752)
 
 [node name="plane_cobble3" parent="floor" unique_id=235664345 instance=ExtResource("9_uvvm0")]
-transform = Transform3D(1.9775246, 0, 0, 0, 1, 0, 0, 0, 1.9775246, 4.136, 0.23894882, -26.787294)
+transform = Transform3D(1.9775246, 0, 0, 0, 1, 0, 0, 0, 1.9775246, 4.136, 0.23894882, -26.751837)
 
 [node name="plane_grassBase" parent="floor" unique_id=1450133192 instance=ExtResource("10_7ay7m")]
 transform = Transform3D(1.1977135, 0, 0, 0, 1, 0, 0, 0, 1.1977135, 14.844627, 0.23894978, 2.5793457)

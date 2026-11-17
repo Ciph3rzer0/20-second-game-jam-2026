@@ -1,6 +1,5 @@
 shader_type spatial;
 
-
 uniform vec4 slime_color : source_color =
     vec4(0.15, 0.85, 0.35, 1.0);
 
@@ -40,8 +39,6 @@ void vertex() {
 	
 	// compress height
 	//p.y *= 1. - clamp(squish, 0.5, 1.0);
-	
-
 
     p += normalize(VERTEX)
         * mask
@@ -49,7 +46,7 @@ void vertex() {
         * motion
         * magnitude;
 
-    // Anchor the lean at the base and bend more strongly toward the top.
+    // anchor the lean at the base and bend more strongly toward the top
     float height_fraction = clamp(
         (VERTEX.y - lean_base_y) / max(lean_height, 0.001),
         0.0,
@@ -57,7 +54,7 @@ void vertex() {
     );
     p.xz += lean * height_fraction * height_fraction;
 
-    // Adjust the surface normal for the horizontal stretch and lean.
+    // adjust the surface normal for the horizontal stretch and lean.
     vec3 bent_normal = NORMAL;
     bent_normal.xz /= sx;
     vec2 lean_slope = lean * 2.0 * height_fraction / max(lean_height, 0.001);

@@ -26,7 +26,6 @@ var lean := Vector2.ZERO
 var lean_velocity := Vector2.ZERO
 var previous_horizontal_velocity := Vector2.ZERO
 
-
 func _ready():
 	if material == null:
 		material = slime.get_active_material(0) as ShaderMaterial
@@ -100,7 +99,7 @@ func _physics_process(delta):
 				1.8
 			)
 
-	# Spring sim
+	# spring
 	var acceleration := (
 		-stiffness * squish
 		-damping * squish_velocity
@@ -115,7 +114,7 @@ func _physics_process(delta):
 	if material == null:
 		return
 
-	# spring uses world space, while shader vertices use mesh-local space.
+	# spring uses world space; shader vertices use mesh-local space
 	var local_lean := slime.global_basis.inverse() * Vector3(lean.x, 0.0, lean.y)
 	material.set_shader_parameter("lean", Vector2(local_lean.x, local_lean.z))
 
@@ -134,9 +133,7 @@ func _physics_process(delta):
 		clamp(horizontal_speed / move_speed, 0.5, 1.0)
 	)
 
-
 func play_sound(stream: AudioStream) -> void:
-	# Keep sounds on the slime so removing an absorbed pickup won't cut them off.
 	var player := AudioStreamPlayer.new()
 	player.stream = stream
 	player.bus = &"SFX"
