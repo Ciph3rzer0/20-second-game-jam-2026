@@ -16,6 +16,9 @@ extends CharacterBody3D
 ## Area3D with a gravity override swaps [member gravity_vector]. Zones are
 ## assumed not to overlap.
 
+signal started_moving
+var _has_moved
+
 signal win
 signal jumped
 signal landed
@@ -311,6 +314,10 @@ func _read_move_direction() -> Vector3:
 	if input == Vector2.ZERO:
 		return Vector3.ZERO
 	input = Vector2.from_angle(snappedf(input.angle(), TAU / DIRECTION_COUNT))
+
+	if not _has_moved:
+		started_moving.emit()
+		_has_moved = true
 
 	# Build axes from the camera's right vector only, so a camera looking
 	# straight down still yields a valid forward.

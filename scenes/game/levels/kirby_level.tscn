@@ -180,7 +180,6 @@ mouse_filter = 2
 [node name="GameTimer" type="Timer" parent="CanvasLayer/Control" unique_id=168978992 node_paths=PackedStringArray("progress_bar")]
 wait_time = 20.0
 one_shot = true
-autostart = true
 script = ExtResource("1_c5i6r")
 progress_bar = NodePath("../TextureProgressBar")
 
@@ -812,6 +811,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.411929, 1.125, 4.967903)
 
 [node name="Node3D2" type="Node3D" parent="." unique_id=1618067081]
 
+[connection signal="started_moving" from="Player" to="CanvasLayer/Control/GameTimer" method="start"]
 [connection signal="win" from="Player" to="." method="_on_player_win"]
 [connection signal="body_entered" from="Starter Area/Starter Puzzle 2/Begin/Area3D" to="Starter Area/Starter Puzzle 2/Mid/FlippyThing" method="flip" unbinds=1]
 
