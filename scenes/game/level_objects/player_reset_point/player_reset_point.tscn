@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bh4rl4lwjryu0"]
+
+[ext_resource type="Script" uid="uid://bvsr2ah4cdreu" path="res://scenes/game/level_objects/player_reset_point/player_reset_point.gd" id="1_nhite"]
+[ext_resource type="PackedScene" uid="uid://dnk1epprcnqdl" path="res://scenes/game/pickup.tscn" id="3_n7g85"]
+[ext_resource type="Resource" uid="uid://cwhrjbmmhrnn7" path="res://scenes/game/player/upgrades/speed_upgrade.tres" id="4_0e8lp"]
+[ext_resource type="Resource" uid="uid://dp2gng6k71tnm" path="res://scenes/game/player/upgrades/pancake_upgrade.tres" id="5_k6hl2"]
+[ext_resource type="Resource" uid="uid://bqnwoduq6d7dq" path="res://scenes/game/player/upgrades/cotton_candy_upgrade.tres" id="6_17shm"]
+[ext_resource type="Resource" uid="uid://cy16v56v04n5u" path="res://scenes/game/player/upgrades/beef_upgrade.tres" id="7_h3x7x"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uhg71"]
+height = 0.2
+
+[node name="PlayerResetPoint" type="MeshInstance3D" unique_id=1074847532]
+mesh = SubResource("CylinderMesh_uhg71")
+script = ExtResource("1_nhite")
+
+[node name="FOOD Hot Tamale" parent="." unique_id=1048115677 instance=ExtResource("3_n7g85")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+upgrade = ExtResource("4_0e8lp")
+
+[node name="FOOD Pancake" parent="." unique_id=1154402641 instance=ExtResource("3_n7g85")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+monitoring = false
+upgrade = ExtResource("5_k6hl2")
+
+[node name="FOOD Cotton Candy" parent="." unique_id=1684139184 instance=ExtResource("3_n7g85")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+monitoring = false
+upgrade = ExtResource("6_17shm")
+
+[node name="FOOD Beef" parent="." unique_id=1049298353 instance=ExtResource("3_n7g85")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+monitoring = false
+upgrade = ExtResource("7_h3x7x")
