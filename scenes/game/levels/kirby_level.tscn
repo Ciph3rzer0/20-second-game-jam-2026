@@ -131,6 +131,11 @@ albedo_texture = ExtResource("25_g60af")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3iby6"]
+albedo_texture = ExtResource("4_bfu6m")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gyht"]
 albedo_texture = ExtResource("4_bfu6m")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
@@ -151,7 +156,7 @@ script = ExtResource("1_vuxjq")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2141334000]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, 13.561463, 15.252642, -32.6112)
+transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, 13.072361, 19.5, -32.90322)
 top_level = true
 fov = 45.0
 
@@ -221,7 +226,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9206276e-05, 1.999939, 0)
 shape = SubResource("BoxShape3D_o3xl8")
 
 [node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425 node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 13.561463, 11.3237095, -32.54013)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 13.072361, 15.571067, -32.832153)
 top_level = true
 follow_mode = 5
 follow_target = NodePath("../../Player")
@@ -236,7 +241,7 @@ align_transform_with_view = Callable()
 align_position_with_view = Callable()
 
 [node name="PlayerFollowCamera" type="Node3D" parent="." unique_id=1722917239 node_paths=PackedStringArray("follow_target", "look_at_target")]
-transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, 13.561463, 15.252642, -32.6112)
+transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, 13.072361, 19.5, -32.90322)
 top_level = true
 script = ExtResource("3_ec8vc")
 priority = 10
@@ -253,7 +258,7 @@ align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.561463, 5.252642, -39.6112)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.072361, 9.5, -39.90322)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1485879796]
 environment = ExtResource("7_g60af")
@@ -264,7 +269,7 @@ light_energy = 0.22
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1114472192 node_paths=PackedStringArray("camera") instance=ExtResource("1_o7uk8")]
-transform = Transform3D(0.7071067, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071067, 13.561463, 5.252642, -39.6112)
+transform = Transform3D(0.7071067, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071067, 13.072361, 9.5, -39.90322)
 camera = NodePath("../Camera3D")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=401191725]
@@ -503,7 +508,7 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.028247833, 1.0928907, 1.00032)
 
 [node name="Area3D" type="Area3D" parent="Starter Area/Starter Puzzle 2/Begin" unique_id=217014028]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -0.50000334)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0.09999657)
 collision_layer = 0
 collision_mask = 256
 monitorable = false
@@ -539,11 +544,11 @@ size = Vector3(1.5, 1.659961, 8.6)
 
 [node name="FlippyThing" parent="Starter Area/Starter Puzzle 2/Mid" unique_id=33473175 instance=ExtResource("23_w32m7")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.100000024, 0)
-tip_speed = 12.0
-target_degrees = 55.0
+tip_speed = 9.8
+target_degrees = 50.0
 
 [node name="Crate" parent="Starter Area/Starter Puzzle 2/Mid" unique_id=2119002066 instance=ExtResource("14_2q3qm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5317338, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6317338, 0)
 
 [node name="Back Wall" type="StaticBody3D" parent="Starter Area/Starter Puzzle 2/Mid" unique_id=1503002283]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
@@ -602,6 +607,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -12)
 material_override = SubResource("StandardMaterial3D_8d3sp")
 use_collision = true
 size = Vector3(1, 2, 1)
+
+[node name="CrateReceiver" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=1668070214 instance=ExtResource("26_3iby6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0282478, -0.09289074, -12.0003195)
 
 [node name="Steps2" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=227695311]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, -11.5)
@@ -733,8 +741,57 @@ metadata/_edit_group_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.095, 0)
 shape = SubResource("BoxShape3D_uhg71")
 
-[node name="CrateReceiver" parent="Starter Area/Starter Puzzle 2" unique_id=1668070214 instance=ExtResource("26_3iby6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -11)
+[node name="Green Pillar" type="CSGCombiner3D" parent="Starter Area" unique_id=1163370388]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -12.999998)
+material_override = SubResource("StandardMaterial3D_3iby6")
+use_collision = true
+
+[node name="Tower" type="CSGBox3D" parent="Starter Area/Green Pillar" unique_id=1344760807]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -3, -19.999998)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+size = Vector3(6, 24, 12)
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Starter Area/Green Pillar/Tower" unique_id=850332059]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034240723, 18.769701, 0)
+size = Vector3(2, 6, 6.2000003)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Starter Area/Green Pillar/Tower" unique_id=1326841508]
+transform = Transform3D(0.9944594, 0, 0.10512169, 0, 1, 0, -0.10512169, 0, 0.9944594, 2.9830742, 16.769701, 0)
+size = Vector3(2, 2, 6.2000003)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Starter Area/Green Pillar/Tower/CSGBox3D5" unique_id=971470368]
+transform = Transform3D(0.7962719, 0.5846295, 0.1554338, -0.5663646, 0.8107516, -0.14803089, -0.2125614, 0.029840633, 0.97669214, 0.4039116, -1.4193392, -1.5276623)
+size = Vector3(2, 3.8759766, 3)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Starter Area/Green Pillar/Tower/CSGBox3D5" unique_id=611395612]
+transform = Transform3D(0.97188365, 0.17720103, 0.15505569, -0.12374011, 0.944623, -0.30393398, -0.20032611, 0.27620205, 0.9399909, 0.6662445, -1.3776789, 1.0697575)
+size = Vector3(3.8164063, 2.428711, 3)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Starter Area/Green Pillar/Tower/CSGBox3D5" unique_id=1911960576]
+transform = Transform3D(-0.2461085, 0.36795968, -0.8966812, -0.039966315, 0.92049646, 0.38870266, 0.9684182, 0.13150045, -0.2118358, -0.16635513, -1.3776789, 3.3073854)
+size = Vector3(3.8164063, 2.428711, 3)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Starter Area/Green Pillar/Tower/CSGBox3D5" unique_id=210545374]
+transform = Transform3D(-0.22025561, -0.0076231933, -0.97541314, -0.04003776, 0.9991976, 0.0012321873, 0.9746223, 0.039325394, -0.2203835, 0.9901848, -1.2472105, 3.461399)
+size = Vector3(3.8164063, 0.8461914, 3)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Starter Area/Green Pillar/Tower/CSGBox3D5" unique_id=1696856418]
+transform = Transform3D(-0.39761156, 0.7724008, 0.4952811, -0.013798108, -0.5447563, 0.8384812, 0.9174537, 0.3265556, 0.22725867, 1.3556366, -2.454752, 3.7907333)
+size = Vector3(3.8164063, 0.8461914, 3)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Starter Area/Green Pillar/Tower" unique_id=1301883855]
+transform = Transform3D(-4.3047315e-08, 7.590403e-09, 1, 0.17364821, 0.98480785, 1.3322676e-15, -0.98480785, 0.17364821, -4.3711392e-08, -0.034240723, 10.042424, 0.5361366)
+size = Vector3(2, 6, 6.2000003)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Starter Area/Green Pillar/Tower" unique_id=456845975]
+transform = Transform3D(-4.3047308e-08, -7.590402e-09, 1, -0.17364816, 0.9848077, 0, -0.9848077, -0.17364816, -4.3711392e-08, -0.034240723, 10.042424, -0.5361366)
+size = Vector3(2, 6, 6.2000003)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Starter Area/Green Pillar/Tower" unique_id=1441933454]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.034240723, 9.914352, 0)
+size = Vector3(2, 6, 6.2000003)
 
 [node name="Level1" type="Node3D" parent="." unique_id=185398592]
 
