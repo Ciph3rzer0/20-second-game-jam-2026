@@ -101,6 +101,8 @@ var _gravity := 9.8  # base gravity magnitude, also used for the jump impulse
 var _default_gravity := Vector3.DOWN * 9.8
 var _zone: Area3D
 var _drift := Vector3.ZERO  # sideways velocity from gravity zones, added on top of input
+var _last_platform_velocity := Vector3.ZERO
+var _had_support := false
 var _coyote_timer := 0.0
 var _jump_buffer_timer := 0.0
 var _dash_timer := 0.0
@@ -144,6 +146,7 @@ func _ready() -> void:
 	floor_max_angle = deg_to_rad(max_slope_degrees)
 	floor_constant_speed = true
 	floor_stop_on_slope = true
+	platform_on_leave = PLATFORM_ON_LEAVE_DO_NOTHING  # handled in _launch_off_platform
 	floor_snap_length = maxf(floor_snap_length, step_height + 0.05)
 	facing_direction = -global_basis.z
 	_air_speed = move_speed
@@ -509,7 +512,40 @@ func _move(delta: float, on_floor: bool) -> void:
 		var pre_slide := velocity
 		move_and_slide()
 		_push_bodies(pre_slide)
+		_launch_off_platform(delta)
 	velocity -= _drift
+
+## Keeps a moving platform's speed when we leave it. Replaces Godot's
+## platform_on_leave (turned off in _ready) so it also works on surfaces too
+## steep to count as floor, like a flipper arm partway through its swing.
+## Leaving means stepping off, jumping off, or the platform stopping faster than
+## gravity would pull us down (a flipper reaching the top), which throws us.
+func _launch_off_platform(delta: float) -> void:
+	var support := Vector3.ZERO
+	var has_support := false
+	if is_on_floor():
+		support = get_platform_velocity()
+		has_support = true
+	else:
+		# Resting on a slope too steep to stand on: use the velocity of what's under us.
+		var best_up := 0.1
+		for i in get_slide_collision_count():
+			var c := get_slide_collision(i)
+			var up := c.get_normal().dot(up_direction)
+			if up > best_up:
+				best_up = up
+				support = c.get_collider_velocity()
+				has_support = true
+
+	var stopped_under_us := has_support \
+		and (_last_platform_velocity - support).dot(up_direction) > _gravity * delta
+	if _had_support and (stopped_under_us or not has_support):
+		velocity += _last_platform_velocity
+		# We're airborne now, even if still touching it this frame.
+		has_support = false
+		support = Vector3.ZERO
+	_had_support = has_support
+	_last_platform_velocity = support
 
 func _push_bodies(pre_slide: Vector3) -> void:
 	var pushed: Array[RigidBody3D] = []
