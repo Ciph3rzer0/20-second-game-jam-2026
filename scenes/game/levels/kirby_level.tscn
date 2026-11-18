@@ -156,7 +156,7 @@ script = ExtResource("1_vuxjq")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2141334000]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, -11.508371, 12.246487, -27.210533)
+transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, 13.844565, 17.338469, -32.557625)
 top_level = true
 fov = 45.0
 
@@ -226,7 +226,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9206276e-05, 1.999939, 0)
 shape = SubResource("BoxShape3D_o3xl8")
 
 [node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425 node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, -11.508371, 8.317554, -27.139465)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 13.844565, 13.409534, -32.486557)
 top_level = true
 follow_mode = 5
 follow_target = NodePath("../../Player")
@@ -241,7 +241,7 @@ align_transform_with_view = Callable()
 align_position_with_view = Callable()
 
 [node name="PlayerFollowCamera" type="Node3D" parent="." unique_id=1722917239 node_paths=PackedStringArray("follow_target", "look_at_target")]
-transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, -11.508371, 12.246487, -27.210533)
+transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, 13.844565, 17.338469, -32.557625)
 top_level = true
 script = ExtResource("3_ec8vc")
 priority = 10
@@ -258,7 +258,7 @@ align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.508371, 2.2464871, -34.210533)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.844565, 7.338468, -39.557625)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1485879796]
 environment = ExtResource("7_g60af")
@@ -269,7 +269,7 @@ light_energy = 0.22
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1114472192 node_paths=PackedStringArray("camera") instance=ExtResource("1_o7uk8")]
-transform = Transform3D(0.7071067, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071067, -11.508371, 2.2464871, -34.210533)
+transform = Transform3D(0.7071067, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071067, 13.844565, 7.338468, -39.557625)
 camera = NodePath("../Camera3D")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=401191725]
@@ -466,7 +466,7 @@ operation = 2
 use_collision = true
 
 [node name="FOOD Beef3" parent="Starter Area/Starter Puzzle 2" unique_id=1556051106 instance=ExtResource("2_lqk0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.185028, 0.5, 3.5492473)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.185028, 0.5, 12.549248)
 upgrade = ExtResource("13_mryis")
 
 [node name="FOOD Hot Tamale" parent="Starter Area/Starter Puzzle 2" unique_id=1129110136 instance=ExtResource("2_lqk0u")]
@@ -576,42 +576,99 @@ size = Vector3(12, 2, 5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028244019, -1.8425293, -14.300314)
 size = Vector3(3, 3.8850586, 3)
 
-[node name="Node3D" type="Node3D" parent="Starter Area/Starter Puzzle 2/End" unique_id=1618708101]
+[node name="Platforms" type="Node3D" parent="Starter Area/Starter Puzzle 2/End" unique_id=1618708101]
 
-[node name="Steps" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Node3D" unique_id=281592663]
+[node name="Steps" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=281592663]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -12)
 material_override = SubResource("StandardMaterial3D_8d3sp")
 use_collision = true
 size = Vector3(1, 2, 1)
 
-[node name="Steps2" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Node3D" unique_id=227695311]
+[node name="Steps2" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=227695311]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, -11.5)
 material_override = SubResource("StandardMaterial3D_8d3sp")
 use_collision = true
 size = Vector3(1, 3, 2)
 
-[node name="Steps3" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Node3D" unique_id=1102456165]
+[node name="Steps3" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=1102456165]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -12)
 material_override = SubResource("StandardMaterial3D_8d3sp")
 use_collision = true
 size = Vector3(1, 4, 1)
 
-[node name="Tower" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Node3D" unique_id=1263880140]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -21)
+[node name="Tower" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=1263880140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -4, -21)
 material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
-size = Vector3(4, 8, 6)
+size = Vector3(4, 24, 6)
+metadata/_edit_group_ = true
 
-[node name="Lip" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Node3D/Tower" unique_id=1086981167]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2960162, 3.155696)
+[node name="Lip" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Tower" unique_id=1086981167]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.703984, 3.1556969)
 material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 size = Vector3(2, 0.1, 0.4)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Node3D/Tower" unique_id=126223937]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034240723, -0.085647106, 0)
+[node name="CSGBox3D" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Tower" unique_id=126223937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034240723, 9.914352, 0)
 operation = 2
-size = Vector3(2, 2, 6.2000003)
+size = Vector3(2, 6, 6.2000003)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Tower" unique_id=1752060381]
+transform = Transform3D(-4.3047315e-08, 7.590403e-09, 1, 0.17364821, 0.98480785, 1.3322676e-15, -0.98480785, 0.17364821, -4.3711392e-08, -0.034240723, 10.042424, 0.5361366)
+operation = 2
+size = Vector3(2, 6, 6.2000003)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Tower" unique_id=2053088090]
+transform = Transform3D(-4.3047308e-08, -7.590402e-09, 1, -0.17364816, 0.9848077, 0, -0.9848077, -0.17364816, -4.3711392e-08, -0.034240723, 10.042424, -0.5361366)
+operation = 2
+size = Vector3(2, 6, 6.2000003)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Tower" unique_id=610918505]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.034240723, 9.914352, 0)
+operation = 2
+size = Vector3(2, 6, 6.2000003)
+
+[node name="Pillar" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=1741873482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.75, -21)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+radius = 1.0
+metadata/_edit_group_ = true
+
+[node name="Pillar2" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Pillar" unique_id=917341636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+height = 20.0
+
+[node name="Pillar2" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=515430259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3.25, -25)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+radius = 1.0
+height = 3.0
+metadata/_edit_group_ = true
+
+[node name="Pillar2" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Pillar2" unique_id=1048927196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+height = 20.0
+
+[node name="Pillar3" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=897783397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.25, -26)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+radius = 1.0
+height = 3.0
+metadata/_edit_group_ = true
+
+[node name="Pillar2" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Pillar3" unique_id=996706827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+height = 20.0
 
 [node name="CrateReceiver" parent="Starter Area/Starter Puzzle 2" unique_id=1668070214 instance=ExtResource("26_3iby6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -11)
