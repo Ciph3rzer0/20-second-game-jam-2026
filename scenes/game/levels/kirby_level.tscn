@@ -100,12 +100,7 @@ uv1_world_triplanar = true
 size = Vector3(0.75, 0.1, 0.75)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uhg71"]
-size = Vector3(0.75, 2, 0.75)
-
-[sub_resource type="Curve" id="Curve_ejchr"]
-resource_local_to_scene = true
-_data = [Vector2(0, 0), 0.0, 4.458296, 0, 0, Vector2(0.99544424, 0.87640446), 0.0, 0.0, 0, 0]
-point_count = 2
+size = Vector3(1, 0.2, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8d3sp"]
 albedo_texture = ExtResource("25_g60af")
@@ -156,7 +151,7 @@ script = ExtResource("1_vuxjq")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2141334000]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, 13.844565, 17.338469, -32.557625)
+transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, 13.561463, 15.252642, -32.6112)
 top_level = true
 fov = 45.0
 
@@ -226,7 +221,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9206276e-05, 1.999939, 0)
 shape = SubResource("BoxShape3D_o3xl8")
 
 [node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425 node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 13.844565, 13.409534, -32.486557)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 13.561463, 11.3237095, -32.54013)
 top_level = true
 follow_mode = 5
 follow_target = NodePath("../../Player")
@@ -241,7 +236,7 @@ align_transform_with_view = Callable()
 align_position_with_view = Callable()
 
 [node name="PlayerFollowCamera" type="Node3D" parent="." unique_id=1722917239 node_paths=PackedStringArray("follow_target", "look_at_target")]
-transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, 13.844565, 17.338469, -32.557625)
+transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, 13.561463, 15.252642, -32.6112)
 top_level = true
 script = ExtResource("3_ec8vc")
 priority = 10
@@ -258,7 +253,7 @@ align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.844565, 7.338468, -39.557625)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.561463, 5.252642, -39.6112)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1485879796]
 environment = ExtResource("7_g60af")
@@ -269,13 +264,37 @@ light_energy = 0.22
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1114472192 node_paths=PackedStringArray("camera") instance=ExtResource("1_o7uk8")]
-transform = Transform3D(0.7071067, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071067, 13.844565, 7.338468, -39.557625)
+transform = Transform3D(0.7071067, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071067, 13.561463, 5.252642, -39.6112)
 camera = NodePath("../Camera3D")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=401191725]
 remote_path = NodePath("../../CameraPivot")
 update_rotation = false
 update_scale = false
+
+[node name="FOOD Hot Tamale" parent="Player" unique_id=1048115677 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+monitoring = false
+upgrade = ExtResource("3_lqk0u")
+
+[node name="FOOD Pancake" parent="Player" unique_id=121469691 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+monitoring = false
+upgrade = ExtResource("5_4gyht")
+
+[node name="FOOD Cotton Candy" parent="Player" unique_id=860990207 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+monitoring = false
+upgrade = ExtResource("6_lu0cf")
+
+[node name="FOOD Beef" parent="Player" unique_id=800988425 instance=ExtResource("2_lqk0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+monitoring = false
+upgrade = ExtResource("13_mryis")
 
 [node name="Ground" type="CSGBox3D" parent="." unique_id=1904050769]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 15.5)
@@ -289,7 +308,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.499998, 0.15, -24.4)
 operation = 2
 size = Vector3(4.4, 0.90000004, 1.2)
 
-[node name="FOOD Hot Tamale" parent="." unique_id=1048115677 instance=ExtResource("2_lqk0u")]
+[node name="FOOD Hot Tamale" parent="." unique_id=860027248 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 3.5)
 upgrade = ExtResource("3_lqk0u")
 
@@ -519,9 +538,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028247833, -0.82998043, -5
 size = Vector3(1.5, 1.659961, 8.6)
 
 [node name="FlippyThing" parent="Starter Area/Starter Puzzle 2/Mid" unique_id=33473175 instance=ExtResource("23_w32m7")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.1, 0)
-flip_duration = 0.2
-flip_curve = SubResource("Curve_ejchr")
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.100000024, 0)
+tip_speed = 12.0
+target_degrees = 55.0
 
 [node name="Crate" parent="Starter Area/Starter Puzzle 2/Mid" unique_id=2119002066 instance=ExtResource("14_2q3qm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5317338, 0)
@@ -602,6 +621,7 @@ material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 size = Vector3(4, 24, 6)
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Lip" type="CSGBox3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Tower" unique_id=1086981167]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.703984, 3.1556969)
@@ -630,7 +650,7 @@ operation = 2
 size = Vector3(2, 6, 6.2000003)
 
 [node name="Pillar" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=1741873482]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.75, -21)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, -21)
 material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 radius = 1.0
@@ -642,22 +662,21 @@ material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 height = 20.0
 
-[node name="Pillar2" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=515430259]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3.25, -25)
+[node name="Pillar2" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=354834408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75, -26)
 material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 radius = 1.0
-height = 3.0
 metadata/_edit_group_ = true
 
-[node name="Pillar2" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Pillar2" unique_id=1048927196]
+[node name="Pillar2" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Pillar2" unique_id=2098394133]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
 material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 height = 20.0
 
 [node name="Pillar3" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=897783397]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.25, -26)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.700001, -0.75, -21)
 material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 radius = 1.0
@@ -669,6 +688,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
 material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 height = 20.0
+
+[node name="FlippyThing" parent="Starter Area/Starter Puzzle 2/End/Platforms/Pillar3" unique_id=733373240 instance=ExtResource("23_w32m7")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.5999999, 0)
+tip_speed = 30.0
+target_degrees = 35.0
+
+[node name="Trigger" type="Area3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Pillar3/FlippyThing" unique_id=994706693]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Pillar3/FlippyThing/Trigger" unique_id=959073911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.095, 0)
+shape = SubResource("BoxShape3D_uhg71")
+
+[node name="Pillar4" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms" unique_id=1721041762]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.7000008, -0.75, -25)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+radius = 1.0
+height = 3.0
+metadata/_edit_group_ = true
+
+[node name="Pillar2" type="CSGCylinder3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Pillar4" unique_id=1388366630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+height = 20.0
+
+[node name="FlippyThing" parent="Starter Area/Starter Puzzle 2/End/Platforms/Pillar4" unique_id=1524979525 instance=ExtResource("23_w32m7")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.5999999, 0)
+tip_speed = 30.0
+target_degrees = 35.0
+
+[node name="Trigger" type="Area3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Pillar4/FlippyThing" unique_id=352423911]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Starter Area/Starter Puzzle 2/End/Platforms/Pillar4/FlippyThing/Trigger" unique_id=29257726]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.095, 0)
+shape = SubResource("BoxShape3D_uhg71")
 
 [node name="CrateReceiver" parent="Starter Area/Starter Puzzle 2" unique_id=1668070214 instance=ExtResource("26_3iby6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -11)
@@ -871,6 +934,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.411929, 1.125, 4.967903)
 [connection signal="started_moving" from="Player" to="CanvasLayer/Control/GameTimer" method="start"]
 [connection signal="win" from="Player" to="." method="_on_player_win"]
 [connection signal="body_entered" from="Starter Area/Starter Puzzle 2/Begin/Area3D" to="Starter Area/Starter Puzzle 2/Mid/FlippyThing" method="flip" unbinds=1]
+[connection signal="body_entered" from="Starter Area/Starter Puzzle 2/End/Platforms/Pillar3/FlippyThing/Trigger" to="Starter Area/Starter Puzzle 2/End/Platforms/Pillar3/FlippyThing" method="flip" unbinds=1]
+[connection signal="body_entered" from="Starter Area/Starter Puzzle 2/End/Platforms/Pillar4/FlippyThing/Trigger" to="Starter Area/Starter Puzzle 2/End/Platforms/Pillar4/FlippyThing" method="flip" unbinds=1]
 
 [editable path="AreaCameraTrigger"]
 [editable path="ACam - Spawn"]
