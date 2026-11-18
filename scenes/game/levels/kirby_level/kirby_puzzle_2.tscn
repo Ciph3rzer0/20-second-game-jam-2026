@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://du72n1ikiej87" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_red_512x512.png" id="1_g1gva"]
 [ext_resource type="PackedScene" uid="uid://dnk1epprcnqdl" path="res://scenes/game/pickup.tscn" id="2_4b4xf"]
+[ext_resource type="PackedScene" uid="uid://c8473mkxy47q8" path="res://scenes_dev/debug_env/debug_env.tscn" id="2_gsha7"]
 [ext_resource type="PackedScene" uid="uid://bh4rl4lwjryu0" path="res://scenes/game/level_objects/player_reset_point/player_reset_point.tscn" id="2_s8hfx"]
 [ext_resource type="Resource" uid="uid://cy16v56v04n5u" path="res://scenes/game/player/upgrades/beef_upgrade.tres" id="3_s8hfx"]
 [ext_resource type="Resource" uid="uid://cwhrjbmmhrnn7" path="res://scenes/game/player/upgrades/speed_upgrade.tres" id="4_gsha7"]
@@ -57,6 +58,8 @@ uv1_world_triplanar = true
 material_override = SubResource("StandardMaterial3D_n3rlc")
 operation = 2
 use_collision = true
+
+[node name="Debug Env" parent="." unique_id=237132059 instance=ExtResource("2_gsha7")]
 
 [node name="PlayerResetPoint" parent="." unique_id=1772145093 instance=ExtResource("2_s8hfx")]
 
