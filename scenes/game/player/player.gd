@@ -135,6 +135,20 @@ var lean := Vector2.ZERO
 var lean_velocity := Vector2.ZERO
 var previous_horizontal_velocity := Vector2.ZERO
 
+static var instance: Player
+
+func init():
+	instance = self
+
+func _enter_tree() -> void:
+	if instance != self:
+		queue_free()
+		set_process(false)
+		set_physics_process(false)
+
+func _exit_tree() -> void:
+	if instance != self:
+		instance = null
 
 func _ready() -> void:
 	_gravity = float(ProjectSettings.get_setting("physics/3d/default_gravity")) * gravity_scale
