@@ -682,8 +682,7 @@ func set_slime_mesh(mesh: Mesh) -> void:
 	material.set_shader_parameter("lean_height", bounds.size.y)
 
 func modify_scale(height: float, width: float) -> void:
-	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).height *= height
-	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).radius *= width
+	(($CollisionShape3D as CollisionShape3D).shape as SphereShape3D).radius *= max(height, width)
 	$Model.scale.y *= height
 	$Model.scale.x *= width
 	$Model.scale.z *= width
