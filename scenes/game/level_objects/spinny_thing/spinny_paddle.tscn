@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dtc1mtadwowjs"]
+
+[ext_resource type="Script" uid="uid://b0c5br1u30eqn" path="res://scenes/game/level_objects/spinny_thing/spinny_thing.gd" id="1_8hr3y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_f6cg4"]
+size = Vector3(0.2, 1.8000001, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jcsjy"]
+size = Vector3(0.2, 1.8000001, 1.5)
+
+[node name="SpinnyPaddle" type="Node3D" unique_id=1306377641 node_paths=PackedStringArray("spinner")]
+script = ExtResource("1_8hr3y")
+spinner = NodePath("Arm")
+rotation_ease = -5.098243
+
+[node name="Arm" type="AnimatableBody3D" parent="." unique_id=929223400]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.39999995, 0)
+sync_to_physics = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Arm" unique_id=1006601567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0000012, -0.74999976)
+mesh = SubResource("BoxMesh_f6cg4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arm" unique_id=1827712654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0000012, -0.75)
+shape = SubResource("BoxShape3D_jcsjy")

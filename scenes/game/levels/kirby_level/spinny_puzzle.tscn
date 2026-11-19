@@ -8,7 +8,10 @@
 [ext_resource type="Resource" uid="uid://cy16v56v04n5u" path="res://scenes/game/player/upgrades/beef_upgrade.tres" id="4_f6cg4"]
 [ext_resource type="Resource" uid="uid://bqnwoduq6d7dq" path="res://scenes/game/player/upgrades/cotton_candy_upgrade.tres" id="5_v7htn"]
 [ext_resource type="Resource" uid="uid://dby58yr82jbtr" path="res://scenes/game/player/upgrades/world_end_upgrade.tres" id="6_dmcf2"]
+[ext_resource type="Texture2D" uid="uid://b0sv4anfqtkuq" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_white_512x512.png" id="6_v7htn"]
 [ext_resource type="PackedScene" uid="uid://b42bfqq0rgodu" path="res://scenes/game/level_objects/spinny_thing/spinny_thing.tscn" id="7_0fird"]
+[ext_resource type="PackedScene" uid="uid://dtc1mtadwowjs" path="res://scenes/game/level_objects/spinny_thing/spinny_paddle.tscn" id="9_v7htn"]
+[ext_resource type="Script" uid="uid://b0c5br1u30eqn" path="res://scenes/game/level_objects/spinny_thing/spinny_thing.gd" id="10_f6cg4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3rlc"]
 albedo_texture = ExtResource("1_xjho3")
@@ -16,65 +19,225 @@ uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmcf2"]
+albedo_texture = ExtResource("6_v7htn")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_dmcf2"]
+size = Vector3(0.2, 4, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jcsjy"]
+size = Vector3(0.2, 4, 1.5)
+
 [node name="SpinnyPuzzle" type="Node3D" unique_id=1563068054]
 
 [node name="Debug Env" parent="." unique_id=237132059 instance=ExtResource("1_jcsjy")]
 
 [node name="Camera3D" parent="Debug Env" index="2" unique_id=1865503183]
-transform = Transform3D(-0.9996574, -0.018085489, 0.018922491, 0, 0.7229144, 0.69093764, -0.026175283, 0.6907009, -0.72266674, 0.0027756095, 6.9043074, -8.244302)
-
-[node name="Ground" type="CSGBox3D" parent="." unique_id=1796071508]
-material_override = SubResource("StandardMaterial3D_n3rlc")
-use_collision = true
-size = Vector3(15, 1, 11)
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, 9.700004, 11.5, 6.999975)
+top_level = true
 
 [node name="PlayerResetPoint" parent="." unique_id=1074847532 instance=ExtResource("2_f6cg4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7000039, 1.5, -2.4855137e-05)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.700004, 0.5, -2.4855137e-05)
+metadata/_edit_lock_ = true
 
-[node name="Updraft" parent="." unique_id=1952319572 instance=ExtResource("2_l8hoc")]
-transform = Transform3D(-1.3113416e-07, 0, 3, 0, 1, 0, -3, 0, -1.3113416e-07, -2.524353, 0.5, 2.476387)
+[node name="FOOD Hot Tamale" parent="PlayerResetPoint" index="2" unique_id=1048115677]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, -0.3, 1)
+visible = true
+monitoring = true
 
-[node name="FOOD Beef4" parent="." unique_id=1048115677 instance=ExtResource("3_jcsjy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.685032, 1, 0.04922676)
+[node name="LowerGround" type="CSGBox3D" parent="." unique_id=1796071508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -6.5, 0)
+material_override = SubResource("StandardMaterial3D_n3rlc")
+use_collision = true
+size = Vector3(19, 6, 11)
+metadata/_edit_lock_ = true
+
+[node name="Hole" type="CSGBox3D" parent="LowerGround" unique_id=2034973470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5500002, 0)
+material_override = SubResource("StandardMaterial3D_n3rlc")
+operation = 2
+use_collision = true
+size = Vector3(4, 4, 13)
+metadata/_edit_lock_ = true
+
+[node name="Ground" type="CSGBox3D" parent="." unique_id=1180655740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, -1.5, 0)
+material_override = SubResource("StandardMaterial3D_n3rlc")
+use_collision = true
+size = Vector3(4, 4, 11)
+metadata/_edit_lock_ = true
+
+[node name="FOOD Beef4" parent="." unique_id=1576282497 instance=ExtResource("3_jcsjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 4)
 upgrade = ExtResource("4_f6cg4")
 
-[node name="FOOD Cotton Candy" parent="." unique_id=1403603793 instance=ExtResource("3_jcsjy")]
-transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -1.6978455, 4.6866245, -4.2589483)
-upgrade = ExtResource("5_v7htn")
+[node name="Spinny Paddles" type="Node3D" parent="." unique_id=832681045]
 
-[node name="FOOD End The World" parent="." unique_id=1032994569 instance=ExtResource("3_jcsjy")]
+[node name="Pillar" type="CSGBox3D" parent="Spinny Paddles" unique_id=31224803]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -1.5, -1)
+material_override = SubResource("StandardMaterial3D_dmcf2")
+use_collision = true
+size = Vector3(2, 4, 2)
+
+[node name="Pillar3" type="CSGBox3D" parent="Spinny Paddles" unique_id=1869376336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -1.5, 3)
+material_override = SubResource("StandardMaterial3D_dmcf2")
+use_collision = true
+size = Vector3(2, 4, 2)
+
+[node name="Pillar2" type="CSGBox3D" parent="Spinny Paddles" unique_id=1366667183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -1.5, -3)
+material_override = SubResource("StandardMaterial3D_dmcf2")
+use_collision = true
+size = Vector3(2, 4, 2)
+
+[node name="Pillar4" type="CSGBox3D" parent="Spinny Paddles" unique_id=1480481243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -1.5, 0)
+material_override = SubResource("StandardMaterial3D_dmcf2")
+use_collision = true
+size = Vector3(5, 4, 2)
+
+[node name="SpinnyPaddle9" parent="Spinny Paddles" unique_id=952775944 instance=ExtResource("9_v7htn")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0.5, 2.0999997)
+steps_per_turn = 2
+
+[node name="SpinnyPaddle15" type="Node3D" parent="Spinny Paddles" unique_id=1306377641 node_paths=PackedStringArray("spinner")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7, -4.8999996, 5.0999994)
+script = ExtResource("10_f6cg4")
+steps_per_turn = 2
+spinner = NodePath("Arm")
+activation_period = 2.0
+rotation_ease = -5.098243
+
+[node name="Arm" type="AnimatableBody3D" parent="Spinny Paddles/SpinnyPaddle15" unique_id=929223400]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.39999995, 0)
+sync_to_physics = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spinny Paddles/SpinnyPaddle15/Arm" unique_id=1006601567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.100001, -0.7499995)
+mesh = SubResource("BoxMesh_dmcf2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spinny Paddles/SpinnyPaddle15/Arm" unique_id=1827712654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.100001, -0.75)
+shape = SubResource("BoxShape3D_jcsjy")
+
+[node name="SpinnyPaddle12" parent="Spinny Paddles" unique_id=689854287 instance=ExtResource("9_v7htn")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0.5, -0.10000018)
+steps_per_turn = 2
+clockwise = false
+
+[node name="SpinnyPaddle" parent="Spinny Paddles" unique_id=482067043 instance=ExtResource("9_v7htn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -1.0000001)
+
+[node name="SpinnyPaddle6" parent="Spinny Paddles" unique_id=242348138 instance=ExtResource("9_v7htn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, -8.3)
+
+[node name="SpinnyPaddle2" parent="Spinny Paddles" unique_id=982604375 instance=ExtResource("9_v7htn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, -10.3)
+millis_offset = 250
+steps_per_turn = 8
+activation_period = 0.5
+
+[node name="SpinnyPaddle4" parent="Spinny Paddles" unique_id=1754715248 instance=ExtResource("9_v7htn")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 0.5, -1.0000002)
+
+[node name="SpinnyPaddle13" parent="Spinny Paddles" unique_id=1209399843 instance=ExtResource("9_v7htn")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3, 0.5, -1.0000002)
+
+[node name="SpinnyPaddle14" parent="Spinny Paddles" unique_id=1568284475 instance=ExtResource("9_v7htn")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -3, 0.5, -1.0000002)
+
+[node name="SpinnyPaddle5" parent="Spinny Paddles" unique_id=386261890 instance=ExtResource("9_v7htn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -0.9999995)
+
+[node name="SpinnyPaddle7" parent="Spinny Paddles" unique_id=1226950613 instance=ExtResource("9_v7htn")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.5, 0.5, -8.3)
+clockwise = false
+
+[node name="SpinnyPaddle8" parent="Spinny Paddles" unique_id=906171279 instance=ExtResource("9_v7htn")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.5, 0.99999976)
+clockwise = false
+
+[node name="SpinnyPaddle10" parent="Spinny Paddles" unique_id=804917492 instance=ExtResource("9_v7htn")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.5, 0.5, -12.3)
+clockwise = false
+
+[node name="SpinnyPaddle11" parent="Spinny Paddles" unique_id=935642806 instance=ExtResource("9_v7htn")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.5, 0.5, -14.3)
+clockwise = false
+
+[node name="4-way oct spinner" type="Node3D" parent="Spinny Paddles" unique_id=102506600]
+
+[node name="SpinnyPaddle3" parent="Spinny Paddles/4-way oct spinner" unique_id=90222997 instance=ExtResource("9_v7htn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -2.0000002)
+millis_offset = 250
+steps_per_turn = 16
+activation_period = 0.5
+rotation_ease = -2.0
+
+[node name="SpinnyPaddle15" parent="Spinny Paddles/4-way oct spinner" unique_id=1547636191 instance=ExtResource("9_v7htn")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0.5, -2.0000002)
+millis_offset = 250
+steps_per_turn = 16
+activation_period = 0.5
+rotation_ease = -2.0
+
+[node name="SpinnyPaddle16" parent="Spinny Paddles/4-way oct spinner" unique_id=1207358425 instance=ExtResource("9_v7htn")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0.5, -2.0000002)
+millis_offset = 250
+steps_per_turn = 16
+activation_period = 0.5
+rotation_ease = -2.0
+
+[node name="SpinnyPaddle17" parent="Spinny Paddles/4-way oct spinner" unique_id=470172895 instance=ExtResource("9_v7htn")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 4, 0.5, -2.0000002)
+millis_offset = 250
+steps_per_turn = 16
+activation_period = 0.5
+rotation_ease = -2.0
+
+[node name="Spinny Things" type="Node3D" parent="." unique_id=1595876507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+
+[node name="FOOD End The World" parent="Spinny Things" unique_id=1032994569 instance=ExtResource("3_jcsjy")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -2.5843773, 8.732913, 2.0413609)
 upgrade = ExtResource("6_dmcf2")
 
-[node name="SpinnyThing" parent="." unique_id=542642159 instance=ExtResource("7_0fird")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.500004, 0.099999964, -1.6999893)
+[node name="FOOD Cotton Candy" parent="Spinny Things" unique_id=1403603793 instance=ExtResource("3_jcsjy")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -1.6978455, 4.6866245, -4.2589483)
+upgrade = ExtResource("5_v7htn")
+
+[node name="Updraft" parent="Spinny Things" unique_id=1952319572 instance=ExtResource("2_l8hoc")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 1, 0, -3, 0, -1.3113416e-07, -2.524353, 0.5, 2.476387)
+
+[node name="SpinnyThing3" parent="Spinny Things" unique_id=1933391076 instance=ExtResource("7_0fird")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5000038, 4.1, -1.6999817)
+visible = false
 clockwise = false
 
-[node name="SpinnyThing2" parent="." unique_id=974542789 instance=ExtResource("7_0fird")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.500004, 0.099999964, 1.7000065)
+[node name="SpinnyThing4" parent="Spinny Things/SpinnyThing3" unique_id=1559962600 instance=ExtResource("7_0fird")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.399994, 0, 0)
+visible = false
 
-[node name="SpinnyThing3" parent="." unique_id=1933391076 instance=ExtResource("7_0fird")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5000038, 0.099999964, -1.6999817)
+[node name="SpinnyThing9" parent="Spinny Things" unique_id=262709167 instance=ExtResource("7_0fird")]
+transform = Transform3D(-8.742278e-08, -4.371139e-08, -1, 1, -4.371139e-08, -8.742278e-08, -4.3711385e-08, -1, 4.3711392e-08, -0.45067978, 2.1, -2.9728048)
 clockwise = false
 
-[node name="SpinnyThing9" parent="." unique_id=262709167 instance=ExtResource("7_0fird")]
-transform = Transform3D(-8.742278e-08, -4.371139e-08, -1, 1, -4.371139e-08, -8.742278e-08, -4.3711385e-08, -1, 4.3711392e-08, -0.45067978, 2.1, -2.972805)
-clockwise = false
-
-[node name="SpinnyThing5" parent="." unique_id=236883340 instance=ExtResource("7_0fird")]
+[node name="SpinnyThing5" parent="Spinny Things" unique_id=236883340 instance=ExtResource("7_0fird")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.4999962, 0.099999964, 2.3000202)
 
-[node name="SpinnyThing6" parent="." unique_id=2027096665 instance=ExtResource("7_0fird")]
+[node name="SpinnyThing6" parent="Spinny Things" unique_id=2027096665 instance=ExtResource("7_0fird")]
 transform = Transform3D(0.50000006, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, 0.50000006, -2.4999962, 2.1, 2.3000278)
 
-[node name="SpinnyThing7" parent="." unique_id=1212957044 instance=ExtResource("7_0fird")]
+[node name="SpinnyThing7" parent="Spinny Things" unique_id=1212957044 instance=ExtResource("7_0fird")]
 transform = Transform3D(0.86602545, 0, -0.5, 0, 1, 0, 0.5, 0, 0.86602545, -2.4999962, 4.1, 2.3000298)
 
-[node name="SpinnyThing8" parent="." unique_id=433316503 instance=ExtResource("7_0fird")]
+[node name="SpinnyThing8" parent="Spinny Things" unique_id=433316503 instance=ExtResource("7_0fird")]
 transform = Transform3D(1.0000002, 0, -1.5893246e-08, 0, 1, 0, 1.5893246e-08, 0, 1.0000002, -2.4999962, 6.1, 2.3000336)
-
-[node name="SpinnyThing4" parent="." unique_id=1559962600 instance=ExtResource("7_0fird")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5000038, 0.099999964, 1.7000122)
 
 [editable path="Debug Env"]
 [editable path="PlayerResetPoint"]
