@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c8473mkxy47q8"]
 
 [ext_resource type="Script" uid="uid://c1v78msr1oxjg" path="res://scenes_dev/debug_env/debug_env.gd" id="1_tsyyi"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_1udms"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gsha7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -26,3 +27,9 @@ shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1865503183]
 transform = Transform3D(0.36003044, -0.5470231, 0.7557406, 0, 0.81006294, 0.58634293, -0.93294054, -0.21110132, 0.29164734, 17.587559, 12.82626, -2.885182)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=332496536]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_1udms")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
