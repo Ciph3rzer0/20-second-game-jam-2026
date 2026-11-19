@@ -46,10 +46,10 @@ func _physics_process(delta):
 
 	# Movement
 	var direction := Input.get_vector(
-		"move_left",
-		"move_right",
-		"move_forward",
-        "move_backward"
+		"pc_move_left",
+		"pc_move_right",
+		"pc_move_up",
+        "pc_move_down"
 	)
 
 	velocity.x = direction.x * move_speed

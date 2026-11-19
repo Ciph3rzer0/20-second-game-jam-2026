@@ -9,10 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://bw488skp1kbsa" path="res://assets/mesh/environment/plane_cobble.glb" id="9_uvvm0"]
 [ext_resource type="PackedScene" uid="uid://dhqoo2i4ktbvk" path="res://assets/mesh/environment/plane_grassBase.glb" id="10_7ay7m"]
 [ext_resource type="PackedScene" uid="uid://c1n8jq18delbm" path="res://scenes/game/level_objects/flower.tscn" id="10_aeyoe"]
+[ext_resource type="PackedScene" uid="uid://5yo476188wgf" path="res://assets/mesh/environment/platform.glb" id="10_b1jja"]
 [ext_resource type="PackedScene" uid="uid://djlq28crjprtr" path="res://scenes/game/level_objects/brickwall.tscn" id="11_7ay7m"]
 [ext_resource type="PackedScene" uid="uid://hcagk8fscmh8" path="res://assets/mesh/environment/plane_gravel.glb" id="11_j8xii"]
+[ext_resource type="PackedScene" uid="uid://ljonyycwy52b" path="res://assets/mesh/environment/club.glb" id="11_yf3gf"]
 [ext_resource type="PackedScene" uid="uid://bohpyhvrb68ue" path="res://scenes/game/level_objects/rock.tscn" id="12_aeyoe"]
 [ext_resource type="PackedScene" uid="uid://dd27khdsl6hmw" path="res://scenes/game/level_objects/stonewall.tscn" id="12_j8xii"]
+[ext_resource type="PackedScene" uid="uid://c4mxfyy0qhi7j" path="res://assets/mesh/interactables/ghostPepper.glb" id="14_bv4r4"]
+[ext_resource type="PackedScene" uid="uid://c7iryukl0037f" path="res://assets/mesh/environment/crate.glb" id="15_3iat7"]
+[ext_resource type="PackedScene" uid="uid://xevj3jf3lm42" path="res://assets/mesh/environment/archtop.glb" id="15_funtb"]
+[ext_resource type="PackedScene" uid="uid://enwe3shmixlo" path="res://assets/mesh/environment/archway.glb" id="16_b1jja"]
+[ext_resource type="PackedScene" uid="uid://cl1c3qxygvnyy" path="res://assets/mesh/environment/tunnelConnector.glb" id="16_oncvj"]
+[ext_resource type="PackedScene" uid="uid://b1afydijjcngo" path="res://assets/mesh/environment/swingingBlade.glb" id="19_oncvj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80iay"]
 
@@ -76,7 +84,7 @@ transform = Transform3D(0.19756734, 0.15841296, 0.073353514, -0.16213319, 0.2075
 [node name="obstacles" type="Node3D" parent="." unique_id=1537738809]
 
 [node name="floor" type="MeshInstance3D" parent="obstacles" unique_id=603533079]
-transform = Transform3D(17.188358, 0, 0, 0, 2.6266289, 0, 0, 0, 17.188358, 14.342514, 0, -10.652678)
+transform = Transform3D(21.379475, 0, 0, 0, 2.6266289, 0, 0, 0, 20.814537, 14.342514, 0, -10.652678)
 mesh = SubResource("PlaneMesh_h45xw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="obstacles/floor" unique_id=398300689]
@@ -154,7 +162,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 31.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9786475, 0.116930485, -24.293787)
 
 [node name="Brickwall4" parent="obstacles" unique_id=2024705722 instance=ExtResource("11_7ay7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.393356, 0.116930485, -24.293787)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.652678, 0.116930485, -24.325384)
 
 [node name="Brickwall7" parent="obstacles" unique_id=1905460222 instance=ExtResource("11_7ay7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.393356, 0.116930485, -24.293787)
@@ -167,6 +175,12 @@ transform = Transform3D(-0.40366182, 0, 0.69916284, 0, 0.8073237, 0, -0.69916284
 
 [node name="Rock2" parent="obstacles" unique_id=1521815544 instance=ExtResource("12_aeyoe")]
 transform = Transform3D(0.12622552, 0.41712272, -0.077937685, -0.4237406, 0.12822814, 9.313226e-09, 0.022573806, 0.07459697, 0.435803, -2.372414, 0.20230217, -4.6127915)
+
+[node name="platform2" parent="obstacles" unique_id=155572229 instance=ExtResource("10_b1jja")]
+transform = Transform3D(0.49319947, 0, 0, 0, 0.49319947, 0, 0, 0, 0.49319947, 18.910818, 1.1526635, -21.808073)
+
+[node name="club" parent="obstacles" unique_id=2099777578 instance=ExtResource("11_yf3gf")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 14.6999035, 0.8202302, -12.966789)
 
 [node name="floor" type="Node3D" parent="." unique_id=166139780]
 
@@ -245,6 +259,9 @@ transform = Transform3D(1.9775246, 0, 0, 0, 1, 0, 0, 0, 1.9775246, 4.136, 0.2389
 [node name="plane_cobble2" parent="floor" unique_id=1800944590 instance=ExtResource("9_uvvm0")]
 transform = Transform3D(1.9775246, 0, 0, 0, 1, 0, 0, 0, 1.9775246, 4.136, 0.23894882, -13.377752)
 
+[node name="plane_cobble4" parent="floor" unique_id=1073103620 instance=ExtResource("9_uvvm0")]
+transform = Transform3D(1.9775246, 0, 0, 0, 1, 0, 0, 0, 1.9775246, 26.479546, 0.23894882, -33.439346)
+
 [node name="plane_cobble3" parent="floor" unique_id=235664345 instance=ExtResource("9_uvvm0")]
 transform = Transform3D(1.9775246, 0, 0, 0, 1, 0, 0, 0, 1.9775246, 4.136, 0.23894882, -26.751837)
 
@@ -274,3 +291,21 @@ transform = Transform3D(1.8927803, 0, 0, 0, 1, 0, 0, 0, 1.8927803, 26.894636, 0.
 
 [node name="plane_gravel3" parent="floor" unique_id=952741542 instance=ExtResource("11_j8xii")]
 transform = Transform3D(1.8927803, 0, 0, 0, 1, 0, 0, 0, 1.8927803, 26.831003, 0.23894882, -12.558631)
+
+[node name="crate" parent="floor" unique_id=723977825 instance=ExtResource("15_3iat7")]
+transform = Transform3D(0.6215619, 0, 0, 0, 0.6215619, 0, 0, 0, 0.6215619, 17.30666, 0.68967927, -14.99825)
+
+[node name="ghostPepper" parent="." unique_id=1880083857 instance=ExtResource("14_bv4r4")]
+transform = Transform3D(0.40000796, 0, 0, 0, 0.40000796, 0, 0, 0, 0.40000796, 1.229579, 1.4352115, -5.2957845)
+
+[node name="archtop" parent="." unique_id=171408887 instance=ExtResource("15_funtb")]
+transform = Transform3D(0.61107314, 0, 0, 0, 0.6374755, 0, 0, 0, 0.61107314, 25.219591, 5.510986, -20.109295)
+
+[node name="archway" parent="." unique_id=456562843 instance=ExtResource("16_b1jja")]
+transform = Transform3D(0.9022889, 0, 0, 0, 0.9022889, 0, 0, 0, 0.9022889, 25.18923, 0.043257415, -20.876305)
+
+[node name="swingingBlade" parent="." unique_id=1978806487 instance=ExtResource("19_oncvj")]
+transform = Transform3D(0.46242738, 0, 0, 0, 0.46242738, 0, 0, 0, 0.46242738, 15.161755, 3.3769715, -20.878105)
+
+[node name="tunnelConnector" parent="." unique_id=1984013548 instance=ExtResource("16_oncvj")]
+transform = Transform3D(1.9062924, 0, 0, 0, 1.9062924, 0, 0, 0, 1.9062924, 2.1616592, 2.383442, -17.157572)
