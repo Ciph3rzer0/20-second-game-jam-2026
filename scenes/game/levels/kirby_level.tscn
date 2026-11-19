@@ -59,20 +59,20 @@ gradient = SubResource("Gradient_11ovw")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3iby6"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_g60af"]
 resource_local_to_scene = true
 size = Vector3(10, 4, 8)
 
-[sub_resource type="Resource" id="Resource_ryyfu"]
+[sub_resource type="Resource" id="Resource_3iby6"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_o3xl8"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ryyfu"]
 resource_local_to_scene = true
 size = Vector3(7, 4, 6)
 
-[sub_resource type="Resource" id="Resource_utioa"]
+[sub_resource type="Resource" id="Resource_o3xl8"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
@@ -125,7 +125,7 @@ script = ExtResource("1_vuxjq")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2141334000]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, 13.072361, 14.5, -32.90322)
+transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, -7.593364, 11.387932, -25.355576)
 top_level = true
 fov = 45.0
 
@@ -181,25 +181,25 @@ max_value = 20.0
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 10, 0, -6)
 
 [node name="CollisionShape3D" parent="AreaCameraTrigger" index="0" unique_id=1391710269]
-shape = SubResource("BoxShape3D_3iby6")
+shape = SubResource("BoxShape3D_g60af")
 
 [node name="PCam-Behind" parent="AreaCameraTrigger" index="1" unique_id=1357355425]
 transform = Transform3D(1.0000002, 0, 0, 1.776357e-15, 0.86602694, 0.50000006, 3.0767455e-15, -0.5000001, 0.8660269, 0, 3, 4.9912405)
-tween_resource = SubResource("Resource_ryyfu")
+tween_resource = SubResource("Resource_3iby6")
 
 [node name="ACam - Spawn" parent="." unique_id=522325614 instance=ExtResource("4_mryis")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1.5, 8, -16)
 
 [node name="CollisionShape3D" parent="ACam - Spawn" index="0" unique_id=1391710269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9206276e-05, 1.999939, 0)
-shape = SubResource("BoxShape3D_o3xl8")
+shape = SubResource("BoxShape3D_ryyfu")
 
 [node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425 node_paths=PackedStringArray("follow_target")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 13.072361, 10.571067, -32.832153)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, -7.593364, 7.458998, -25.284508)
 top_level = true
 follow_mode = 5
 follow_target = NodePath("../../Player")
-tween_resource = SubResource("Resource_utioa")
+tween_resource = SubResource("Resource_o3xl8")
 follow_offset = Vector3(0, -1, 0)
 follow_damping = true
 follow_damping_value = Vector3(0.15, 0.15, 0.15)
@@ -210,7 +210,7 @@ align_transform_with_view = Callable()
 align_position_with_view = Callable()
 
 [node name="PlayerFollowCamera" type="Node3D" parent="." unique_id=1722917239 node_paths=PackedStringArray("follow_target", "look_at_target")]
-transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, 13.072361, 14.5, -32.90322)
+transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, -7.593364, 11.387932, -25.355576)
 top_level = true
 script = ExtResource("3_ec8vc")
 priority = 10
@@ -227,7 +227,7 @@ align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=365479314]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.072361, 4.5, -39.90322)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.593364, 1.3879313, -32.355576)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1485879796]
 environment = ExtResource("7_g60af")
@@ -238,7 +238,7 @@ light_energy = 0.22
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1114472192 node_paths=PackedStringArray("camera") instance=ExtResource("1_o7uk8")]
-transform = Transform3D(0.7071067, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071067, 13.072361, 4.5, -39.90322)
+transform = Transform3D(0.7071067, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071067, -7.593364, 1.3879313, -32.355576)
 camera = NodePath("../Camera3D")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Player" unique_id=401191725]

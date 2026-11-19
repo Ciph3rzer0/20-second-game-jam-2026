@@ -17,8 +17,6 @@ uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_uhg71"]
-
 [sub_resource type="BoxMesh" id="BoxMesh_32ncx"]
 size = Vector3(0.75, 0.1, 0.75)
 
@@ -62,9 +60,7 @@ use_collision = true
 [node name="Debug Env" parent="." unique_id=237132059 instance=ExtResource("2_gsha7")]
 
 [node name="PlayerResetPoint" parent="." unique_id=1772145093 instance=ExtResource("2_s8hfx")]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=467822026]
-mesh = SubResource("CylinderMesh_uhg71")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.454353, 1, 3.0898547)
 
 [node name="FOOD Beef3" parent="." unique_id=1048115677 instance=ExtResource("2_4b4xf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.185028, 0.5, 12.549248)
