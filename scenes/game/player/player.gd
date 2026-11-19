@@ -137,17 +137,18 @@ var previous_horizontal_velocity := Vector2.ZERO
 
 static var instance: Player
 
-func init():
-	instance = self
-
 func _enter_tree() -> void:
-	if instance != self:
-		queue_free()
-		set_process(false)
-		set_physics_process(false)
+	if not Engine.is_editor_hint():
+		if instance == null:
+			instance = self
+		else:
+			queue_free()
+			set_process(false)
+			set_physics_process(false)
+	
 
 func _exit_tree() -> void:
-	if instance != self:
+	if instance == self:
 		instance = null
 
 func _ready() -> void:

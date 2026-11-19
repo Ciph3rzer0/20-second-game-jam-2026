@@ -8,30 +8,34 @@
 [ext_resource type="Resource" uid="uid://cy16v56v04n5u" path="res://scenes/game/player/upgrades/beef_upgrade.tres" id="7_h3x7x"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_uhg71"]
+top_radius = 1.0
 height = 0.2
 
 [node name="PlayerResetPoint" type="MeshInstance3D" unique_id=1074847532]
 mesh = SubResource("CylinderMesh_uhg71")
 script = ExtResource("1_nhite")
 
+[node name="SpawnPoint" type="Marker3D" parent="." unique_id=1268219710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
 [node name="FOOD Hot Tamale" parent="." unique_id=1048115677 instance=ExtResource("3_n7g85")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.3, 0)
 upgrade = ExtResource("4_0e8lp")
 
 [node name="FOOD Pancake" parent="." unique_id=1154402641 instance=ExtResource("3_n7g85")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0.5)
 visible = false
 monitoring = false
 upgrade = ExtResource("5_k6hl2")
 
 [node name="FOOD Cotton Candy" parent="." unique_id=1684139184 instance=ExtResource("3_n7g85")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, -0.4)
 visible = false
 monitoring = false
 upgrade = ExtResource("6_17shm")
 
 [node name="FOOD Beef" parent="." unique_id=1049298353 instance=ExtResource("3_n7g85")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, -0.4, 0)
 visible = false
 monitoring = false
 upgrade = ExtResource("7_h3x7x")
