@@ -1,0 +1,236 @@
+[gd_scene format=3 uid="uid://uv606mcn8j31"]
+
+[ext_resource type="Texture2D" uid="uid://du72n1ikiej87" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_red_512x512.png" id="1_if0xl"]
+[ext_resource type="PackedScene" uid="uid://c8473mkxy47q8" path="res://scenes_dev/debug_env/debug_env.tscn" id="1_r7exd"]
+[ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="2_ow0gy"]
+[ext_resource type="PackedScene" uid="uid://bh4rl4lwjryu0" path="res://scenes/game/level_objects/player_reset_point/player_reset_point.tscn" id="2_xil0h"]
+[ext_resource type="Texture2D" uid="uid://lksj7mbcw2dp" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_lime_512x512.png" id="3_r7exd"]
+[ext_resource type="PackedScene" uid="uid://dnk1epprcnqdl" path="res://scenes/game/pickup.tscn" id="4_xil0h"]
+[ext_resource type="Resource" uid="uid://bqnwoduq6d7dq" path="res://scenes/game/player/upgrades/cotton_candy_upgrade.tres" id="5_ca8pp"]
+[ext_resource type="Resource" uid="uid://dp2gng6k71tnm" path="res://scenes/game/player/upgrades/pancake_upgrade.tres" id="6_jqvx0"]
+[ext_resource type="Resource" uid="uid://cwhrjbmmhrnn7" path="res://scenes/game/player/upgrades/speed_upgrade.tres" id="7_lu8ly"]
+[ext_resource type="PackedScene" uid="uid://c4p0gtba5xyvr" path="res://scenes/game/level_objects/crate/crate.tscn" id="8_vcipv"]
+[ext_resource type="PackedScene" uid="uid://dfifonwu0o5eb" path="res://scenes/game/level_objects/hide_trigger/hide_trigger.tscn" id="9_dxb78"]
+[ext_resource type="Resource" uid="uid://dby58yr82jbtr" path="res://scenes/game/player/upgrades/world_end_upgrade.tres" id="10_lfftr"]
+[ext_resource type="Resource" uid="uid://cy16v56v04n5u" path="res://scenes/game/player/upgrades/beef_upgrade.tres" id="11_2n0lk"]
+[ext_resource type="Texture2D" uid="uid://3wu1lbkmlqr3" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_orange_512x512.png" id="12_p2w8o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3rlc"]
+albedo_texture = ExtResource("1_if0xl")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gyht"]
+albedo_texture = ExtResource("3_r7exd")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_krb5w"]
+size = Vector3(7, 2, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qoke0"]
+albedo_texture = ExtResource("12_p2w8o")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="First Puzzle" type="Node3D" unique_id=183504293]
+
+[node name="Debug Env" parent="." unique_id=237132059 instance=ExtResource("1_r7exd")]
+
+[node name="Camera3D" parent="Debug Env" index="2" unique_id=1865503183]
+transform = Transform3D(0.0069447956, 0.8352879, -0.549769, 0, 0.5497823, 0.835308, 0.9999759, -0.0058010435, 0.003818125, -9.000952, 20.226997, -3.7051127)
+
+[node name="PlayerResetPoint" parent="." unique_id=1074847532 instance=ExtResource("2_xil0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, -16)
+
+[node name="Ground" type="CSGBox3D" parent="." unique_id=881270564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -0.5, -3)
+material_override = SubResource("StandardMaterial3D_n3rlc")
+use_collision = true
+size = Vector3(30, 1, 32)
+metadata/_edit_lock_ = true
+
+[node name="Updraft" parent="." unique_id=1952319572 instance=ExtResource("2_ow0gy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, 5.5)
+
+[node name="First Puzzle - Green Ramp Wall" type="CSGCombiner3D" parent="." unique_id=705122933]
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+
+[node name="FOOD Cotton Candy" parent="First Puzzle - Green Ramp Wall" unique_id=1048115677 instance=ExtResource("4_xil0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0368266, 0.072999954, 5.7305427)
+upgrade = ExtResource("5_ca8pp")
+
+[node name="FOOD Pancake" parent="First Puzzle - Green Ramp Wall" unique_id=1492547503 instance=ExtResource("4_xil0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+upgrade = ExtResource("6_jqvx0")
+
+[node name="FOOD Hot Tamale" parent="First Puzzle - Green Ramp Wall" unique_id=761371676 instance=ExtResource("4_xil0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 3.5)
+upgrade = ExtResource("7_lu8ly")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="First Puzzle - Green Ramp Wall" unique_id=1444184676]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1, 0.5, -3)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(2, 1, 10)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="First Puzzle - Green Ramp Wall" unique_id=420636981]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1, 1.5, -2.5)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(1, 1, 10)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="First Puzzle - Green Ramp Wall" unique_id=1549674757]
+transform = Transform3D(1, 0, 0, 0, 0.96592695, -0.25881934, 0, 0.25881934, 0.96592695, 0, -0.00060117245, -0.19755769)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(2, 1, 4)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="First Puzzle - Green Ramp Wall" unique_id=222440804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 7)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(2, 1, 4)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="First Puzzle - Green Ramp Wall" unique_id=182226422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 2)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(2, 1, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="First Puzzle - Green Ramp Wall" unique_id=484188825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -0.75)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(2, 2, 3.5)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="First Puzzle - Green Ramp Wall" unique_id=1694126223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2.5, -1.5)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(11, 5, 2)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="First Puzzle - Green Ramp Wall" unique_id=1283259282]
+transform = Transform3D(0.36123514, 0.28077617, -0.8891984, -0.028062083, 0.95643127, 0.29060566, 0.9320524, -0.08002421, 0.3533758, 11.4041815, 2.0141857, 2.5767639)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(7.7094727, 5, 1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="First Puzzle - Green Ramp Wall" unique_id=2016754296]
+transform = Transform3D(-1, 0, 1.1920929e-07, 0, 1, 0, -1.1920929e-07, 0, -1, 10, 0.5, 6.5)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(9, 1, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="First Puzzle - Green Ramp Wall" unique_id=1568935887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 5)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(2, 2, 4)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="First Puzzle - Green Ramp Wall" unique_id=874456498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 2.5, 5)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(1, 5, 4)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="First Puzzle - Green Ramp Wall" unique_id=1464421146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 3.75, 1)
+material_override = SubResource("StandardMaterial3D_4gyht")
+use_collision = true
+size = Vector3(1, 3.5, 4)
+
+[node name="Crates" type="Node3D" parent="First Puzzle - Green Ramp Wall" unique_id=2007215662]
+
+[node name="Box" parent="First Puzzle - Green Ramp Wall/Crates" unique_id=2091715048 instance=ExtResource("8_vcipv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6683042, 0.375, 4.944521)
+
+[node name="Box2" parent="First Puzzle - Green Ramp Wall/Crates" unique_id=1400810435 instance=ExtResource("8_vcipv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8878026, 0.375, 5.322118)
+
+[node name="Box3" parent="First Puzzle - Green Ramp Wall/Crates" unique_id=863005118 instance=ExtResource("8_vcipv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.411929, 1.125, 4.967903)
+
+[node name="First Puzzle - Upper Yellow Platform" type="Node3D" parent="." unique_id=1984961820]
+
+[node name="Hide - Upper Yellow Platform" parent="First Puzzle - Upper Yellow Platform" unique_id=1283546342 node_paths=PackedStringArray("nodes_to_hide") instance=ExtResource("9_dxb78")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 0.5)
+nodes_to_hide = [NodePath("..")]
+
+[node name="Trigger Box" type="CollisionShape3D" parent="First Puzzle - Upper Yellow Platform/Hide - Upper Yellow Platform" unique_id=1708940912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_krb5w")
+
+[node name="FOOD End The World" parent="First Puzzle - Upper Yellow Platform" unique_id=1994898078 instance=ExtResource("4_xil0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5, -13.6)
+upgrade = ExtResource("10_lfftr")
+
+[node name="FOOD Beef" parent="First Puzzle - Upper Yellow Platform" unique_id=1518597633 instance=ExtResource("4_xil0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.625298, 5.7784624, 2.7305427)
+upgrade = ExtResource("11_2n0lk")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="First Puzzle - Upper Yellow Platform" unique_id=164010302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 5, 4)
+material_override = SubResource("StandardMaterial3D_qoke0")
+use_collision = true
+size = Vector3(7, 2, 6)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="First Puzzle - Upper Yellow Platform" unique_id=1862407721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 2.5, 6.5)
+material_override = SubResource("StandardMaterial3D_qoke0")
+use_collision = true
+size = Vector3(7, 3, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="First Puzzle - Upper Yellow Platform" unique_id=65549546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 4.5, -1.9000001)
+material_override = SubResource("StandardMaterial3D_qoke0")
+use_collision = true
+size = Vector3(7, 2, 6)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="First Puzzle - Upper Yellow Platform" unique_id=742215773]
+transform = Transform3D(1, 0, 0, 0, 0.93969274, 0.34202015, 0, -0.34202015, 0.93969274, 9.5, 5.6431246, 0.32710224)
+material_override = SubResource("StandardMaterial3D_qoke0")
+use_collision = true
+size = Vector3(7, 0.2, 1.5)
+
+[node name="First Puzzle - (3) Back" type="Node3D" parent="." unique_id=908586308]
+
+[node name="Yellow World Tower" type="CSGBox3D" parent="First Puzzle - (3) Back" unique_id=2077891740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 4, -16)
+material_override = SubResource("StandardMaterial3D_qoke0")
+use_collision = true
+size = Vector3(7, 8, 6)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="First Puzzle - (3) Back/Yellow World Tower" unique_id=1097792880]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2.9047909)
+operation = 2
+radius = 1.5
+sides = 16
+
+[node name="Updraft2" parent="First Puzzle - (3) Back" unique_id=432182089 instance=ExtResource("2_ow0gy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -12.5)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="First Puzzle - (3) Back" unique_id=1822302091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.3499997, -8.095209)
+operation = 2
+radius = 0.3
+height = 7.3
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="First Puzzle - (3) Back" unique_id=619964487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3.3499997, -8.095209)
+operation = 2
+radius = 0.3
+height = 7.3
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="First Puzzle - (3) Back" unique_id=853325328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 6.5, -9)
+material_override = SubResource("StandardMaterial3D_qoke0")
+use_collision = true
+size = Vector3(7, 1, 6)
+
+[editable path="Debug Env"]
+[editable path="PlayerResetPoint"]

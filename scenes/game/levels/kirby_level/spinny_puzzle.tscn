@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cucxoppnj0nbr"]
+
+[ext_resource type="PackedScene" uid="uid://c8473mkxy47q8" path="res://scenes_dev/debug_env/debug_env.tscn" id="1_jcsjy"]
+[ext_resource type="Texture2D" uid="uid://du72n1ikiej87" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_red_512x512.png" id="1_xjho3"]
+[ext_resource type="PackedScene" uid="uid://bh4rl4lwjryu0" path="res://scenes/game/level_objects/player_reset_point/player_reset_point.tscn" id="2_f6cg4"]
+[ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="2_l8hoc"]
+[ext_resource type="PackedScene" uid="uid://dnk1epprcnqdl" path="res://scenes/game/pickup.tscn" id="3_jcsjy"]
+[ext_resource type="Resource" uid="uid://cy16v56v04n5u" path="res://scenes/game/player/upgrades/beef_upgrade.tres" id="4_f6cg4"]
+[ext_resource type="Resource" uid="uid://bqnwoduq6d7dq" path="res://scenes/game/player/upgrades/cotton_candy_upgrade.tres" id="5_v7htn"]
+[ext_resource type="Resource" uid="uid://dby58yr82jbtr" path="res://scenes/game/player/upgrades/world_end_upgrade.tres" id="6_dmcf2"]
+[ext_resource type="PackedScene" uid="uid://b42bfqq0rgodu" path="res://scenes/game/level_objects/spinny_thing/spinny_thing.tscn" id="7_0fird"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3rlc"]
+albedo_texture = ExtResource("1_xjho3")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="SpinnyPuzzle" type="Node3D" unique_id=1563068054]
+
+[node name="Debug Env" parent="." unique_id=237132059 instance=ExtResource("1_jcsjy")]
+
+[node name="Camera3D" parent="Debug Env" index="2" unique_id=1865503183]
+transform = Transform3D(-0.9996574, -0.018085489, 0.018922491, 0, 0.7229144, 0.69093764, -0.026175283, 0.6907009, -0.72266674, 0.0027756095, 6.9043074, -8.244302)
+
+[node name="Ground" type="CSGBox3D" parent="." unique_id=1796071508]
+material_override = SubResource("StandardMaterial3D_n3rlc")
+use_collision = true
+size = Vector3(15, 1, 11)
+
+[node name="PlayerResetPoint" parent="." unique_id=1074847532 instance=ExtResource("2_f6cg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7000039, 1.5, -2.4855137e-05)
+
+[node name="Updraft" parent="." unique_id=1952319572 instance=ExtResource("2_l8hoc")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 1, 0, -3, 0, -1.3113416e-07, -2.524353, 0.5, 2.476387)
+
+[node name="FOOD Beef4" parent="." unique_id=1048115677 instance=ExtResource("3_jcsjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.685032, 1, 0.04922676)
+upgrade = ExtResource("4_f6cg4")
+
+[node name="FOOD Cotton Candy" parent="." unique_id=1403603793 instance=ExtResource("3_jcsjy")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -1.6978455, 4.6866245, -4.2589483)
+upgrade = ExtResource("5_v7htn")
+
+[node name="FOOD End The World" parent="." unique_id=1032994569 instance=ExtResource("3_jcsjy")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -2.5843773, 8.732913, 2.0413609)
+upgrade = ExtResource("6_dmcf2")
+
+[node name="SpinnyThing" parent="." unique_id=542642159 instance=ExtResource("7_0fird")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.500004, 0.099999964, -1.6999893)
+clockwise = false
+
+[node name="SpinnyThing2" parent="." unique_id=974542789 instance=ExtResource("7_0fird")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.500004, 0.099999964, 1.7000065)
+
+[node name="SpinnyThing3" parent="." unique_id=1933391076 instance=ExtResource("7_0fird")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5000038, 0.099999964, -1.6999817)
+clockwise = false
+
+[node name="SpinnyThing9" parent="." unique_id=262709167 instance=ExtResource("7_0fird")]
+transform = Transform3D(-8.742278e-08, -4.371139e-08, -1, 1, -4.371139e-08, -8.742278e-08, -4.3711385e-08, -1, 4.3711392e-08, -0.45067978, 2.1, -2.972805)
+clockwise = false
+
+[node name="SpinnyThing5" parent="." unique_id=236883340 instance=ExtResource("7_0fird")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.4999962, 0.099999964, 2.3000202)
+
+[node name="SpinnyThing6" parent="." unique_id=2027096665 instance=ExtResource("7_0fird")]
+transform = Transform3D(0.50000006, 0, -0.8660255, 0, 1, 0, 0.8660255, 0, 0.50000006, -2.4999962, 2.1, 2.3000278)
+
+[node name="SpinnyThing7" parent="." unique_id=1212957044 instance=ExtResource("7_0fird")]
+transform = Transform3D(0.86602545, 0, -0.5, 0, 1, 0, 0.5, 0, 0.86602545, -2.4999962, 4.1, 2.3000298)
+
+[node name="SpinnyThing8" parent="." unique_id=433316503 instance=ExtResource("7_0fird")]
+transform = Transform3D(1.0000002, 0, -1.5893246e-08, 0, 1, 0, 1.5893246e-08, 0, 1.0000002, -2.4999962, 6.1, 2.3000336)
+
+[node name="SpinnyThing4" parent="." unique_id=1559962600 instance=ExtResource("7_0fird")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5000038, 0.099999964, 1.7000122)
+
+[editable path="Debug Env"]
+[editable path="PlayerResetPoint"]
