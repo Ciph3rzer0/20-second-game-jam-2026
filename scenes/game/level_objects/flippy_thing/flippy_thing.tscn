@@ -2,11 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ddhkfryot8pct" path="res://scenes/game/level_objects/flippy_thing/flippy_thing.gd" id="1_a4k04"]
 
-[sub_resource type="Curve" id="Curve_a4k04"]
-resource_local_to_scene = true
-_data = [Vector2(0, 0), 0.0, 4.458296, 0, 0, Vector2(0.99544424, 0.87640446), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [sub_resource type="BoxMesh" id="BoxMesh_8xniw"]
 size = Vector3(1, 0.1, 1)
 
@@ -28,13 +23,12 @@ size = Vector3(1, 0.8, 1)
 [node name="FlippyThing" type="Node3D" unique_id=542642159 node_paths=PackedStringArray("flipper")]
 script = ExtResource("1_a4k04")
 flipper = NodePath("Arm")
-flip_curve = SubResource("Curve_a4k04")
 
 [node name="Arm" type="AnimatableBody3D" parent="." unique_id=467809760]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.15, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5000002, -0.15, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Arm" unique_id=1698549933]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5000002, 0.1, 0)
 mesh = SubResource("BoxMesh_8xniw")
 
 [node name="Arrow" type="MeshInstance3D" parent="Arm/MeshInstance3D" unique_id=1839544526]
@@ -43,7 +37,7 @@ material_override = SubResource("StandardMaterial3D_32ncx")
 mesh = SubResource("PrismMesh_uhg71")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Arm" unique_id=2034413727]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5000002, 0.07971672, 0)
 shape = SubResource("BoxShape3D_3oknf")
 
 [node name="Base Block" type="StaticBody3D" parent="." unique_id=583585590]

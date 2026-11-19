@@ -16,6 +16,9 @@ extends CharacterBody3D
 ## Area3D with a gravity override swaps [member gravity_vector]. Zones are
 ## assumed not to overlap.
 
+signal started_moving
+var _has_moved
+
 signal win
 signal jumped
 signal landed
@@ -98,6 +101,8 @@ var _gravity := 9.8  # base gravity magnitude, also used for the jump impulse
 var _default_gravity := Vector3.DOWN * 9.8
 var _zone: Area3D
 var _drift := Vector3.ZERO  # sideways velocity from gravity zones, added on top of input
+var _last_platform_velocity := Vector3.ZERO
+var _had_support := false
 var _coyote_timer := 0.0
 var _jump_buffer_timer := 0.0
 var _dash_timer := 0.0
@@ -106,6 +111,29 @@ var _dash_direction := Vector3.FORWARD
 var _air_speed := 0.0
 var _jumping := false
 var _was_on_floor := false
+
+@export_group("Slime")
+@export var jump_sound: AudioStream
+
+@export var stiffness := 26.0
+@export var damping := 7.0
+
+@export var lean_response := 1.0
+@export var lean_stiffness := 55.0
+@export var lean_damping := 10.0
+@export var max_lean := 0.18
+
+@export var slime: MeshInstance3D
+@export var buff_slime_mesh: Mesh
+
+var material: ShaderMaterial
+
+var squish := 0.0
+var squish_velocity := 0.0
+
+var lean := Vector2.ZERO
+var lean_velocity := Vector2.ZERO
+var previous_horizontal_velocity := Vector2.ZERO
 
 
 func _ready() -> void:
@@ -118,10 +146,26 @@ func _ready() -> void:
 	floor_max_angle = deg_to_rad(max_slope_degrees)
 	floor_constant_speed = true
 	floor_stop_on_slope = true
+	platform_on_leave = PLATFORM_ON_LEAVE_DO_NOTHING  # handled in _launch_off_platform
 	floor_snap_length = maxf(floor_snap_length, step_height + 0.05)
 	facing_direction = -global_basis.z
 	_air_speed = move_speed
 	_was_on_floor = is_on_floor()
+
+	# Slime Ready
+	if material == null:
+		material = slime.get_active_material(0) as ShaderMaterial
+
+	if material == null:
+		push_error("Slime requires a ShaderMaterial on its mesh or in the material export.")
+		return
+
+	material = material.duplicate() as ShaderMaterial
+	slime.material_override = material
+
+	var bounds := slime.mesh.get_aabb()
+	material.set_shader_parameter("lean_base_y", bounds.position.y)
+	material.set_shader_parameter("lean_height", bounds.size.y)
 
 var held_item : Node3D
 
@@ -157,23 +201,28 @@ func _unhandled_input(event: InputEvent) -> void:
 			print(" Dropping item ")
 			drop_item()
 		else:
-			#Get overlapping bodies
-			var bodies: Array[Node3D] = $PickupArea.get_overlapping_bodies()
-			
-			if bodies.size() <= 0:
-				pass
-			elif bodies.size() == 1:
-				pickup_item(bodies[0])
-				pass
-			else:
-				pickup_item(bodies[0])
-				#for body in bodies:
-					## Find body closest to center
-					#pass
-			
-			# attach body to PickupArea
-			pass
-		
+			var target := _find_pickup_target()
+			if target:
+				pickup_item(target)
+
+## Closest body in PickupArea that we can see
+func _find_pickup_target() -> Node3D:
+	var space := get_world_3d().direct_space_state
+	var from: Vector3 = ($CollisionShape3D as Node3D).global_position
+	var best: Node3D = null
+	var best_dist := INF
+	for body: Node3D in $PickupArea.get_overlapping_bodies():
+		var query := PhysicsRayQueryParameters3D.create(from, body.global_position, collision_mask, [get_rid()])
+		var hit := space.intersect_ray(query)
+		# Blocked if the ray hits something other than the item itself.
+		if not hit.is_empty() and hit.collider != body:
+			continue
+		var d := from.distance_squared_to(body.global_position)
+		if d < best_dist:
+			best_dist = d
+			best = body
+	return best
+
 
 
 func _physics_process(delta: float) -> void:
@@ -198,8 +247,67 @@ func _physics_process(delta: float) -> void:
 		velocity.y *= jump_cut
 	_apply_horizontal(delta, on_floor)
 	_update_facing(delta)
+	var falling_speed := velocity.y  # before move_and_slide zeroes it on landing
 	_move(delta, on_floor)
+	_slime_physics_process(delta, on_floor, falling_speed)
 	_update_floor_transition()
+
+
+func _slime_physics_process(delta: float, was_on_floor: bool, falling_speed: float):
+	# Horizontal velocity changes give the lean spring an impulse.
+	var actual_velocity := get_real_velocity()
+	var horizontal_velocity := Vector2(actual_velocity.x, actual_velocity.z)
+	var velocity_change := horizontal_velocity - previous_horizontal_velocity
+	previous_horizontal_velocity = horizontal_velocity
+	lean_velocity -= velocity_change * lean_response
+
+	var lean_acceleration := -lean_stiffness * lean - lean_damping * lean_velocity
+	lean_velocity += lean_acceleration * delta
+	lean += lean_velocity * delta
+	lean = lean.limit_length(max_lean)
+
+	# Landing generates a deformation impulse
+	if not was_on_floor and is_on_floor():
+
+		if falling_speed < 0.0:
+			squish_velocity += min(
+				-falling_speed * 0.16,
+				1.8
+			)
+
+	# spring
+	var acceleration := (
+		-stiffness * squish
+		-damping * squish_velocity
+	)
+
+	squish_velocity += acceleration * delta
+	squish += squish_velocity * delta
+
+	squish = clamp(squish, -0.5, 0.75)
+
+	# Send parameters to shader.
+	if material == null:
+		return
+
+	# spring uses world space; shader vertices use mesh-local space
+	var local_lean := slime.global_basis.inverse() * Vector3(lean.x, 0.0, lean.y)
+	material.set_shader_parameter("lean", Vector2(local_lean.x, local_lean.z))
+
+	material.set_shader_parameter(
+		"squish",
+		squish
+	)
+
+	var horizontal_speed := Vector2(
+		velocity.x,
+		velocity.z
+	).length()
+
+	material.set_shader_parameter(
+		"motion",
+		clamp(horizontal_speed / move_speed, 0.5, 1.0)
+	)
 
 
 # --- Input -----------------------------------------------------------------
@@ -209,6 +317,10 @@ func _read_move_direction() -> Vector3:
 	if input == Vector2.ZERO:
 		return Vector3.ZERO
 	input = Vector2.from_angle(snappedf(input.angle(), TAU / DIRECTION_COUNT))
+
+	if not _has_moved:
+		started_moving.emit()
+		_has_moved = true
 
 	# Build axes from the camera's right vector only, so a camera looking
 	# straight down still yields a valid forward.
@@ -291,7 +403,7 @@ func _try_jump() -> void:
 	var v_velocity = velocity * Vector3(0, 1, 0)
 	var v_speed = v_velocity.length()
 	
-	var new_h_speed = h_speed - v_speed / 4.0
+	var new_h_speed = h_speed - v_speed / 3.0
 	velocity = h_velocity.normalized() * new_h_speed
 	velocity.y = v_velocity.y
 	
@@ -300,6 +412,11 @@ func _try_jump() -> void:
 		_end_dash()
 	else:
 		_air_speed = maxf(move_speed, Vector2(velocity.x, velocity.z).length())
+	
+	play_sound(jump_sound)
+	# Stretch upward when jumping
+	squish_velocity -= 2.0
+
 	jumped.emit()
 
 
@@ -395,7 +512,40 @@ func _move(delta: float, on_floor: bool) -> void:
 		var pre_slide := velocity
 		move_and_slide()
 		_push_bodies(pre_slide)
+		_launch_off_platform(delta)
 	velocity -= _drift
+
+## Keeps a moving platform's speed when we leave it. Replaces Godot's
+## platform_on_leave (turned off in _ready) so it also works on surfaces too
+## steep to count as floor, like a flipper arm partway through its swing.
+## Leaving means stepping off, jumping off, or the platform stopping faster than
+## gravity would pull us down (a flipper reaching the top), which throws us.
+func _launch_off_platform(delta: float) -> void:
+	var support := Vector3.ZERO
+	var has_support := false
+	if is_on_floor():
+		support = get_platform_velocity()
+		has_support = true
+	else:
+		# Resting on a slope too steep to stand on: use the velocity of what's under us.
+		var best_up := 0.1
+		for i in get_slide_collision_count():
+			var c := get_slide_collision(i)
+			var up := c.get_normal().dot(up_direction)
+			if up > best_up:
+				best_up = up
+				support = c.get_collider_velocity()
+				has_support = true
+
+	var stopped_under_us := has_support \
+		and (_last_platform_velocity - support).dot(up_direction) > _gravity * delta
+	if _had_support and (stopped_under_us or not has_support):
+		velocity += _last_platform_velocity
+		# We're airborne now, even if still touching it this frame.
+		has_support = false
+		support = Vector3.ZERO
+	_had_support = has_support
+	_last_platform_velocity = support
 
 func _push_bodies(pre_slide: Vector3) -> void:
 	var pushed: Array[RigidBody3D] = []
@@ -524,9 +674,15 @@ func _find_interact_target() -> Node3D:
 
 @export_group("Transformations")
 
+func set_slime_mesh(mesh: Mesh) -> void:
+	slime.mesh = mesh
+	# The lean shader is set up from the mesh bounds in _ready; redo it for the new shape.
+	var bounds := mesh.get_aabb()
+	material.set_shader_parameter("lean_base_y", bounds.position.y)
+	material.set_shader_parameter("lean_height", bounds.size.y)
+
 func modify_scale(height: float, width: float) -> void:
-	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).height *= height
-	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).radius *= width
+	(($CollisionShape3D as CollisionShape3D).shape as SphereShape3D).radius *= max(height, width)
 	$Model.scale.y *= height
 	$Model.scale.x *= width
 	$Model.scale.z *= width
@@ -576,20 +732,20 @@ func become_cotton_candy():
 
 
 @export_range(0.0, 1.0, 0.05) var beef_push_speed_factor := 0.8
-const beef_body_scale := 1.4
+@export var beef_body_scale := 1.4
 
 func become_beef():
 	can_push = true
 	push_speed_factor = beef_push_speed_factor
-	%Body.scale.x *= beef_body_scale
-	%Body.scale.z *= beef_body_scale
-	%BeefyArms.visible = true
+	set_slime_mesh(buff_slime_mesh)
+	
+	slime.scale *= beef_body_scale * 1/2 # Adust for mesh size
+	slime.scale.z = -slime.scale.z
 	
 	# Double hit-box width
-	(($CollisionShape3D as CollisionShape3D).shape as CapsuleShape3D).radius *= beef_body_scale
+	(($CollisionShape3D as CollisionShape3D).shape as SphereShape3D).radius *= beef_body_scale
 	#$"BeefyArms CollisionL".set_deferred("disabled", false)
 	#$"BeefyArms CollisionR".set_deferred("disabled", false)
-
 
 
 func become_honey():
@@ -599,3 +755,13 @@ func become_honey():
 
 func become_spaghetti():
 	can_grapple = true
+
+
+
+func play_sound(stream: AudioStream) -> void:
+	var player := AudioStreamPlayer.new()
+	player.stream = stream
+	player.bus = &"SFX"
+	add_child(player)
+	player.finished.connect(player.queue_free)
+	player.play()

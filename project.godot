@@ -153,6 +153,7 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 3d_physics/layer_13="Upgrades"
 3d_physics/layer_14="Pick Up Items"
 3d_physics/layer_17="GravityFields"
+3d_physics/layer_21="Crate"
 
 [maaacks_game_template]
 
@@ -182,7 +183,9 @@ avoidance/name="Game Template"
 [physics]
 
 2d/default_gravity_vector=Vector2(0, 0)
+common/physics_interpolation=true
 common/enable_pause_aware_picking=true
+3d/physics_interpolation=false
 
 [plugin_updater]
 

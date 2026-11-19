@@ -12,6 +12,8 @@ extends Area3D
 		_update_sprite()
 
 func _ready() -> void:
+	set_monitoring(visible)
+	
 	_update_sprite()
 	if not Engine.is_editor_hint():
 		body_entered.connect(_on_body_entered)

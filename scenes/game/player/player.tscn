@@ -1,7 +1,28 @@
 [gd_scene format=3 uid="uid://rxe83v08frni"]
 
 [ext_resource type="Script" uid="uid://bbm5sxfbhkypq" path="res://scenes/game/player/player.gd" id="1_4m2od"]
+[ext_resource type="AudioStream" uid="uid://clqdqxu05rsnt" path="res://assets/audio/sfx/squelch_07.wav" id="2_abehh"]
+[ext_resource type="Shader" uid="uid://yg4gfaqgtula" path="res://assets/materials/slime.gdshader" id="2_bkoau"]
 [ext_resource type="Texture2D" uid="uid://csucxwl38he0t" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_lime_512x512.png" id="2_t5cse"]
+[ext_resource type="ArrayMesh" uid="uid://dev6gv4nxy2n0" path="res://buff_slime_mesh.mesh" id="3_prej5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_abehh"]
+resource_local_to_scene = true
+radius = 0.50515723
+
+[sub_resource type="SphereMesh" id="SphereMesh_prej5"]
+is_hemisphere = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dqfck"]
+render_priority = 0
+shader = ExtResource("2_bkoau")
+shader_parameter/slime_color = Color(0.15, 0.85, 0.35, 1)
+shader_parameter/squish = 1.0
+shader_parameter/motion = 0.5
+shader_parameter/magnitude = 0.05
+shader_parameter/lean = Vector2(0, 0)
+shader_parameter/lean_base_y = 0.0
+shader_parameter/lean_height = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4m2od"]
 render_priority = 1
@@ -33,9 +54,16 @@ top_radius = 0.25
 bottom_radius = 0.25
 height = 0.3
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_krb5w"]
-resource_local_to_scene = true
-radius = 0.3
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bkoau"]
+render_priority = 0
+shader = ExtResource("2_bkoau")
+shader_parameter/slime_color = Color(0.15, 0.85, 0.35, 1)
+shader_parameter/squish = 0.0
+shader_parameter/motion = 0.5
+shader_parameter/magnitude = 0.03
+shader_parameter/lean = Vector2(0, 0)
+shader_parameter/lean_base_y = 0.0
+shader_parameter/lean_height = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bkoau"]
 radius = 0.3
@@ -45,6 +73,9 @@ height = 1.0
 radius = 0.1
 height = 1.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_prej5"]
+height = 1.4000001
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_abehh"]
 height = 1.0
 
@@ -52,42 +83,59 @@ height = 1.0
 height = 1.4000001
 radius = 0.6
 
-[node name="Player" type="CharacterBody3D" unique_id=1114472192 node_paths=PackedStringArray("field_detector")]
+[node name="Player" type="CharacterBody3D" unique_id=1114472192 node_paths=PackedStringArray("field_detector", "slime")]
 collision_layer = 257
 script = ExtResource("1_4m2od")
 field_detector = NodePath("FieldDetector")
+move_speed = 5.0
 ground_acceleration = 40.0
 ground_deceleration = 80.0
 air_acceleration = 10.0
 air_deceleration = 32.0
 jump_height = 1.2
 max_fall_speed = 20.0
-max_slope_degrees = 50.0
+dash_speed = 8.0
+max_slope_degrees = 30.0
+jump_sound = ExtResource("2_abehh")
+slime = NodePath("Model/slime")
+buff_slime_mesh = ExtResource("3_prej5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=486673672]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117225975, 0)
+shape = SubResource("SphereShape3D_abehh")
 
 [node name="Model" type="Node3D" parent="." unique_id=554858339]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
+[node name="slime" type="MeshInstance3D" parent="Model" unique_id=397258320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9006219, 0)
+mesh = SubResource("SphereMesh_prej5")
+surface_material_override/0 = SubResource("ShaderMaterial_dqfck")
+
 [node name="Body" type="MeshInstance3D" parent="Model" unique_id=1840168707]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_n4y2n")
 mesh = SubResource("CapsuleMesh_krb5w")
 
 [node name="Face" type="MeshInstance3D" parent="Model" unique_id=2050492861]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.1)
+visible = false
 material_override = SubResource("StandardMaterial3D_n4y2n")
 mesh = SubResource("CylinderMesh_krb5w")
 
 [node name="BeefyArms" type="Node3D" parent="Model" unique_id=465290445]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79999995, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9604707, -0.27838126, 0, 0.27838126, 0.9604707, 0, -0.098731756, 0)
 visible = false
 
 [node name="Right Arm" type="Node3D" parent="Model/BeefyArms" unique_id=1832277801]
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Model/BeefyArms/Right Arm" unique_id=1124771944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3574556, -0.01612246, 0)
+material_override = SubResource("ShaderMaterial_bkoau")
 radius = 0.22
 rings = 12
 material = SubResource("StandardMaterial3D_n4y2n")
@@ -103,6 +151,7 @@ transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Model/BeefyArms/Left Arm" unique_id=672437155]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3574556, -0.01612246, 0)
+material_override = SubResource("ShaderMaterial_bkoau")
 radius = 0.22
 rings = 12
 material = SubResource("StandardMaterial3D_n4y2n")
@@ -112,10 +161,6 @@ transform = Transform3D(1, 0, 0, 0, -0.38822857, 0.9659258, 0, -1.4488888, -0.25
 radius = 0.18
 rings = 12
 material = SubResource("StandardMaterial3D_n4y2n")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2056583201]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_krb5w")
 
 [node name="BeefyArms CollisionL" type="CollisionShape3D" parent="." unique_id=2023404537]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40000004, 1, 0)
@@ -136,18 +181,27 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_8i87d")
 
-[node name="PickupAreaCollision" type="CollisionShape3D" parent="." unique_id=1193375654]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.6)
+[node name="PickupAreaCollision" type="CollisionShape3D" parent="." unique_id=2105459782]
+transform = Transform3D(1, 0, 0, 0, 0.5735764, 0.81915206, 0, -0.81915206, 0.5735764, 0, 0.48528472, -0.5361696)
+shape = SubResource("CapsuleShape3D_prej5")
+disabled = true
+debug_color = Color(0.88235295, 0.28627452, 0.47058824, 0.7490196)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1889135056]
+transform = Transform3D(1, 0, 0, 0, 0.5735764, 0.81915206, 0, -0.81915206, 0.5735764, 0, 0.6, -0.70000005)
+
+[node name="PickupAreaCollision" type="CollisionShape3D" parent="Node3D" unique_id=1193375654]
+transform = Transform3D(1, 0, 0, 0, 0.57357645, -0.8191522, 0, 0.8191522, 0.57357645, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_abehh")
 disabled = true
 debug_color = Color(0.88235295, 0.28627452, 0.47058824, 0.7490196)
 
 [node name="PickupArea" type="Area3D" parent="." unique_id=1504329808]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -0.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8000001, -0.8)
 collision_layer = 0
 collision_mask = 8192
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea" unique_id=688843753]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.30000007, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.30000007, 0.100000024)
 shape = SubResource("CylinderShape3D_uhg71")
