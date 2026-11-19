@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://cy16v56v04n5u" path="res://scenes/game/player/upgrades/beef_upgrade.tres" id="7_h3x7x"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_uhg71"]
-top_radius = 1.0
+top_radius = 0.7
 height = 0.2
 
 [node name="PlayerResetPoint" type="MeshInstance3D" unique_id=1074847532]
@@ -20,6 +20,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="FOOD Hot Tamale" parent="." unique_id=1048115677 instance=ExtResource("3_n7g85")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.3, 0)
+visible = false
+monitoring = false
 upgrade = ExtResource("4_0e8lp")
 
 [node name="FOOD Pancake" parent="." unique_id=1154402641 instance=ExtResource("3_n7g85")]
