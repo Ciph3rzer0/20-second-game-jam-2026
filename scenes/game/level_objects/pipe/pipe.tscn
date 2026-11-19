@@ -1,0 +1,49 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/game/level_objects/pipe/pipe.gd" id="1_pipe"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_entrance"]
+resource_local_to_scene = true
+radius = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_exit"]
+resource_local_to_scene = true
+radius = 0.7
+
+[sub_resource type="Curve3D" id="Curve3D_pipe"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0.45, 0, 0, -0.45, 0, 0.5, 0, 0, -0.375, 0.75, 0, 0.375, -0.75, 0, 0.5, -3, 0, -0.375, 0.75, 0, 0.375, -0.75, 0, 3, -5, 0, 0, 0.45, 0, 0, -0.45, 0, 3, -8),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Pipe" type="Path3D"]
+curve = SubResource("Curve3D_pipe")
+script = ExtResource("1_pipe")
+
+[node name="Mesh" type="CSGPolygon3D" parent="."]
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.25
+path_rotation = 2
+path_local = true
+
+[node name="Entrance" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entrance"]
+shape = SubResource("SphereShape3D_entrance")
+
+[node name="Exit" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -8)
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit"]
+shape = SubResource("SphereShape3D_exit")

@@ -40,8 +40,13 @@ uv1_world_triplanar = true
 
 [node name="Debug Env" parent="." unique_id=237132059 instance=ExtResource("1_r7exd")]
 
+[node name="DirectionalLight3D" parent="Debug Env" index="1" unique_id=119906895]
+visible = true
+
 [node name="Camera3D" parent="Debug Env" index="2" unique_id=1865503183]
-transform = Transform3D(0.0069447956, 0.8352879, -0.549769, 0, 0.5497823, 0.835308, 0.9999759, -0.0058010435, 0.003818125, -9.000952, 20.226997, -3.7051127)
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, 1.5, 19, -9)
+top_level = true
 
 [node name="PlayerResetPoint" parent="." unique_id=1074847532 instance=ExtResource("2_xil0h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, -16)

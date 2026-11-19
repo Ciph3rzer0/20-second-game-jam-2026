@@ -103,6 +103,8 @@ var _zone: Area3D
 var _drift := Vector3.ZERO  # sideways velocity from gravity zones, added on top of input
 var _last_platform_velocity := Vector3.ZERO
 var _had_support := false
+## True while a Pipe is carrying us. Movement, gravity and move_and_slide are skipped.
+var in_pipe := false
 var _coyote_timer := 0.0
 var _jump_buffer_timer := 0.0
 var _dash_timer := 0.0
@@ -209,6 +211,23 @@ func drop_item() -> void:
 		held_item.linear_velocity = velocity * 0.6
 		held_item = null
 
+## Called by a Pipe when it takes the player. Collision stays on: nothing calls
+## move_and_slide while in_pipe, so walls can't stop the pipe moving us.
+func enter_pipe() -> void:
+	in_pipe = true
+	velocity = Vector3.ZERO
+	_end_dash()
+
+## Called by a Pipe at the end of the route, with the velocity to leave at.
+func exit_pipe(exit_velocity: Vector3) -> void:
+	in_pipe = false
+	velocity = exit_velocity
+	_jumping = true  # airborne, not walked off a ledge
+	_coyote_timer = 0.0
+	_had_support = false
+	_last_platform_velocity = Vector3.ZERO
+	_air_speed = maxf(move_speed, Vector2(velocity.x, velocity.z).length())
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pc_interact"):
 		
@@ -241,6 +260,8 @@ func _find_pickup_target() -> Node3D:
 
 
 func _physics_process(delta: float) -> void:
+	if in_pipe:
+		return  # the pipe moves us
 	var on_floor := is_on_floor()
 	_update_timers(delta, on_floor)
 	_update_gravity(delta)
