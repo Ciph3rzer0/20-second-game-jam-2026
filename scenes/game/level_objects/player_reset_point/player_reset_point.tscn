@@ -11,9 +11,34 @@
 top_radius = 0.7
 height = 0.2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uhg71"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uhg71"]
+size = Vector3(0.445, 1, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_32ncx"]
+
 [node name="PlayerResetPoint" type="MeshInstance3D" unique_id=1074847532]
 mesh = SubResource("CylinderMesh_uhg71")
 script = ExtResource("1_nhite")
+
+[node name="Pad Outline" type="MeshInstance3D" parent="." unique_id=1159068368]
+transform = Transform3D(1.1, 0, 0, 0, 0.95, 0, 0, 0, 1.1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_uhg71")
+mesh = SubResource("CylinderMesh_uhg71")
+
+[node name="Arrow" type="Node3D" parent="Pad Outline" unique_id=1690469409]
+transform = Transform3D(0.9090909, 0, 0, 0, -2.7607195e-08, 0.10526312, 0, -0.54545456, -3.973761e-09, 0, 0.097843915, 0.26208594)
+
+[node name="Arrow Body" type="MeshInstance3D" parent="Pad Outline/Arrow" unique_id=1269748026]
+material_override = SubResource("StandardMaterial3D_uhg71")
+mesh = SubResource("BoxMesh_uhg71")
+
+[node name="Arrow Point" type="MeshInstance3D" parent="Pad Outline/Arrow" unique_id=979051104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_uhg71")
+mesh = SubResource("PrismMesh_32ncx")
 
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=1268219710]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
