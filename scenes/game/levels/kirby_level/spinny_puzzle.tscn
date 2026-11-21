@@ -134,10 +134,10 @@ clockwise = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -1.0000001)
 
 [node name="SpinnyPaddle6" parent="Spinny Paddles" unique_id=242348138 instance=ExtResource("9_v7htn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, -8.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 15.7)
 
 [node name="SpinnyPaddle2" parent="Spinny Paddles" unique_id=982604375 instance=ExtResource("9_v7htn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, -10.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, 13.7)
 millis_offset = 250
 steps_per_turn = 8
 activation_period = 0.5
@@ -155,7 +155,7 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -3, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -0.9999995)
 
 [node name="SpinnyPaddle7" parent="Spinny Paddles" unique_id=1226950613 instance=ExtResource("9_v7htn")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.5, 0.5, -8.3)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.5, 0.5, 15.7)
 clockwise = false
 
 [node name="SpinnyPaddle8" parent="Spinny Paddles" unique_id=906171279 instance=ExtResource("9_v7htn")]
@@ -163,11 +163,11 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 clockwise = false
 
 [node name="SpinnyPaddle10" parent="Spinny Paddles" unique_id=804917492 instance=ExtResource("9_v7htn")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.5, 0.5, -12.3)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.5, 0.5, 11.7)
 clockwise = false
 
 [node name="SpinnyPaddle11" parent="Spinny Paddles" unique_id=935642806 instance=ExtResource("9_v7htn")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.5, 0.5, -14.3)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.5, 0.5, 9.7)
 clockwise = false
 
 [node name="4-way oct spinner" type="Node3D" parent="Spinny Paddles" unique_id=102506600]
