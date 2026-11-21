@@ -107,6 +107,7 @@ max_slope_degrees = 30.0
 jump_sound = ExtResource("2_abehh")
 slime = NodePath("Model/slime")
 buff_slime_mesh = ExtResource("3_prej5")
+push_speed_factor = 0.4
 
 [node name="PlayerFollowCamera" type="Node3D" parent="." unique_id=1729162759 node_paths=PackedStringArray("follow_target", "look_at_target")]
 transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, 0, 10, 7)

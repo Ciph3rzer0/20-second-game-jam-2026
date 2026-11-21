@@ -50,19 +50,10 @@ visible = true
 monitoring = true
 
 [node name="LowerGround" type="CSGBox3D" parent="." unique_id=1796071508]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -6.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3.75, 0)
 material_override = SubResource("StandardMaterial3D_n3rlc")
 use_collision = true
-size = Vector3(19, 6, 11)
-metadata/_edit_lock_ = true
-
-[node name="Hole" type="CSGBox3D" parent="LowerGround" unique_id=2034973470]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5500002, 0)
-material_override = SubResource("StandardMaterial3D_n3rlc")
-operation = 2
-use_collision = true
-size = Vector3(4, 4, 13)
-metadata/_edit_lock_ = true
+size = Vector3(19, 0.5, 11)
 
 [node name="Ground" type="CSGBox3D" parent="." unique_id=1180655740]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, -1.5, 0)
