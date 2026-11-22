@@ -111,6 +111,7 @@ var _dash_direction := Vector3.FORWARD
 var _air_speed := 0.0
 var _jumping := false
 var _was_on_floor := false
+var _maintain_momentum := false
 
 @export_group("Slime")
 @export var jump_sound: AudioStream
@@ -447,6 +448,10 @@ func _apply_horizontal(delta: float, on_floor: bool) -> void:
 	# Lifted slightly by an updraft counts as grounded for control purposes.
 	var grounded: bool = on_floor or (can_float and _zone != null and _near_floor())
 
+	# Reset momentum gained from being launched (flippy thing)
+	if on_floor:
+		_maintain_momentum = false
+
 	var dir := move_direction
 	var speed := move_speed if grounded else _air_speed
 	if is_dashing:
@@ -460,7 +465,8 @@ func _apply_horizontal(delta: float, on_floor: bool) -> void:
 	if grounded or is_dashing:
 		rate = ground_acceleration if dir != Vector3.ZERO else ground_deceleration
 	else:
-		rate = air_acceleration if dir != Vector3.ZERO else air_deceleration
+		if not _maintain_momentum:
+			rate = air_acceleration if dir != Vector3.ZERO else air_deceleration
 
 	var horizontal := Vector3(velocity.x, 0.0, velocity.z).move_toward(target, rate * delta)
 

@@ -26,6 +26,12 @@ func _ready() -> void:
 	_arm_length = abs(flipper.position.x)
 
 func _physics_process(delta: float) -> void:
+	for body in contact_area.get_overlapping_bodies():
+		# Keep applying _maintain_momentum until the player has for sure
+		# left the ground
+		if body is Player:
+			body._maintain_momentum = true
+	
 	var a := flipper.rotation.z
 	var omega := (a - _prev_angle) / delta
 	_prev_angle = a
