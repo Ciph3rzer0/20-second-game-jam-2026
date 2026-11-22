@@ -55,6 +55,13 @@ material_override = SubResource("StandardMaterial3D_n3rlc")
 use_collision = true
 size = Vector3(19, 0.5, 11)
 
+[node name="Pillar hole" type="CSGBox3D" parent="LowerGround" unique_id=303328183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+material_override = SubResource("StandardMaterial3D_dmcf2")
+operation = 2
+use_collision = true
+size = Vector3(1.5, 100, 1.5)
+
 [node name="Ground" type="CSGBox3D" parent="." unique_id=1180655740]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, -1.5, 0)
 material_override = SubResource("StandardMaterial3D_n3rlc")
@@ -91,6 +98,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -1.5, 0)
 material_override = SubResource("StandardMaterial3D_dmcf2")
 use_collision = true
 size = Vector3(5, 4, 2)
+
+[node name="Pillar5" type="CSGBox3D" parent="Spinny Paddles" unique_id=164408512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1.5, 0)
+material_override = SubResource("StandardMaterial3D_dmcf2")
+use_collision = true
+size = Vector3(2, 6, 2)
+
+[node name="Pillar hole" type="CSGBox3D" parent="Spinny Paddles/Pillar5" unique_id=1010706096]
+material_override = SubResource("StandardMaterial3D_dmcf2")
+operation = 2
+use_collision = true
+size = Vector3(1.5, 100, 1.5)
 
 [node name="SpinnyPaddle9" parent="Spinny Paddles" unique_id=952775944 instance=ExtResource("9_v7htn")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 6, 0.5, 2.0999997)
@@ -162,34 +181,28 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.5,
 clockwise = false
 
 [node name="4-way oct spinner" type="Node3D" parent="Spinny Paddles" unique_id=102506600]
+transform = Transform3D(-5.2125306e-16, 1.1924881e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, 1.1924881e-08, 3, 3, -2)
+metadata/_edit_group_ = true
 
 [node name="SpinnyPaddle3" parent="Spinny Paddles/4-way oct spinner" unique_id=90222997 instance=ExtResource("9_v7htn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -2.0000002)
+transform = Transform3D(1, 4.371139e-08, 4.371139e-08, 4.371139e-08, -4.371139e-08, -1, -4.371139e-08, 1, -4.371139e-08, 7.1525574e-06, -2.000013, -1.2000003)
 millis_offset = 250
-steps_per_turn = 16
-activation_period = 0.5
-rotation_ease = -2.0
+rotation_ease = -3.9999998
 
 [node name="SpinnyPaddle15" parent="Spinny Paddles/4-way oct spinner" unique_id=1547636191 instance=ExtResource("9_v7htn")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0.5, -2.0000002)
+transform = Transform3D(0, 4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371138e-08, 1, 4.3711392e-08, 7.1525574e-06, -2.000013, -1.2000003)
 millis_offset = 250
-steps_per_turn = 16
-activation_period = 0.5
-rotation_ease = -2.0
+rotation_ease = -3.9999998
 
 [node name="SpinnyPaddle16" parent="Spinny Paddles/4-way oct spinner" unique_id=1207358425 instance=ExtResource("9_v7htn")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4, 0.5, -2.0000002)
+transform = Transform3D(-1, 4.371139e-08, 4.371139e-08, 4.371139e-08, -4.371139e-08, 1, 4.3711392e-08, 1, 4.371138e-08, 7.1525574e-06, -2.000013, -1.2000003)
 millis_offset = 250
-steps_per_turn = 16
-activation_period = 0.5
-rotation_ease = -2.0
+rotation_ease = -3.9999998
 
 [node name="SpinnyPaddle17" parent="Spinny Paddles/4-way oct spinner" unique_id=470172895 instance=ExtResource("9_v7htn")]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 4, 0.5, -2.0000002)
+transform = Transform3D(8.742277e-08, 4.371139e-08, 1, 1, -4.371139e-08, -8.742277e-08, 4.371138e-08, 1, -4.3711395e-08, 7.1525574e-06, -2.000013, -1.2000003)
 millis_offset = 250
-steps_per_turn = 16
-activation_period = 0.5
-rotation_ease = -2.0
+rotation_ease = -3.9999998
 
 [node name="Spinny Things" type="Node3D" parent="." unique_id=1595876507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
