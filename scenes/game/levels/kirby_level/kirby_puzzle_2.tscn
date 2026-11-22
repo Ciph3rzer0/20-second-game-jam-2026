@@ -59,13 +59,12 @@ use_collision = true
 [node name="Debug Env" parent="." unique_id=237132059 instance=ExtResource("2_gsha7")]
 
 [node name="Camera3D" parent="Debug Env" index="2" unique_id=1865503183]
-transform = Transform3D(0.010510804, -0.6652506, 0.7465462, 0, 0.74658746, 0.6652874, -0.9999448, -0.0069927047, 0.007847235, 12.306488, 15.1478, -11.656774)
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, 3.454353, 12, 10.089855)
+top_level = true
 
 [node name="PlayerResetPoint" parent="." unique_id=1772145093 instance=ExtResource("2_s8hfx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.454353, 1, 3.0898547)
-
-[node name="FOOD Hot Tamale" parent="PlayerResetPoint" index="1" unique_id=1048115677]
-monitoring = false
 
 [node name="FOOD Hot Tamale" parent="." unique_id=222787214 instance=ExtResource("2_4b4xf")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 6.150341, 0.5, 1.0036969)
@@ -258,7 +257,7 @@ use_collision = true
 height = 20.0
 
 [node name="Pillar3" type="CSGCylinder3D" parent="End/Platforms" unique_id=178801150]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.700001, -0.75, -21)
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, -6.700001, -0.75, -21)
 material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 radius = 1.0
@@ -275,16 +274,6 @@ height = 20.0
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.5999999, 0)
 tip_speed = 30.0
 target_degrees = 35.0
-
-[node name="Trigger" type="Area3D" parent="End/Platforms/Pillar3/FlippyThing" unique_id=1133949786]
-collision_layer = 0
-collision_mask = 256
-monitorable = false
-metadata/_edit_group_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="End/Platforms/Pillar3/FlippyThing/Trigger" unique_id=354011133]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.095, 0)
-shape = SubResource("BoxShape3D_uhg71")
 
 [node name="Pillar4" type="CSGCylinder3D" parent="End/Platforms" unique_id=1840459257]
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 5.299999, 3.25, -26)
@@ -305,19 +294,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1
 tip_speed = 30.0
 target_degrees = 35.0
 
-[node name="Trigger" type="Area3D" parent="End/Platforms/Pillar4/FlippyThing" unique_id=221711652]
-collision_layer = 0
-collision_mask = 256
-monitorable = false
-metadata/_edit_group_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="End/Platforms/Pillar4/FlippyThing/Trigger" unique_id=1857550917]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.095, 0)
-shape = SubResource("BoxShape3D_uhg71")
-
 [connection signal="body_entered" from="Begin/Area3D" to="Mid/FlippyThing" method="flip" unbinds=1]
-[connection signal="body_entered" from="End/Platforms/Pillar3/FlippyThing/Trigger" to="End/Platforms/Pillar3/FlippyThing" method="flip" unbinds=1]
-[connection signal="body_entered" from="End/Platforms/Pillar4/FlippyThing/Trigger" to="End/Platforms/Pillar4/FlippyThing" method="flip" unbinds=1]
 
 [editable path="Debug Env"]
 [editable path="PlayerResetPoint"]
