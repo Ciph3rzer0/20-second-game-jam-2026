@@ -20,9 +20,13 @@ size = Vector3(1, 0.8, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_a4k04"]
 size = Vector3(1, 0.8, 1)
 
-[node name="FlippyThing" type="Node3D" unique_id=542642159 node_paths=PackedStringArray("flipper")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_krb5w"]
+size = Vector3(1, 0.5, 1)
+
+[node name="FlippyThing" type="Node3D" unique_id=542642159 node_paths=PackedStringArray("flipper", "contact_area")]
 script = ExtResource("1_a4k04")
 flipper = NodePath("Arm")
+contact_area = NodePath("Contact Area")
 
 [node name="Arm" type="AnimatableBody3D" parent="." unique_id=467809760]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5000002, -0.15, 0)
@@ -50,3 +54,9 @@ mesh = SubResource("BoxMesh_a4k04")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Base Block" unique_id=2002919845]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_a4k04")
+
+[node name="Contact Area" type="Area3D" parent="." unique_id=1880538447]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Contact Area" unique_id=519460365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_krb5w")
