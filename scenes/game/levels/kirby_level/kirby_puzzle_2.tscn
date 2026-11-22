@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bd1ylq1nkm0gt" path="res://scenes/game/level_objects/flippy_thing/flippy_thing.tscn" id="6_0vt3f"]
 [ext_resource type="Texture2D" uid="uid://ytlo0xn1st4q" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_black_512x512.png" id="7_gn4ge"]
 [ext_resource type="PackedScene" uid="uid://c2et26yfvi85o" path="res://scenes/game/level_objects/crate_receiver/crate_receiver.tscn" id="8_agn7r"]
+[ext_resource type="Resource" uid="uid://bqnwoduq6d7dq" path="res://scenes/game/player/upgrades/cotton_candy_upgrade.tres" id="10_s8hfx"]
+[ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="11_gsha7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3rlc"]
 albedo_texture = ExtResource("1_g1gva")
@@ -51,6 +53,9 @@ albedo_texture = ExtResource("7_gn4ge")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gsha7"]
+size = Vector3(0.9623413, 0.5, 1)
+
 [node name="Kirby Puzzle 2" type="CSGCombiner3D" unique_id=1912843486]
 material_override = SubResource("StandardMaterial3D_n3rlc")
 operation = 2
@@ -64,7 +69,7 @@ transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.5734
 top_level = true
 
 [node name="PlayerResetPoint" parent="." unique_id=1772145093 instance=ExtResource("2_s8hfx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.454353, 1, 3.0898547)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.454353, 1, 3.0898547)
 
 [node name="FOOD Hot Tamale" parent="." unique_id=222787214 instance=ExtResource("2_4b4xf")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 6.150341, 0.5, 1.0036969)
@@ -166,7 +171,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.028247833, 1.0928907, 1.000
 operation = 2
 
 [node name="Dip" type="CSGBox3D" parent="End" unique_id=1202122298]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22824478, -0.9, -15.300312)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23630142, -0.9101318, -15.298634)
 size = Vector3(12, 2, 5)
 
 [node name="BoxHole" type="CSGBox3D" parent="End" unique_id=630761900]
@@ -196,6 +201,13 @@ material_override = SubResource("StandardMaterial3D_8d3sp")
 use_collision = true
 size = Vector3(1, 4, 1)
 
+[node name="Catchers Mitt" type="CSGBox3D" parent="End/Platforms" unique_id=170982240]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.634241, 16.414352, -21)
+visible = false
+operation = 2
+use_collision = true
+size = Vector3(6, 10, 1)
+
 [node name="Tower" type="CSGBox3D" parent="End/Platforms" unique_id=908246770]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -4, -21)
 material_override = SubResource("StandardMaterial3D_g60af")
@@ -210,10 +222,32 @@ material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 size = Vector3(2, 0.1, 0.4)
 
+[node name="Lip2" type="CSGBox3D" parent="End/Platforms/Tower" unique_id=1731525237]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, 3.9039838, -3.2443027)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+size = Vector3(2, 0.1, 0.4)
+
 [node name="CSGBox3D" type="CSGBox3D" parent="End/Platforms/Tower" unique_id=1008990161]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034240723, 9.914352, 0)
 operation = 2
 size = Vector3(2, 6, 6.2000003)
+
+[node name="Lower Hole" type="CSGBox3D" parent="End/Platforms/Tower" unique_id=1544009614]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034240723, 4.9143524, -1.0499992)
+operation = 2
+size = Vector3(2, 2, 4.1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="End/Platforms/Tower/Lower Hole" unique_id=2109047397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+light_color = Color(0.8, 1, 0.8862745, 1)
+light_energy = 3.0
+omni_range = 2.0
+
+[node name="Lower Hole2" type="CSGBox3D" parent="End/Platforms/Tower" unique_id=1738047914]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.5342407, 4.9143524, 0)
+operation = 2
+size = Vector3(2, 2, 5)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="End/Platforms/Tower" unique_id=913454540]
 transform = Transform3D(-4.3047315e-08, 7.590403e-09, 1, 0.17364821, 0.98480785, 1.3322676e-15, -0.98480785, 0.17364821, -4.3711392e-08, -0.034240723, 10.042424, 0.5361366)
@@ -256,24 +290,114 @@ material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 height = 20.0
 
-[node name="Pillar3" type="CSGCylinder3D" parent="End/Platforms" unique_id=178801150]
-transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, -6.700001, -0.75, -21)
+[node name="Pillar5" type="CSGCylinder3D" parent="End/Platforms" unique_id=983532206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, -3.25, -27)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+radius = 1.0
+metadata/_edit_group_ = true
+
+[node name="Pillar2" type="CSGCylinder3D" parent="End/Platforms/Pillar5" unique_id=2049046382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+height = 20.0
+
+[node name="CottonCandyPillar7" type="CSGCylinder3D" parent="End/Platforms" unique_id=95014302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, -3.25, -27)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+radius = 1.0
+metadata/_edit_group_ = true
+
+[node name="Pillar2" type="CSGCylinder3D" parent="End/Platforms/CottonCandyPillar7" unique_id=652087957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+height = 20.0
+
+[node name="FOOD Cotton Candy" parent="End/Platforms/CottonCandyPillar7" unique_id=1048115677 instance=ExtResource("2_4b4xf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6999998, 0)
+monitoring = false
+upgrade = ExtResource("10_s8hfx")
+
+[node name="Pillar8" type="CSGCylinder3D" parent="End/Platforms" unique_id=1487464311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -4.25, -24)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+radius = 1.0
+metadata/_edit_group_ = true
+
+[node name="Pillar2" type="CSGCylinder3D" parent="End/Platforms/Pillar8" unique_id=2016598632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+height = 20.0
+
+[node name="Pillar9" type="CSGCylinder3D" parent="End/Platforms" unique_id=1165331631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -3.25, -26)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+radius = 1.0
+metadata/_edit_group_ = true
+
+[node name="Pillar2" type="CSGCylinder3D" parent="End/Platforms/Pillar9" unique_id=1329796802]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+height = 20.0
+
+[node name="UpdraftPillar9" type="CSGCylinder3D" parent="End/Platforms" unique_id=501714135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -4.25, -24)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+radius = 1.0
+metadata/_edit_group_ = true
+
+[node name="Pillar2" type="CSGCylinder3D" parent="End/Platforms/UpdraftPillar9" unique_id=982568422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+height = 20.0
+
+[node name="Updraft" parent="End/Platforms/UpdraftPillar9" unique_id=1952319572 instance=ExtResource("11_gsha7")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="Pillar6" type="CSGCylinder3D" parent="End/Platforms" unique_id=946568745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1.05, -26)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+radius = 1.0
+metadata/_edit_group_ = true
+
+[node name="Pillar2" type="CSGCylinder3D" parent="End/Platforms/Pillar6" unique_id=1342676932]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
+material_override = SubResource("StandardMaterial3D_g60af")
+use_collision = true
+height = 20.0
+
+[node name="FlippyPillar3" type="CSGCylinder3D" parent="End/Platforms" unique_id=178801150]
+transform = Transform3D(-5.9604645e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -5.9604645e-08, -6.700001, -2.05, -21)
 material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 radius = 1.0
 height = 3.0
 metadata/_edit_group_ = true
 
-[node name="Pillar2" type="CSGCylinder3D" parent="End/Platforms/Pillar3" unique_id=2117204187]
+[node name="Pillar2" type="CSGCylinder3D" parent="End/Platforms/FlippyPillar3" unique_id=2117204187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
 material_override = SubResource("StandardMaterial3D_g60af")
 use_collision = true
 height = 20.0
 
-[node name="FlippyThing" parent="End/Platforms/Pillar3" unique_id=571600724 instance=ExtResource("6_0vt3f")]
+[node name="FlippyThing" parent="End/Platforms/FlippyPillar3" unique_id=571600724 instance=ExtResource("6_0vt3f")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.5999999, 0)
-tip_speed = 30.0
-target_degrees = 35.0
+tip_speed = 28.0
+target_degrees = 22.0
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="End/Platforms/FlippyPillar3/FlippyThing" unique_id=1648958625]
+transform = Transform3D(0.99998885, 0, -1.5454305e-13, 0, 1, 0, 1.5454305e-13, 0, 0.99998885, 0.013824463, 0.39999998, -0.015617371)
+shape = SubResource("BoxShape3D_gsha7")
 
 [node name="Pillar4" type="CSGCylinder3D" parent="End/Platforms" unique_id=1840459257]
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 5.299999, 3.25, -26)

@@ -243,19 +243,29 @@ func _find_pickup_target() -> Node3D:
 
 func _physics_process(delta: float) -> void:
 	var on_floor := is_on_floor()
+
+	# Reset momentum gained from being launched (flippy thing)
+	if on_floor:
+		_maintain_momentum = false
+
 	_update_timers(delta, on_floor)
 	_update_gravity(delta)
-	move_direction = _read_move_direction()
 
-	if Input.is_action_just_pressed("pc_jump"):
-		_jump_buffer_timer = jump_buffer_time
-	if Input.is_action_just_pressed("pc_dash") and can_dash:
-		if is_dashing:
-			_end_dash()
-		elif _dash_cooldown_timer <= 0.0 and (on_floor or dash_in_air):
-			_start_dash()
-	if Input.is_action_just_pressed("pc_interact"):
-		_interact()
+	if _maintain_momentum:
+		move_direction = Vector3.ZERO
+	else:
+		move_direction = _read_move_direction()
+
+	if not _maintain_momentum:
+		if Input.is_action_just_pressed("pc_jump"):
+			_jump_buffer_timer = jump_buffer_time
+		if Input.is_action_just_pressed("pc_dash") and can_dash:
+			if is_dashing:
+				_end_dash()
+			elif _dash_cooldown_timer <= 0.0 and (on_floor or dash_in_air):
+				_start_dash()
+		if Input.is_action_just_pressed("pc_interact"):
+			_interact()
 
 	_apply_gravity(delta, on_floor)
 	_try_jump()
@@ -447,10 +457,6 @@ func _near_floor() -> bool:
 func _apply_horizontal(delta: float, on_floor: bool) -> void:
 	# Lifted slightly by an updraft counts as grounded for control purposes.
 	var grounded: bool = on_floor or (can_float and _zone != null and _near_floor())
-
-	# Reset momentum gained from being launched (flippy thing)
-	if on_floor:
-		_maintain_momentum = false
 
 	var dir := move_direction
 	var speed := move_speed if grounded else _air_speed
