@@ -11,6 +11,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	for action in _held:
+		if action == &"dev_reload_scene" and get_tree().has_group(&"handles_scene_reload"):
+			_held[action] = 0.0
+			continue
 		if Input.is_action_just_pressed(action):
 			_held[action] = 0
 		elif Input.is_action_pressed(action):

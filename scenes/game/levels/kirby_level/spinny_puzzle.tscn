@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bh4rl4lwjryu0" path="res://scenes/game/level_objects/player_reset_point/player_reset_point.tscn" id="2_f6cg4"]
 [ext_resource type="PackedScene" uid="uid://bcsv33tc6xux5" path="res://scenes/game/level_objects/updraft/updraft.tscn" id="2_l8hoc"]
 [ext_resource type="PackedScene" uid="uid://dnk1epprcnqdl" path="res://scenes/game/pickup.tscn" id="3_jcsjy"]
-[ext_resource type="Resource" uid="uid://cy16v56v04n5u" path="res://scenes/game/player/upgrades/beef_upgrade.tres" id="4_f6cg4"]
 [ext_resource type="Resource" uid="uid://bqnwoduq6d7dq" path="res://scenes/game/player/upgrades/cotton_candy_upgrade.tres" id="5_v7htn"]
 [ext_resource type="Resource" uid="uid://dby58yr82jbtr" path="res://scenes/game/player/upgrades/world_end_upgrade.tres" id="6_dmcf2"]
 [ext_resource type="Texture2D" uid="uid://b0sv4anfqtkuq" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_white_512x512.png" id="6_v7htn"]
@@ -45,8 +44,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.70
 metadata/_edit_lock_ = true
 
 [node name="FOOD Hot Tamale" parent="PlayerResetPoint" index="2" unique_id=1048115677]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, -0.3, 1)
-visible = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11276555, -0.3, -0.06516659)
 monitoring = true
 
 [node name="LowerGround" type="CSGBox3D" parent="." unique_id=1796071508]
@@ -68,10 +66,6 @@ material_override = SubResource("StandardMaterial3D_n3rlc")
 use_collision = true
 size = Vector3(4, 4, 11)
 metadata/_edit_lock_ = true
-
-[node name="FOOD Beef4" parent="." unique_id=1576282497 instance=ExtResource("3_jcsjy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 4)
-upgrade = ExtResource("4_f6cg4")
 
 [node name="Spinny Paddles" type="Node3D" parent="." unique_id=832681045]
 

@@ -221,6 +221,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			if target:
 				pickup_item(target)
 
+func get_pickup_prompt() -> String:
+	if not can_push:
+		return ""
+	if held_item:
+		return "Press E to drop block"
+	if _find_pickup_target():
+		return "Press E to pick up block"
+	return ""
+
+
 ## Closest body in PickupArea that we can see
 func _find_pickup_target() -> Node3D:
 	var space := get_world_3d().direct_space_state

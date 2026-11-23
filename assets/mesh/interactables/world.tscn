@@ -1,0 +1,32 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://c0871bmynitos" path="res://assets/flat/world.png" id="1_world"]
+
+[sub_resource type="Shader" id="Shader_world"]
+code = "shader_type spatial;
+
+uniform sampler2D globe_art : source_color, filter_linear_mipmap, repeat_disable;
+varying vec3 globe_position;
+
+void vertex() {
+	globe_position = VERTEX;
+}
+
+void fragment() {
+	// Project the original round artwork onto both hemispheres.
+	vec2 art_uv = normalize(globe_position).xy * vec2(0.39, -0.39) + vec2(0.5);
+	ALBEDO = texture(globe_art, art_uv).rgb;
+	ROUGHNESS = 0.7;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_world"]
+shader = SubResource("Shader_world")
+shader_parameter/globe_art = ExtResource("1_world")
+
+[sub_resource type="SphereMesh" id="SphereMesh_world"]
+material = SubResource("ShaderMaterial_world")
+radius = 0.47
+height = 0.94
+
+[node name="World" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_world")

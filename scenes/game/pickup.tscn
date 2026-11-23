@@ -1,38 +1,35 @@
 [gd_scene format=3 uid="uid://dnk1epprcnqdl"]
 
 [ext_resource type="Script" uid="uid://dosqdk4jpyp31" path="res://scenes/game/pickup.gd" id="1_kbw5p"]
-[ext_resource type="Shader" uid="uid://ialsxl4krdqc" path="res://scenes/game/sprite_outline_shader.gdshader" id="3_86qlm"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ux4dt"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("3_86qlm")
-shader_parameter/outline_color = Color(0, 0, 0, 1)
-shader_parameter/width = 20.0
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gsha7"]
+height = 1.7807617
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8i87d"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0o143"]
+transparency = 2
+alpha_scissor_threshold = 0.588
+alpha_antialiasing_mode = 0
+blend_mode = 1
+albedo_color = Color(0.24985075, 0.24985075, 0.24985075, 1)
+emission = Color(0.326184, 0.326184, 0.32618397, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_krb5w"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_krb5w"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_h45xw"]
+material = SubResource("StandardMaterial3D_0o143")
+height = 1.7769775
+radial_segments = 32
 
 [node name="Pickup" type="Area3D" unique_id=1048115677]
 collision_layer = 4096
 collision_mask = 256
 script = ExtResource("1_kbw5p")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1174069528]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1, 0)
-material_override = SubResource("ShaderMaterial_ux4dt")
-billboard = 1
-double_sided = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1304640246]
+[node name="Visual" type="Node3D" parent="." unique_id=1304640246]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_8i87d")
-mesh = SubResource("SphereMesh_krb5w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1398602344]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("SphereShape3D_krb5w")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89038086, 0)
+shape = SubResource("CylinderShape3D_gsha7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1877056570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8946459, 0)
+mesh = SubResource("CylinderMesh_h45xw")

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cojvk63sy5k3" path="res://scenes/game/player/effects/player_effect.gd" id="2_b66ob"]
 [ext_resource type="Script" uid="uid://xgg516qtmn6u" path="res://scenes/game/player/effects/named_player_effect.gd" id="3_xccdv"]
 [ext_resource type="Texture2D" uid="uid://bn1rkbo65u0ib" path="res://assets/flat/cotton_candy.png" id="4_h3kpk"]
+[ext_resource type="PackedScene" uid="uid://dcsoixep2djeg" path="res://assets/mesh/interactables/cottonCandy.glb" id="5_pickup"]
 
 [sub_resource type="Resource" id="Resource_n4y2n"]
 script = ExtResource("3_xccdv")
@@ -13,6 +14,8 @@ metadata/_custom_type_script = "uid://xgg516qtmn6u"
 [resource]
 script = ExtResource("1_xccdv")
 upgrade_icon = ExtResource("4_h3kpk")
+pickup_model = ExtResource("5_pickup")
+pickup_model_transform = Transform3D(0.28, 0, 0, 0, 0.28, 0, 0, 0, 0.28, 0.016, 0.22, 0.04)
 upgrade_name = "Cotton Candy"
 upgrade_message = "You feel lighter... In addition to an oddf fear of dissolution."
 upgrade_effects = Array[ExtResource("2_b66ob")]([SubResource("Resource_n4y2n")])

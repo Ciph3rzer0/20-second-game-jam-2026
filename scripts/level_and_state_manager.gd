@@ -1,5 +1,9 @@
 extends LevelManager
 
+func _connect_level_signals() -> void:
+	super._connect_level_signals()
+	_try_connecting_signal_to_level(&"restart_requested", _reload_level)
+
 func set_current_level_path(value : String) -> void:
 	super.set_current_level_path(value)
 	GameState.set_current_level_path(value)

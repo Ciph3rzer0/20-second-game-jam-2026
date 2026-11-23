@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cojvk63sy5k3" path="res://scenes/game/player/effects/player_effect.gd" id="2_hv4c0"]
 [ext_resource type="Script" uid="uid://xgg516qtmn6u" path="res://scenes/game/player/effects/named_player_effect.gd" id="3_hv4c0"]
 [ext_resource type="Texture2D" uid="uid://bfh1p36k0yt2p" path="res://assets/flat/pancake.png" id="4_hv4c0"]
+[ext_resource type="PackedScene" uid="uid://cqq5dwcouri50" path="res://assets/mesh/interactables/pancakes.glb" id="5_pickup"]
 
 [sub_resource type="Resource" id="Resource_n4y2n"]
 script = ExtResource("3_hv4c0")
@@ -13,6 +14,8 @@ metadata/_custom_type_script = "uid://xgg516qtmn6u"
 [resource]
 script = ExtResource("1_seqbs")
 upgrade_icon = ExtResource("4_hv4c0")
+pickup_model = ExtResource("5_pickup")
+pickup_model_transform = Transform3D(0.32, 0, 0, 0, 0.3076, 0.0882, 0, -0.0882, 0.3076, 0, -0.04, 0)
 upgrade_name = "Sugar"
 upgrade_message = "Gotta Go Fast"
 upgrade_effects = Array[ExtResource("2_hv4c0")]([SubResource("Resource_n4y2n")])

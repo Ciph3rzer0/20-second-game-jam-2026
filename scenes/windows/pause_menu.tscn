@@ -101,7 +101,7 @@ text = "Resume"
 
 [node name="RestartButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" unique_id=1371657172]
 layout_mode = 2
-text = "Restart"
+text = "Restart (`r`)"
 
 [node name="OptionsButton" type="Button" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" unique_id=1126383675]
 unique_name_in_owner = true

@@ -67,7 +67,7 @@ transform = Transform3D(-4.371139e-08, 0, 8, 0, 3, 0, -1, 0, -3.496911e-07, -2, 
 transform = Transform3D(-4.371139e-08, 0, -8, 0, 3, 0, 1, 0, -3.496911e-07, -2.0000002, 1.5, -4.6)
 
 [node name="Ramp45" parent="." unique_id=1124810618 instance=ExtResource("6_cqpq8")]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 5, 3.0029125, 0.5941405, -0.49215126)
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 5, 3.0029125, 0.5066882, -0.49215126)
 
 [node name="JumpBridge" type="CSGCombiner3D" parent="." unique_id=81302824]
 material_override = SubResource("StandardMaterial3D_pht6c")
@@ -81,12 +81,13 @@ size = Vector3(1, 1, 9.5)
 
 [node name="CSGBox3D-S10" type="CSGBox3D" parent="JumpBridge" unique_id=931154938]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 7.5, -0.4999981)
+visible = false
 material_override = SubResource("StandardMaterial3D_pht6c")
 use_collision = true
 size = Vector3(10, 1, 0.5)
 
 [node name="CSGBox3D-S2" type="CSGBox3D" parent="JumpBridge" unique_id=2135882042]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50146484, 0.59414065, -0.5036621)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50146484, 0.5066883, -0.5036621)
 material_override = SubResource("StandardMaterial3D_pht6c")
 use_collision = true
 size = Vector3(3, 1, 5)

@@ -24,6 +24,10 @@
 [ext_resource type="Resource" uid="uid://dby58yr82jbtr" path="res://scenes/game/player/upgrades/world_end_upgrade.tres" id="23_tmtgi"]
 [ext_resource type="PackedScene" uid="uid://cw2d33afrh1hr" path="res://scenes/game/levels/kirby_level/kirby_puzzle_2.tscn" id="24_g60af"]
 [ext_resource type="Texture2D" uid="uid://ytlo0xn1st4q" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_black_512x512.png" id="25_g60af"]
+[ext_resource type="AudioStream" uid="uid://k745texii8s6" path="res://assets/audio/music/bottleneck_20s.wav" id="25_pbnmf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kill_floor"]
+size = Vector3(512, 32, 512)
 
 [sub_resource type="Gradient" id="Gradient_c5i6r"]
 interpolation_mode = 2
@@ -55,20 +59,20 @@ gradient = SubResource("Gradient_11ovw")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_33xl3"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_pbnmf"]
 resource_local_to_scene = true
 size = Vector3(10, 4, 8)
 
-[sub_resource type="Resource" id="Resource_pbnmf"]
+[sub_resource type="Resource" id="Resource_w32m7"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_w32m7"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_warmu"]
 resource_local_to_scene = true
 size = Vector3(7, 4, 6)
 
-[sub_resource type="Resource" id="Resource_warmu"]
+[sub_resource type="Resource" id="Resource_g60af"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
@@ -104,8 +108,17 @@ uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[node name="Kirby Game" type="Node3D" unique_id=219900912]
+[node name="Kirby Game" type="Node3D" unique_id=219900912 groups=["handles_scene_reload"]]
 script = ExtResource("1_vuxjq")
+
+[node name="KillFloor" type="Area3D" parent="." unique_id=1201074488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, -32, -24)
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillFloor" unique_id=545062191]
+shape = SubResource("BoxShape3D_kill_floor")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1485879796]
 environment = ExtResource("7_g60af")
@@ -169,29 +182,45 @@ offset_bottom = 27.0
 grow_horizontal = 2
 max_value = 20.0
 
+[node name="InteractionPrompt" type="Label" parent="CanvasLayer/Control" unique_id=829701533]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AreaCameraTrigger" parent="." unique_id=1066658657 instance=ExtResource("4_mryis")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 10, 0, -6)
 
 [node name="CollisionShape3D" parent="AreaCameraTrigger" index="0" unique_id=1391710269]
-shape = SubResource("BoxShape3D_33xl3")
+shape = SubResource("BoxShape3D_pbnmf")
 
 [node name="PCam-Behind" parent="AreaCameraTrigger" index="1" unique_id=1357355425]
 transform = Transform3D(1.0000002, 0, 0, 1.776357e-15, 0.86602694, 0.50000006, 3.0767455e-15, -0.5000001, 0.8660269, 0, 3, 4.9912405)
-tween_resource = SubResource("Resource_pbnmf")
+tween_resource = SubResource("Resource_w32m7")
 
 [node name="ACam - Spawn" parent="." unique_id=522325614 instance=ExtResource("4_mryis")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1.5, 8, -16)
 
 [node name="CollisionShape3D" parent="ACam - Spawn" index="0" unique_id=1391710269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9206276e-05, 1.999939, 0)
-shape = SubResource("BoxShape3D_w32m7")
+shape = SubResource("BoxShape3D_warmu")
 
 [node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425 node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, -15.987497, 4.4674006, -15.911557)
 top_level = true
 follow_mode = 5
 follow_target = NodePath("../../Player")
-tween_resource = SubResource("Resource_warmu")
+tween_resource = SubResource("Resource_g60af")
 follow_offset = Vector3(0, -1, 0)
 follow_damping = true
 follow_damping_value = Vector3(0.15, 0.15, 0.15)
@@ -204,6 +233,7 @@ align_position_with_view = Callable()
 [node name="Player" parent="." unique_id=1114472192 node_paths=PackedStringArray("camera") instance=ExtResource("1_o7uk8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.987497, -1.6036661, -22.982624)
 camera = NodePath("../Camera3D")
+ground_deceleration = 150.0
 
 [node name="FOOD Hot Tamale" parent="Player" unique_id=1048115677 instance=ExtResource("8_8vwo3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -603,7 +633,18 @@ material_override = SubResource("StandardMaterial3D_4gyht")
 use_collision = true
 size = Vector3(2, 1, 4)
 
-[connection signal="started_moving" from="Player" to="CanvasLayer/Control/GameTimer" method="start"]
+[node name="Bottleneck20s" type="AudioStreamPlayer3D" parent="." unique_id=1317730270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8153572, 3.252338, -28.83947)
+stream = ExtResource("25_pbnmf")
+volume_db = -15.0
+autoplay = true
+panning_strength = 0.1
+bus = &"Music"
+attenuation_filter_cutoff_hz = 20500.0
+attenuation_filter_db = 0.0
+
+[connection signal="body_entered" from="KillFloor" to="." method="_on_kill_floor_body_entered"]
+[connection signal="started_moving" from="Player" to="CanvasLayer/Control/GameTimer" method="start_countdown"]
 [connection signal="win" from="Player" to="." method="_on_player_win"]
 
 [editable path="AreaCameraTrigger"]
