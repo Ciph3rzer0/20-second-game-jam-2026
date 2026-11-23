@@ -279,7 +279,6 @@ update_scale = false
 
 [node name="FOOD Hot Tamale" parent="Player" unique_id=1048115677 instance=ExtResource("2_lqk0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-monitoring = false
 upgrade = ExtResource("3_lqk0u")
 
 [node name="FOOD Pancake" parent="Player" unique_id=121469691 instance=ExtResource("2_lqk0u")]

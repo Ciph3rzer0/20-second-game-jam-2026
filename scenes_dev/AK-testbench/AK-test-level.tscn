@@ -21,6 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://enwe3shmixlo" path="res://assets/mesh/environment/archway.glb" id="16_b1jja"]
 [ext_resource type="PackedScene" uid="uid://cl1c3qxygvnyy" path="res://assets/mesh/environment/tunnelConnector.glb" id="16_oncvj"]
 [ext_resource type="PackedScene" uid="uid://b1afydijjcngo" path="res://assets/mesh/environment/swingingBlade.glb" id="19_oncvj"]
+[ext_resource type="PackedScene" uid="uid://6ey7dau6irmh" path="res://assets/mesh/environment/clock.glb" id="22_1gn55"]
+[ext_resource type="PackedScene" uid="uid://c8f3xe8kepq5x" path="res://assets/mesh/environment/eyepiece.glb" id="23_gw8cy"]
+[ext_resource type="PackedScene" uid="uid://c8hga5c0lulf4" path="res://assets/mesh/environment/tower.glb" id="24_2ru06"]
+[ext_resource type="PackedScene" uid="uid://fnbo3jo3mpoc" path="res://assets/mesh/environment/piston.glb" id="25_gw8cy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_80iay"]
 
@@ -153,7 +157,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.9
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.9699495, 0.116930485, -15.489944)
 
 [node name="Brickwall5" parent="obstacles" unique_id=1446911366 instance=ExtResource("11_7ay7m")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 31.030052, 0.116930485, -0.063205294)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 31.030052, 0.116930485, -0.09122866)
 
 [node name="Brickwall6" parent="obstacles" unique_id=436054042 instance=ExtResource("11_7ay7m")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 31.03005, 0.116930485, -15.489946)
@@ -309,3 +313,15 @@ transform = Transform3D(0.46242738, 0, 0, 0, 0.46242738, 0, 0, 0, 0.46242738, 15
 
 [node name="tunnelConnector" parent="." unique_id=1984013548 instance=ExtResource("16_oncvj")]
 transform = Transform3D(1.9062924, 0, 0, 0, 1.9062924, 0, 0, 0, 1.9062924, 2.1616592, 2.383442, -17.157572)
+
+[node name="clock" parent="." unique_id=1555811818 instance=ExtResource("22_1gn55")]
+transform = Transform3D(0.3599659, 0, 0, 0, 0.3599659, 0, 0, 0, 0.3599659, 19.016912, 25.89948, -30.624014)
+
+[node name="eyepiece" parent="." unique_id=515934955 instance=ExtResource("23_gw8cy")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 13.953884, 3.3327916, -23.94625)
+
+[node name="tower" parent="." unique_id=878860721 instance=ExtResource("24_2ru06")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.825256, 15.12727, -35.06811)
+
+[node name="piston" parent="." unique_id=151198898 instance=ExtResource("25_gw8cy")]
+transform = Transform3D(1.4838258, 0, 0, 0, 1.4838258, 0, 0, 0, 1.4838258, 10.941384, 2.327781, -22.478086)
