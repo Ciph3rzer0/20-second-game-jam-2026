@@ -20,6 +20,7 @@ func _on_body_exited(body: Node3D):
 
 func _set_hidden(val: bool) -> void:
 	for mesh in _meshes:
+		if mesh == null: continue
 		if val:
 			mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
 		else:

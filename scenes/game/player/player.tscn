@@ -5,6 +5,14 @@
 [ext_resource type="Shader" uid="uid://yg4gfaqgtula" path="res://assets/materials/slime.gdshader" id="2_bkoau"]
 [ext_resource type="Texture2D" uid="uid://csucxwl38he0t" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_lime_512x512.png" id="2_t5cse"]
 [ext_resource type="ArrayMesh" uid="uid://dev6gv4nxy2n0" path="res://buff_slime_mesh.mesh" id="3_prej5"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="4_gmc11"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_gdbv0"]
+
+[sub_resource type="Resource" id="Resource_6bxg8"]
+script = ExtResource("5_gdbv0")
+duration = 0.4
+transition = 8
+ease = 1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_abehh"]
 resource_local_to_scene = true
@@ -99,6 +107,24 @@ max_slope_degrees = 30.0
 jump_sound = ExtResource("2_abehh")
 slime = NodePath("Model/slime")
 buff_slime_mesh = ExtResource("3_prej5")
+push_speed_factor = 0.4
+
+[node name="PlayerFollowCamera" type="Node3D" parent="." unique_id=1729162759 node_paths=PackedStringArray("follow_target", "look_at_target")]
+transform = Transform3D(1, 0, 0, 0, 0.5734578, 0.8192253, 0, -0.8192253, 0.5734578, 0, 10, 7)
+top_level = true
+script = ExtResource("4_gmc11")
+priority = 10
+follow_mode = 2
+follow_target = NodePath("..")
+look_at_mode = 2
+look_at_target = NodePath("..")
+tween_resource = SubResource("Resource_6bxg8")
+follow_offset = Vector3(0, 10, 7)
+follow_damping = true
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+align_rotation_with_view = Callable()
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=486673672]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117225975, 0)

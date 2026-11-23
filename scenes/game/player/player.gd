@@ -111,6 +111,7 @@ var _dash_direction := Vector3.FORWARD
 var _air_speed := 0.0
 var _jumping := false
 var _was_on_floor := false
+var _maintain_momentum := false
 
 @export_group("Slime")
 @export var jump_sound: AudioStream
@@ -135,6 +136,21 @@ var lean := Vector2.ZERO
 var lean_velocity := Vector2.ZERO
 var previous_horizontal_velocity := Vector2.ZERO
 
+static var instance: Player
+
+func _enter_tree() -> void:
+	if not Engine.is_editor_hint():
+		if instance == null:
+			instance = self
+		else:
+			queue_free()
+			set_process(false)
+			set_physics_process(false)
+	
+
+func _exit_tree() -> void:
+	if instance == self:
+		instance = null
 
 func _ready() -> void:
 	_gravity = float(ProjectSettings.get_setting("physics/3d/default_gravity")) * gravity_scale
@@ -227,19 +243,29 @@ func _find_pickup_target() -> Node3D:
 
 func _physics_process(delta: float) -> void:
 	var on_floor := is_on_floor()
+
+	# Reset momentum gained from being launched (flippy thing)
+	if on_floor:
+		_maintain_momentum = false
+
 	_update_timers(delta, on_floor)
 	_update_gravity(delta)
-	move_direction = _read_move_direction()
 
-	if Input.is_action_just_pressed("pc_jump"):
-		_jump_buffer_timer = jump_buffer_time
-	if Input.is_action_just_pressed("pc_dash") and can_dash:
-		if is_dashing:
-			_end_dash()
-		elif _dash_cooldown_timer <= 0.0 and (on_floor or dash_in_air):
-			_start_dash()
-	if Input.is_action_just_pressed("pc_interact"):
-		_interact()
+	if _maintain_momentum:
+		move_direction = Vector3.ZERO
+	else:
+		move_direction = _read_move_direction()
+
+	if not _maintain_momentum:
+		if Input.is_action_just_pressed("pc_jump"):
+			_jump_buffer_timer = jump_buffer_time
+		if Input.is_action_just_pressed("pc_dash") and can_dash:
+			if is_dashing:
+				_end_dash()
+			elif _dash_cooldown_timer <= 0.0 and (on_floor or dash_in_air):
+				_start_dash()
+		if Input.is_action_just_pressed("pc_interact"):
+			_interact()
 
 	_apply_gravity(delta, on_floor)
 	_try_jump()
@@ -445,7 +471,8 @@ func _apply_horizontal(delta: float, on_floor: bool) -> void:
 	if grounded or is_dashing:
 		rate = ground_acceleration if dir != Vector3.ZERO else ground_deceleration
 	else:
-		rate = air_acceleration if dir != Vector3.ZERO else air_deceleration
+		if not _maintain_momentum:
+			rate = air_acceleration if dir != Vector3.ZERO else air_deceleration
 
 	var horizontal := Vector3(velocity.x, 0.0, velocity.z).move_toward(target, rate * delta)
 

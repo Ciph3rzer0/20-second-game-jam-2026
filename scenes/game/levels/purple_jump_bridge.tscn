@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://dbvv46gyfpih7"]
+
+[ext_resource type="PackedScene" uid="uid://c8473mkxy47q8" path="res://scenes_dev/debug_env/debug_env.tscn" id="1_0pqi6"]
+[ext_resource type="PackedScene" uid="uid://bh4rl4lwjryu0" path="res://scenes/game/level_objects/player_reset_point/player_reset_point.tscn" id="1_87bx3"]
+[ext_resource type="Texture2D" uid="uid://du72n1ikiej87" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_red_512x512.png" id="1_pd0bf"]
+[ext_resource type="PackedScene" uid="uid://dnk1epprcnqdl" path="res://scenes/game/pickup.tscn" id="2_0pqi6"]
+[ext_resource type="Resource" uid="uid://cy16v56v04n5u" path="res://scenes/game/player/upgrades/beef_upgrade.tres" id="3_5svjx"]
+[ext_resource type="PackedScene" uid="uid://c4p0gtba5xyvr" path="res://scenes/game/level_objects/crate/crate.tscn" id="4_i34cq"]
+[ext_resource type="PackedScene" uid="uid://cr4smfn2hc2v1" path="res://scenes/game/proto_blocks/ramp45.tscn" id="5_i3jsq"]
+[ext_resource type="PackedScene" uid="uid://caqn2b5sqx7u5" path="res://scenes/game/proto_blocks/ramp26.tscn" id="6_cqpq8"]
+[ext_resource type="Texture2D" uid="uid://dl0fimums0ea6" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_pink_512x512.png" id="8_m76vd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3rlc"]
+albedo_texture = ExtResource("1_pd0bf")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pht6c"]
+albedo_texture = ExtResource("8_m76vd")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="PurpleJumpBridge" type="Node3D" unique_id=273432330]
+
+[node name="Debug Env" parent="." unique_id=237132059 instance=ExtResource("1_0pqi6")]
+
+[node name="Camera3D" parent="Debug Env" index="2" unique_id=1865503183]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, 1.5, 12, 6.5)
+top_level = true
+
+[node name="PlayerResetPoint" parent="." unique_id=1074847532 instance=ExtResource("1_87bx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, -0.50000006)
+
+[node name="Ground" type="CSGBox3D" parent="." unique_id=916815007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5000038, -0.5, -0.49998093)
+material_override = SubResource("StandardMaterial3D_n3rlc")
+use_collision = true
+size = Vector3(15, 1, 9)
+metadata/_edit_lock_ = true
+
+[node name="Hole" type="CSGBox3D" parent="Ground" unique_id=969724504]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.099999994, 0.15000033)
+operation = 2
+size = Vector3(1.1, 1, 7.6)
+
+[node name="Spotlight1" type="SpotLight3D" parent="." unique_id=1711939549]
+transform = Transform3D(-4.371139e-08, -0.6427877, 0.76604444, 1.7763568e-15, 0.76604444, 0.6427877, -1, 2.8097142e-08, -3.3484866e-08, -1.002142, 2.7821624, -0.54447174)
+shadow_bias = 0.365
+
+[node name="FOOD Beef2" parent="." unique_id=1744034072 instance=ExtResource("2_0pqi6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.5, -2.5)
+upgrade = ExtResource("3_5svjx")
+
+[node name="Crate" parent="." unique_id=2091715048 instance=ExtResource("4_i34cq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.6219081, 1.3749999, 0.76688194)
+
+[node name="Crate2" parent="." unique_id=62559722 instance=ExtResource("4_i34cq")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.121908, 0.375, 1.2668896)
+
+[node name="SideWedge" parent="." unique_id=1675888930 instance=ExtResource("5_i3jsq")]
+transform = Transform3D(-4.371139e-08, 0, 8, 0, 3, 0, -1, 0, -3.496911e-07, -2, 1.5, 4)
+
+[node name="SideWedge2" parent="." unique_id=1856662700 instance=ExtResource("5_i3jsq")]
+transform = Transform3D(-4.371139e-08, 0, -8, 0, 3, 0, 1, 0, -3.496911e-07, -2.0000002, 1.5, -4.6)
+
+[node name="Ramp45" parent="." unique_id=1124810618 instance=ExtResource("6_cqpq8")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 5, 3.0029125, 0.5941405, -0.49215126)
+
+[node name="JumpBridge" type="CSGCombiner3D" parent="." unique_id=81302824]
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+
+[node name="CSGBox3D-S1" type="CSGBox3D" parent="JumpBridge" unique_id=716665736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, -0.34999996)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+size = Vector3(1, 1, 9.5)
+
+[node name="CSGBox3D-S10" type="CSGBox3D" parent="JumpBridge" unique_id=931154938]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 7.5, -0.4999981)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+size = Vector3(10, 1, 0.5)
+
+[node name="CSGBox3D-S2" type="CSGBox3D" parent="JumpBridge" unique_id=2135882042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50146484, 0.59414065, -0.5036621)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+size = Vector3(3, 1, 5)
+
+[node name="CSGBox3D-S4" type="CSGBox3D" parent="JumpBridge" unique_id=1254613492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1, -0.29998302)
+material_override = SubResource("StandardMaterial3D_pht6c")
+use_collision = true
+size = Vector3(1, 2, 9.6)
+
+[node name="Ramp26d" parent="JumpBridge" unique_id=531988267 instance=ExtResource("6_cqpq8")]
+transform = Transform3D(-1.9999996, 0, -7.54979e-07, 0, 2, 0, 3.0199155e-07, 0, -5, -8, 0.5, -0.49998283)
+
+[editable path="Debug Env"]
+[editable path="PlayerResetPoint"]
