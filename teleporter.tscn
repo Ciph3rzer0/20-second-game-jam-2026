@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dldljx73vwmy3"]
+
+[ext_resource type="Script" uid="uid://htd87w0b3rh7" path="res://scenes/game/level_objects/teleporter.gd" id="1_teleporter"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_trigger"]
+height = 0.43618163
+radius = 0.33007813
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0o143"]
+blend_mode = 1
+albedo_color = Color(0.26544356, 0.6188374, 0.4208087, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_h45xw"]
+material = SubResource("StandardMaterial3D_0o143")
+inner_radius = 1.291
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tuehi"]
+albedo_color = Color(0.85, 0.06, 0.08, 1)
+emission_enabled = true
+emission = Color(0.85, 0.06, 0.08, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_h45xw"]
+material = SubResource("StandardMaterial3D_tuehi")
+size = Vector3(1, 0.021484375, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80iay"]
+albedo_color = Color(0.31068444, 0.08846135, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eumkw"]
+material = SubResource("StandardMaterial3D_80iay")
+
+[sub_resource type="BoxMesh" id="BoxMesh_tuehi"]
+material = SubResource("StandardMaterial3D_80iay")
+size = Vector3(0.5136719, 1, 2.2791748)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kk6yu"]
+material = SubResource("StandardMaterial3D_tuehi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_button"]
+size = Vector3(0.58, 0.8, 0.58)
+
+[node name="Teleporter" type="Area3D" unique_id=907281243 groups=["level_teleporters"]]
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+script = ExtResource("1_teleporter")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2028919999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10576661, 0)
+shape = SubResource("CylinderShape3D_trigger")
+
+[node name="ring-bottom" type="MeshInstance3D" parent="." unique_id=1228016439]
+transform = Transform3D(0.20730339, 0, 0, 0, 0.11472952, 0, 0, 0, 0.20730339, 0, -0.029261634, 0)
+mesh = SubResource("TorusMesh_h45xw")
+
+[node name="ring-middle" type="MeshInstance3D" parent="." unique_id=1131576326]
+transform = Transform3D(0.149631, 0, 0, 0, 0.11472952, 0, 0, 0, 0.149631, 0, 0.020394146, 0)
+mesh = SubResource("TorusMesh_h45xw")
+
+[node name="ring-top" type="MeshInstance3D" parent="." unique_id=56571293]
+transform = Transform3D(0.0952819, 0, 0, 0, 0.073057376, 0, 0, 0, 0.0952819, 0, 0.08075309, 0)
+mesh = SubResource("TorusMesh_h45xw")
+
+[node name="base" type="MeshInstance3D" parent="." unique_id=674898661]
+transform = Transform3D(0.6719328, 0, 0, 0, 0.6719328, 0, 0, 0, 0.6719328, 0, -0.10818151, 0)
+mesh = SubResource("BoxMesh_h45xw")
+
+[node name="box" type="MeshInstance3D" parent="." unique_id=1561482348]
+transform = Transform3D(0.2986524, 0, 0, 0, -2.2225826e-09, -0.2986524, 0, 0.050846767, -1.3054511e-08, -0.6128684, 0.37802136, -0.07422483)
+mesh = SubResource("BoxMesh_eumkw")
+
+[node name="box2" type="MeshInstance3D" parent="box" unique_id=1409575531]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -2.842171e-14, 0, 0, 1.0000001, 0, 0.015029907, 0.63958746)
+mesh = SubResource("BoxMesh_tuehi")
+
+[node name="button" type="MeshInstance3D" parent="box" unique_id=968258592]
+transform = Transform3D(0.7724463, 0, 0, 0, 0.36565363, -1.4210855e-14, 0, 0, 0.7724463, 0, 0.7328312, 1.8988507e-16)
+mesh = SubResource("CylinderMesh_kk6yu")
+
+[node name="ButtonArea" type="Area3D" parent="."]
+position = Vector3(-0.613, 0.305, -0.293)
+collision_layer = 0
+collision_mask = 256
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonArea"]
+shape = SubResource("BoxShape3D_button")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

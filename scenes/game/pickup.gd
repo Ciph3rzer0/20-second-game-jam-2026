@@ -64,11 +64,9 @@ func _on_body_entered(body: Node3D) -> void:
 
 func _absorb(player: Player) -> void:
 	if is_instance_valid(player) and not player.is_queued_for_deletion():
-		var collected_upgrade := upgrade
-		var on_arrival := Callable()
-		if collected_upgrade.apply_on_arrival:
-			on_arrival = func(): collected_upgrade.apply(player)
-		else:
-			collected_upgrade.apply(player)
-		PickupAnimation.animate_absorption(_visual, player.slime, player.play_sound, on_arrival)
+		if not upgrade.animate_pickup:
+			player.play_sound(PickupAnimation.ABSORB_SOUND)
+		upgrade.apply(player)
+		if upgrade.animate_pickup:
+			PickupAnimation.animate_absorption(_visual, player.slime, player.play_sound)
 	queue_free()

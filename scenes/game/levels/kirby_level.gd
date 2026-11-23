@@ -10,6 +10,8 @@ var _restart_queued := false
 
 func _physics_process(_delta: float) -> void:
 	var prompt := player.get_pickup_prompt()
+	if Teleporter.find_button(player):
+		prompt = "Press E to change teleporter color"
 	interaction_prompt.text = prompt
 	interaction_prompt.visible = not prompt.is_empty()
 

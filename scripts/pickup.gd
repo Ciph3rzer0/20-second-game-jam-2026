@@ -29,17 +29,13 @@ func _absorb(body: Slime) -> void:
 
 	animate_absorption(self, body.slime, body.play_sound)
 
-static func animate_absorption(
-	visual: Node3D, slime_mesh: MeshInstance3D, play_sound: Callable, on_arrival := Callable()
-) -> void:
+static func animate_absorption(visual: Node3D, slime_mesh: MeshInstance3D, play_sound: Callable) -> void:
 	# Tween in mesh-local space so the pickup follows a moving or jumping slime.
 	visual.reparent(slime_mesh, true)
 	play_sound.call(ABSORB_SOUND)
 	var tween := visual.create_tween()
 	tween.tween_property(visual, "position", slime_mesh.mesh.get_aabb().get_center(), ABSORB_DURATION)
 	tween.tween_callback(play_sound.bind(DISSOLVE_SOUND))
-	if on_arrival.is_valid():
-		tween.tween_callback(on_arrival)
 	tween.tween_interval(HOLD_DURATION)
 	tween.tween_callback(play_sound.bind(DISAPPEAR_SOUND))
 	tween.tween_callback(visual.queue_free)
