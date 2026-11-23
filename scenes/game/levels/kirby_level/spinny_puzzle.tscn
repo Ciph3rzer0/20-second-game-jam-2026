@@ -137,15 +137,6 @@ clockwise = false
 [node name="SpinnyPaddle" parent="Spinny Paddles" unique_id=482067043 instance=ExtResource("9_v7htn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -1.0000001)
 
-[node name="SpinnyPaddle6" parent="Spinny Paddles" unique_id=242348138 instance=ExtResource("9_v7htn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 15.7)
-
-[node name="SpinnyPaddle2" parent="Spinny Paddles" unique_id=982604375 instance=ExtResource("9_v7htn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, 13.7)
-millis_offset = 250
-steps_per_turn = 8
-activation_period = 0.5
-
 [node name="SpinnyPaddle4" parent="Spinny Paddles" unique_id=1754715248 instance=ExtResource("9_v7htn")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3, 0.5, -1.0000002)
 
@@ -158,20 +149,8 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -3, 
 [node name="SpinnyPaddle5" parent="Spinny Paddles" unique_id=386261890 instance=ExtResource("9_v7htn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -0.9999995)
 
-[node name="SpinnyPaddle7" parent="Spinny Paddles" unique_id=1226950613 instance=ExtResource("9_v7htn")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.5, 0.5, 15.7)
-clockwise = false
-
 [node name="SpinnyPaddle8" parent="Spinny Paddles" unique_id=906171279 instance=ExtResource("9_v7htn")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.5, 0.99999976)
-clockwise = false
-
-[node name="SpinnyPaddle10" parent="Spinny Paddles" unique_id=804917492 instance=ExtResource("9_v7htn")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.5, 0.5, 11.7)
-clockwise = false
-
-[node name="SpinnyPaddle11" parent="Spinny Paddles" unique_id=935642806 instance=ExtResource("9_v7htn")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.5, 0.5, 9.7)
 clockwise = false
 
 [node name="4-way oct spinner" type="Node3D" parent="Spinny Paddles" unique_id=102506600]
@@ -214,12 +193,10 @@ transform = Transform3D(-1.3113416e-07, 0, 3, 0, 1, 0, -3, 0, -1.3113416e-07, -2
 
 [node name="SpinnyThing3" parent="Spinny Things" unique_id=1933391076 instance=ExtResource("7_0fird")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5000038, 4.1, -1.6999817)
-visible = false
 clockwise = false
 
 [node name="SpinnyThing4" parent="Spinny Things/SpinnyThing3" unique_id=1559962600 instance=ExtResource("7_0fird")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.399994, 0, 0)
-visible = false
 
 [node name="SpinnyThing9" parent="Spinny Things" unique_id=262709167 instance=ExtResource("7_0fird")]
 transform = Transform3D(-8.742278e-08, -4.371139e-08, -1, 1, -4.371139e-08, -8.742278e-08, -4.3711385e-08, -1, 4.3711392e-08, -0.45067978, 2.1, -2.9728048)

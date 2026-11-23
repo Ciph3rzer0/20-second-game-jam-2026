@@ -10,6 +10,7 @@
   - attach more sfx
     - [x] pickup sound
     - [ ] launcher
+    - [ ] dash
 - UI
   - [x] interaction text ("e to pick up", etc.)
   - [x] hotkey to quick-restart
@@ -18,7 +19,7 @@
   - start substituting placeholder level geometry
 - shaders
   - [ ] something more obvious for the buttons/launchers
-  - [ ] "flaming" (?) shader for tamale/pepper
+  - [ ] shader for tamale/pepper dash powerup (flame particle system? trails? shader?)
   - [ ] dissolve shader
 - level
   - geometry
@@ -41,7 +42,8 @@
 
 ## questions
 
-- what is the second tofu supposed to do?
+- are the repeat powerups supposed to do something (second tofu right after the first box, or the upcoming tofu much later?)?
+- is the pancake powerup supposed to stop you from fitting in the hole in the wall if you're still big?
 - is the area below and to the left of the starting position supposed to do anything if you jump there?
 - what's up with that box that falls off from the forward-left side of the map at game start?
 

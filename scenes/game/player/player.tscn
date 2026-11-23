@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bbm5sxfbhkypq" path="res://scenes/game/player/player.gd" id="1_4m2od"]
 [ext_resource type="AudioStream" uid="uid://clqdqxu05rsnt" path="res://assets/audio/sfx/squelch_07.wav" id="2_abehh"]
+[ext_resource type="AudioStream" uid="uid://cjxkbijpi4f3k" path="res://assets/audio/sfx/squelch_05.wav" id="3_dash"]
 [ext_resource type="Shader" uid="uid://yg4gfaqgtula" path="res://assets/materials/slime.gdshader" id="2_bkoau"]
 [ext_resource type="Texture2D" uid="uid://csucxwl38he0t" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_lime_512x512.png" id="2_t5cse"]
 [ext_resource type="ArrayMesh" uid="uid://dev6gv4nxy2n0" path="res://buff_slime_mesh.mesh" id="3_prej5"]
@@ -105,6 +106,7 @@ max_fall_speed = 20.0
 dash_speed = 8.0
 max_slope_degrees = 30.0
 jump_sound = ExtResource("2_abehh")
+dash_sound = ExtResource("3_dash")
 slime = NodePath("Model/slime")
 buff_slime_mesh = ExtResource("3_prej5")
 push_speed_factor = 0.4

@@ -46,6 +46,7 @@ func flip() -> void:
 	var flip_duration := EASE_END_SLOPE * angle * _arm_length / tip_speed
 
 	_flipping = true
+	$LaunchSound.play()
 	_tween = create_tween()
 	_tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	_tween.tween_property(flipper, "rotation:z", _reset_angle + angle, flip_duration) \

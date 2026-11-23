@@ -115,6 +115,7 @@ var _maintain_momentum := false
 
 @export_group("Slime")
 @export var jump_sound: AudioStream
+@export var dash_sound: AudioStream
 
 @export var stiffness := 26.0
 @export var damping := 7.0
@@ -515,6 +516,8 @@ func _start_dash() -> void:
 	# Dash velocity boost
 	velocity.y = jump_height * 3
 
+	if dash_sound:
+		play_sound(dash_sound)
 	dash_started.emit()
 
 

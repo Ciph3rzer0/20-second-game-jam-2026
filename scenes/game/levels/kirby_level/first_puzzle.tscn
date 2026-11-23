@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://c4p0gtba5xyvr" path="res://scenes/game/level_objects/crate/crate.tscn" id="8_vcipv"]
 [ext_resource type="PackedScene" uid="uid://dfifonwu0o5eb" path="res://scenes/game/level_objects/hide_trigger/hide_trigger.tscn" id="9_dxb78"]
 [ext_resource type="Resource" uid="uid://dby58yr82jbtr" path="res://scenes/game/player/upgrades/world_end_upgrade.tres" id="10_lfftr"]
-[ext_resource type="Resource" uid="uid://cy16v56v04n5u" path="res://scenes/game/player/upgrades/beef_upgrade.tres" id="11_2n0lk"]
 [ext_resource type="Texture2D" uid="uid://3wu1lbkmlqr3" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_orange_512x512.png" id="12_p2w8o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3rlc"]
@@ -41,7 +40,9 @@ uv1_world_triplanar = true
 [node name="Debug Env" parent="." unique_id=237132059 instance=ExtResource("1_r7exd")]
 
 [node name="Camera3D" parent="Debug Env" index="2" unique_id=1865503183]
-transform = Transform3D(0.0069447956, 0.8352879, -0.549769, 0, 0.5497823, 0.835308, 0.9999759, -0.0058010435, 0.003818125, -9.000952, 20.226997, -3.7051127)
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.57346237, 0.8192319, 0, -0.8192319, 0.57346237, 1.5, 19, -9)
+top_level = true
 
 [node name="PlayerResetPoint" parent="." unique_id=1074847532 instance=ExtResource("2_xil0h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 8, -16)
@@ -168,10 +169,6 @@ shape = SubResource("BoxShape3D_krb5w")
 [node name="FOOD End The World" parent="First Puzzle - Upper Yellow Platform" unique_id=1994898078 instance=ExtResource("4_xil0h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5, -13.6)
 upgrade = ExtResource("10_lfftr")
-
-[node name="FOOD Beef" parent="First Puzzle - Upper Yellow Platform" unique_id=1518597633 instance=ExtResource("4_xil0h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.625298, 5.7784624, 2.7305427)
-upgrade = ExtResource("11_2n0lk")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="First Puzzle - Upper Yellow Platform" unique_id=164010302]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 5, 4)
