@@ -477,9 +477,6 @@ align_position_with_view = Callable()
 [node name="Player" parent="." unique_id=1114472192 node_paths=PackedStringArray("camera") instance=ExtResource("1_o7uk8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.987497, -1.6036661, -22.982624)
 camera = NodePath("../Camera3D")
-move_speed = 10.0
-ground_deceleration = 150.0
-dash_speed = 30.0
 dash_sound = null
 
 [node name="FOOD Hot Tamale" parent="Player" unique_id=1048115677 instance=ExtResource("8_8vwo3")]
