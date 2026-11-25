@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://cw2d33afrh1hr" path="res://scenes/game/levels/kirby_level/kirby_puzzle_2.tscn" id="24_g60af"]
 [ext_resource type="Texture2D" uid="uid://ytlo0xn1st4q" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_black_512x512.png" id="25_g60af"]
 [ext_resource type="AudioStream" uid="uid://k745texii8s6" path="res://assets/audio/music/bottleneck_20s.wav" id="25_pbnmf"]
+[ext_resource type="PackedScene" uid="uid://dm3sqkwuic8f2" path="res://wind.tscn" id="27_68o1n"]
 [ext_resource type="PackedScene" uid="uid://c7iryukl0037f" path="res://assets/mesh/environment/crate.glb" id="33_ejchr"]
 [ext_resource type="PackedScene" uid="uid://c8f3xe8kepq5x" path="res://assets/mesh/environment/eyepiece.glb" id="34_8d3sp"]
 [ext_resource type="PackedScene" uid="uid://bw488skp1kbsa" path="res://assets/mesh/environment/plane_cobble.glb" id="35_r2oqx"]
@@ -108,20 +109,20 @@ gradient = SubResource("Gradient_11ovw")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_b3vcx"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_68o1n"]
 resource_local_to_scene = true
 size = Vector3(10, 4, 8)
 
-[sub_resource type="Resource" id="Resource_yn4eq"]
+[sub_resource type="Resource" id="Resource_x8tnm"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_68o1n"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_pf4qw"]
 resource_local_to_scene = true
 size = Vector3(7, 4, 6)
 
-[sub_resource type="Resource" id="Resource_x8tnm"]
+[sub_resource type="Resource" id="Resource_elrf0"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
@@ -440,25 +441,25 @@ vertical_alignment = 1
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 10, 0, -6)
 
 [node name="CollisionShape3D" parent="AreaCameraTrigger" index="0" unique_id=1391710269]
-shape = SubResource("BoxShape3D_b3vcx")
+shape = SubResource("BoxShape3D_68o1n")
 
 [node name="PCam-Behind" parent="AreaCameraTrigger" index="1" unique_id=1357355425]
 transform = Transform3D(1.0000002, 0, 0, 1.776357e-15, 0.86602694, 0.50000006, 3.0767455e-15, -0.5000001, 0.8660269, 0, 3, 4.9912405)
-tween_resource = SubResource("Resource_yn4eq")
+tween_resource = SubResource("Resource_x8tnm")
 
 [node name="ACam - Spawn" parent="." unique_id=522325614 instance=ExtResource("4_mryis")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1.5, 8, -16)
 
 [node name="CollisionShape3D" parent="ACam - Spawn" index="0" unique_id=1391710269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9206276e-05, 1.999939, 0)
-shape = SubResource("BoxShape3D_68o1n")
+shape = SubResource("BoxShape3D_pf4qw")
 
 [node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425 node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, -15.987497, 4.4674006, -15.911557)
 top_level = true
 follow_mode = 5
 follow_target = NodePath("../../Player")
-tween_resource = SubResource("Resource_x8tnm")
+tween_resource = SubResource("Resource_elrf0")
 follow_offset = Vector3(0, -1, 0)
 follow_damping = true
 follow_damping_value = Vector3(0.15, 0.15, 0.15)
@@ -503,6 +504,7 @@ upgrade = ExtResource("12_w32m7")
 [node name="== Level Sections ==" type="Node" parent="." unique_id=249267618]
 
 [node name="First Puzzle" parent="." unique_id=183504293 instance=ExtResource("14_xwa6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0021066666, -9.536743e-07, -0.014968872)
 
 [node name="PurpleJumpBridge" parent="." unique_id=273432330 instance=ExtResource("9_2q3qm")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -20, -2, -27)
@@ -895,7 +897,7 @@ transform = Transform3D(1.1192287, 0, 0, 0, 1, 0, 0, 0, 1.1192287, -10.7531185, 
 transform = Transform3D(-4.892304e-08, -1, 0, 1.1192287, -4.371139e-08, 0, 0, 0, 1.1192287, -15.1004305, -1.4279344, -35.19242)
 
 [node name="plane_cobble2" parent="." unique_id=7442064 instance=ExtResource("35_r2oqx")]
-transform = Transform3D(1.1192287, 0, 0, 0, 1, 0, 0, 0, 1.1192287, -10.7531185, 2.198747, -28.773842)
+transform = Transform3D(1.1192287, 0, 0, 0, 1, 0, 0, 0, 1.1192287, -10.753, 2.2, -28.774)
 
 [node name="plane_cobble4" parent="." unique_id=841103541 instance=ExtResource("35_r2oqx")]
 transform = Transform3D(1.1192287, 0, 0, 0, 1, 0, 0, 0, 1.1192287, -3.247036, 2.215179, -28.773842)
@@ -932,6 +934,9 @@ transform = Transform3D(0.16705227, 0.047351114, -0.06763757, -0.07858649, 0.114
 
 [node name="rock4" parent="." unique_id=1228880997 instance=ExtResource("37_yn4eq")]
 transform = Transform3D(-0.112447396, 0.05912604, 0.19493553, 0.07734837, 0.14293267, -0.06038615, -0.2012073, 0.021902977, -0.13215606, -35.282837, -2.040195, -39.65105)
+
+[node name="turbine" parent="." unique_id=707824174 instance=ExtResource("27_68o1n")]
+transform = Transform3D(1, 0, 0, 0, 0.7246377, 0.68913007, 0, -0.68913007, 0.7246377, -10.991978, -0.88970363, -7.296505)
 
 [connection signal="body_entered" from="KillFloor" to="." method="_on_kill_floor_body_entered"]
 [connection signal="started_moving" from="Player" to="CanvasLayer/Control/GameTimer" method="start_countdown"]

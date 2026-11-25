@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bbm5sxfbhkypq" path="res://scenes/game/player/player.gd" id="1_4m2od"]
 [ext_resource type="AudioStream" uid="uid://clqdqxu05rsnt" path="res://assets/audio/sfx/squelch_07.wav" id="2_abehh"]
-[ext_resource type="AudioStream" uid="uid://cjxkbijpi4f3k" path="res://assets/audio/sfx/squelch_05.wav" id="3_dash"]
 [ext_resource type="Shader" uid="uid://yg4gfaqgtula" path="res://assets/materials/slime.gdshader" id="2_bkoau"]
 [ext_resource type="Texture2D" uid="uid://csucxwl38he0t" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_lime_512x512.png" id="2_t5cse"]
+[ext_resource type="AudioStream" uid="uid://cjxkbijpi4f3k" path="res://assets/audio/sfx/squelch_05.wav" id="3_dash"]
 [ext_resource type="ArrayMesh" uid="uid://dev6gv4nxy2n0" path="res://buff_slime_mesh.mesh" id="3_prej5"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="4_gmc11"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_gdbv0"]
@@ -91,6 +91,8 @@ height = 1.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uhg71"]
 height = 1.4000001
 radius = 0.6
+
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_h45xw"]
 
 [node name="Player" type="CharacterBody3D" unique_id=1114472192 node_paths=PackedStringArray("field_detector", "slime")]
 collision_layer = 257
@@ -233,3 +235,7 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea" unique_id=688843753]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.30000007, 0.100000024)
 shape = SubResource("CylinderShape3D_uhg71")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=1068211132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("PlaceholderMesh_h45xw")

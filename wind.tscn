@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://dm3sqkwuic8f2"]
+
+[ext_resource type="PackedScene" uid="uid://cn7cfs6yw5ful" path="res://assets/mesh/environment/propeller.glb" id="1_p3bod"]
+[ext_resource type="Script" uid="uid://d1dcl31ltqxo6" path="res://assets/mesh/environment/propeller.gd" id="2_jsuhd"]
+
+[sub_resource type="Curve" id="Curve_iwlsb"]
+_data = [Vector2(0, 0.98823535), 0.0, 0.0, 0, 0, Vector2(0.9970238, 0.19411767), -0.7905888, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p3bod"]
+curve = SubResource("Curve_iwlsb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h45xw"]
+emission_shape_scale = Vector3(1, 0.035, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, -45, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(1, 10, 0)
+radial_accel_min = -0.40000224
+radial_accel_max = 0.39999774
+scale_min = 0.79999995
+scale_max = 1.1999999
+scale_curve = SubResource("CurveTexture_p3bod")
+turbulence_enabled = true
+turbulence_noise_strength = 0.1
+turbulence_noise_scale = 2.0
+
+[sub_resource type="Gradient" id="Gradient_p3bod"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bej4f"]
+gradient = SubResource("Gradient_p3bod")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jsuhd"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.01
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_os0iy"]
+next_pass = SubResource("StandardMaterial3D_jsuhd")
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+blend_mode = 1
+albedo_color = Color(3.3691526e-06, 0.6955612, 0.7086037, 1)
+albedo_texture = SubResource("GradientTexture2D_bej4f")
+distance_fade_mode = 2
+distance_fade_min_distance = 0.5
+distance_fade_max_distance = 3.0
+stencil_mode = 1
+stencil_flags = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_savvv"]
+material = SubResource("StandardMaterial3D_os0iy")
+radius = 0.2
+height = 0.4
+radial_segments = 16
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0o143"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+blend_mode = 3
+albedo_color = Color(0.41619688, 0.9999998, 0.9539313, 1)
+rim_enabled = true
+stencil_flags = 2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_h45xw"]
+material = SubResource("StandardMaterial3D_0o143")
+top_radius = 1.1850586
+bottom_radius = 1.1850586
+height = 0.04926758
+
+[node name="Node3D" type="Node3D" unique_id=707824174]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1950032141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6140488, 0)
+explosiveness = 0.05
+randomness = 0.51
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_h45xw")
+draw_pass_1 = SubResource("SphereMesh_savvv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=131302056]
+transform = Transform3D(1.1571094, 0, 0, 0, 13.965428, 0, 0, 0, 1.1571094, 0.012949944, -0.013473946, 0.0142449215)
+mesh = SubResource("CylinderMesh_h45xw")
+
+[node name="propeller" parent="." unique_id=1061650542 instance=ExtResource("1_p3bod")]
+transform = Transform3D(0.5549631, 0, 0, 0, 0.5549631, 0, 0, 0, 0.5549631, 0.015901059, -0.08760859, 0.015366524)
+script = ExtResource("2_jsuhd")
