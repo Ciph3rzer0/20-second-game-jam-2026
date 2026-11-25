@@ -358,7 +358,8 @@ height = 20.0
 
 [node name="Updraft" parent="End/Platforms/UpdraftPillar9" unique_id=1952319572 instance=ExtResource("11_gsha7")]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
-float_velocity = 8.0
+gravity = 20.0
+float_velocity = 20.0
 
 [node name="Pillar6" type="CSGCylinder3D" parent="End/Platforms" unique_id=946568745]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1.05, -26)

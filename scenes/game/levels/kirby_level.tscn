@@ -631,6 +631,12 @@ shape = SubResource("BoxShape3D_rav7r")
 [node name="Kirby Puzzle 2" parent="." unique_id=1912843486 instance=ExtResource("24_g60af")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.900001, 1, -32)
 
+[node name="Tower ledge" type="CSGBox3D" parent="." unique_id=1549880446]
+transform = Transform3D(1, -8.881784e-16, -3.5527137e-15, 8.881784e-16, 0.96592593, -0.25881907, 0, 0.25881907, 0.96592593, 12.999997, 8.333603, -55.032505)
+material_override = SubResource("StandardMaterial3D_3iby6")
+use_collision = true
+size = Vector3(4, 0.7, 2)
+
 [node name="Green Pillar" type="CSGCombiner3D" parent="." unique_id=1163370388]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.000001, 0, -36)
 material_override = SubResource("StandardMaterial3D_3iby6")
@@ -694,7 +700,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.0
 size = Vector3(2, 6, 6.2000003)
 
 [node name="Ledge" type="CSGBox3D" parent="Green Pillar" unique_id=1724400560]
-transform = Transform3D(0.9961947, -0.08715574, 1.663345e-10, 0.08715574, 0.9961947, -3.8096983e-09, 1.663345e-10, 3.8096983e-09, 1, -20.505177, 6.712404, -19.000725)
+transform = Transform3D(0.9961947, -0.08715574, 1.663345e-10, 0.08715574, 0.9961947, -3.8096983e-09, 1.663345e-10, 3.8096983e-09, 1, -20.505177, 6.712404, -19.000723)
 operation = 2
 size = Vector3(2, 3, 5)
 
