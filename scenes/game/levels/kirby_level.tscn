@@ -950,15 +950,6 @@ transform = Transform3D(0.29448098, 0, -0.086578995, 0, 0.30694458, 0, 0.0865789
 [node name="plane_gravel3" parent="." unique_id=1619376753 instance=ExtResource("39_x8tnm")]
 transform = Transform3D(0.7478039, 0, 0, 0, 1, 0, 0, 0, 0.72963417, -16.397076, -1.7893833, -34.588276)
 
-[node name="plane_gravel8" parent="." unique_id=1188448925 instance=ExtResource("39_x8tnm")]
-transform = Transform3D(0.7478039, 0, 0, 0, 1, 0, 0, 0, 0.72963417, 0.19313064, 2.199, -36.515114)
-
-[node name="plane_gravel9" parent="." unique_id=130111947 instance=ExtResource("39_x8tnm")]
-transform = Transform3D(0.7478039, 0, 0, 0, 1, 0, 0, 0, 0.72963417, 0.19313064, 2.199, -31.587881)
-
-[node name="plane_gravel10" parent="." unique_id=371983799 instance=ExtResource("39_x8tnm")]
-transform = Transform3D(0.7478039, 0, 0, 0, 1, 0, 0, 0, 0.72963417, 0.193, 2.2, -27.469)
-
 [node name="plane_gravel7" parent="." unique_id=677990520 instance=ExtResource("39_x8tnm")]
 transform = Transform3D(0.63390285, 0, 0, 0, 1, 0, 0, 0, 0.63390285, -22.636272, -1.7893833, -34.333683)
 
