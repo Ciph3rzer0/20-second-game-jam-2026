@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c6k5nnpbypshi"]
 
-[ext_resource type="Script" uid="uid://bhgs1upaahk3y" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.gd" id="1"]
+[ext_resource type="Script" uid="uid://5uwr4udc5y2g" path="res://scenes/menus/main_menu/main_menu.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/menus/main_menu/slime_preview.tscn" id="3_preview"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="4_l1ebe"]
 [ext_resource type="Script" uid="uid://dmkubt2nsnsbn" path="res://addons/maaacks_game_template/base/nodes/labels/config_version_label.gd" id="6_pdiij"]
 [ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_popup_window_panel.tscn" id="7_im16j"]
-[ext_resource type="Script" uid="uid://bkwlopi4qn32o" path="res://addons/maaacks_game_template/base/nodes/labels/config_name_label.gd" id="7_j7612"]
 
 [node name="MainMenu" type="Control" unique_id=781937481]
 layout_mode = 3
@@ -30,6 +30,9 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
+[node name="SlimePreview" parent="." unique_id=392368711 instance=ExtResource("3_preview")]
+layout_mode = 1
+
 [node name="MenuContainer" type="MarginContainer" parent="." unique_id=396616752]
 unique_name_in_owner = true
 layout_mode = 1
@@ -53,13 +56,16 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 67.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 48
-text = "Title"
+theme_override_colors/font_color = Color(0, 0.59745294, 0.5187021, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 144
+text = "Slime Run"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("7_j7612")
 
 [node name="SubTitleMargin" type="MarginContainer" parent="MenuContainer" unique_id=1510335937]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 92
 
@@ -74,15 +80,26 @@ anchor_right = 1.0
 offset_bottom = 34.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 24
-text = "Subtitle"
+text = "submission for the 20s Game Jam, 2026"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubTitleLabel2" type="Label" parent="MenuContainer/SubTitleMargin/SubTitleContainer" unique_id=321944516]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 588.0
+offset_bottom = 622.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "by cipherzero and frkatona"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MenuButtonsMargin" type="MarginContainer" parent="MenuContainer" unique_id=210553886]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_top = 136
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_top = 442
 
 [node name="MenuButtonsContainer" type="Control" parent="MenuContainer/MenuButtonsMargin" unique_id=116448484]
 layout_mode = 2
@@ -91,15 +108,12 @@ mouse_filter = 2
 [node name="MenuButtonsBoxContainer" type="BoxContainer" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer" unique_id=2017477786]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -104.0
-offset_right = 64.0
-offset_bottom = 104.0
+offset_left = -192.0
+offset_right = 192.0
+offset_bottom = 93.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -110,23 +124,10 @@ script = ExtResource("4_l1ebe")
 
 [node name="NewGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=2044537792]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(384, 93)
 layout_mode = 2
-text = "New Game"
-
-[node name="OptionsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=1486236076]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Options"
-
-[node name="CreditsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=301223169]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Credits"
-
-[node name="ExitButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=1750454379]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Exit"
+theme_override_font_sizes/font_size = 48
+text = "Start Game"
 
 [node name="VersionMargin" type="MarginContainer" parent="." unique_id=1732528471]
 layout_mode = 1
@@ -152,11 +153,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -88.0
+offset_left = -94.0
 offset_top = -26.0
+offset_right = -6.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v0.0.0"
+text = "v1.0.0"
 horizontal_alignment = 2
 script = ExtResource("6_pdiij")
 
@@ -174,7 +176,4 @@ title = "Exit Game?"
 text = "Really exit the game?"
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="confirmed" from="ExitConfirmation" to="." method="_on_exit_confirmation_confirmed"]

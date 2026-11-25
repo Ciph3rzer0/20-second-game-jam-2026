@@ -34,10 +34,12 @@
 [ext_resource type="AudioStream" uid="uid://k745texii8s6" path="res://assets/audio/music/bottleneck_20s.wav" id="25_pbnmf"]
 [ext_resource type="PackedScene" uid="uid://dm3sqkwuic8f2" path="res://wind.tscn" id="27_68o1n"]
 [ext_resource type="PackedScene" uid="uid://c7iryukl0037f" path="res://assets/mesh/environment/crate.glb" id="33_ejchr"]
+[ext_resource type="Texture2D" uid="uid://bccqdbdn5m3n8" path="res://assets/mesh/environment/plane_grassBase_Plane_1.png" id="33_pf4qw"]
 [ext_resource type="PackedScene" uid="uid://c8f3xe8kepq5x" path="res://assets/mesh/environment/eyepiece.glb" id="34_8d3sp"]
 [ext_resource type="PackedScene" uid="uid://bw488skp1kbsa" path="res://assets/mesh/environment/plane_cobble.glb" id="35_r2oqx"]
 [ext_resource type="PackedScene" uid="uid://dldljx73vwmy3" path="res://teleporter.tscn" id="36_b3vcx"]
 [ext_resource type="PackedScene" uid="uid://bkhyb7bmtrtan" path="res://assets/mesh/environment/rock.glb" id="37_yn4eq"]
+[ext_resource type="PackedScene" uid="uid://hcagk8fscmh8" path="res://assets/mesh/environment/plane_gravel.glb" id="39_x8tnm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0o143"]
 size = Vector3(13.985962, 0.23339844, 3.4158936)
@@ -109,20 +111,20 @@ gradient = SubResource("Gradient_11ovw")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_68o1n"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_pf4qw"]
 resource_local_to_scene = true
 size = Vector3(10, 4, 8)
 
-[sub_resource type="Resource" id="Resource_x8tnm"]
+[sub_resource type="Resource" id="Resource_elrf0"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_pf4qw"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_b60vg"]
 resource_local_to_scene = true
 size = Vector3(7, 4, 6)
 
-[sub_resource type="Resource" id="Resource_elrf0"]
+[sub_resource type="Resource" id="Resource_xlk7v"]
 resource_local_to_scene = true
 script = ExtResource("4_tn5tm")
 duration = 0.35
@@ -151,6 +153,9 @@ uv1_world_triplanar = true
 albedo_texture = ExtResource("25_g60af")
 uv1_triplanar = true
 uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_elrf0"]
+albedo_texture = ExtResource("33_pf4qw")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gyht"]
 albedo_texture = ExtResource("4_bfu6m")
@@ -441,25 +446,25 @@ vertical_alignment = 1
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 10, 0, -6)
 
 [node name="CollisionShape3D" parent="AreaCameraTrigger" index="0" unique_id=1391710269]
-shape = SubResource("BoxShape3D_68o1n")
+shape = SubResource("BoxShape3D_pf4qw")
 
 [node name="PCam-Behind" parent="AreaCameraTrigger" index="1" unique_id=1357355425]
 transform = Transform3D(1.0000002, 0, 0, 1.776357e-15, 0.86602694, 0.50000006, 3.0767455e-15, -0.5000001, 0.8660269, 0, 3, 4.9912405)
-tween_resource = SubResource("Resource_x8tnm")
+tween_resource = SubResource("Resource_elrf0")
 
 [node name="ACam - Spawn" parent="." unique_id=522325614 instance=ExtResource("4_mryis")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1.5, 8, -16)
 
 [node name="CollisionShape3D" parent="ACam - Spawn" index="0" unique_id=1391710269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9206276e-05, 1.999939, 0)
-shape = SubResource("BoxShape3D_pf4qw")
+shape = SubResource("BoxShape3D_b60vg")
 
 [node name="PCam-Behind" parent="ACam - Spawn" index="1" unique_id=1357355425 node_paths=PackedStringArray("follow_target")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, -15.987497, 4.4674006, -15.911557)
 top_level = true
 follow_mode = 5
 follow_target = NodePath("../../Player")
-tween_resource = SubResource("Resource_elrf0")
+tween_resource = SubResource("Resource_xlk7v")
 follow_offset = Vector3(0, -1, 0)
 follow_damping = true
 follow_damping_value = Vector3(0.15, 0.15, 0.15)
@@ -680,6 +685,7 @@ size = Vector3(3.8164063, 3, 3)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Green Pillar/Pillar SHape/Tower" unique_id=1301883855]
 transform = Transform3D(-4.3047315e-08, 7.590403e-09, 1, 0.17364821, 0.98480785, 1.3322676e-15, -0.98480785, 0.17364821, -4.3711392e-08, -0.034240723, 10.042424, 0.5361366)
+material_override = SubResource("StandardMaterial3D_elrf0")
 size = Vector3(2, 6, 6.2000003)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Green Pillar/Pillar SHape/Tower" unique_id=456845975]
@@ -937,6 +943,36 @@ transform = Transform3D(-0.112447396, 0.05912604, 0.19493553, 0.07734837, 0.1429
 
 [node name="turbine" parent="." unique_id=707824174 instance=ExtResource("27_68o1n")]
 transform = Transform3D(1, 0, 0, 0, 0.7246377, 0.68913007, 0, -0.68913007, 0.7246377, -10.991978, -0.88970363, -7.296505)
+
+[node name="rock5" parent="." unique_id=1116865708 instance=ExtResource("37_yn4eq")]
+transform = Transform3D(0.29448098, 0, -0.086578995, 0, 0.30694458, 0, 0.086578995, 0, 0.29448098, -13.726317, 2.2770867, -37.92516)
+
+[node name="plane_gravel3" parent="." unique_id=1619376753 instance=ExtResource("39_x8tnm")]
+transform = Transform3D(0.7478039, 0, 0, 0, 1, 0, 0, 0, 0.72963417, -16.397076, -1.7893833, -34.588276)
+
+[node name="plane_gravel8" parent="." unique_id=1188448925 instance=ExtResource("39_x8tnm")]
+transform = Transform3D(0.7478039, 0, 0, 0, 1, 0, 0, 0, 0.72963417, 0.19313064, 2.199, -36.515114)
+
+[node name="plane_gravel9" parent="." unique_id=130111947 instance=ExtResource("39_x8tnm")]
+transform = Transform3D(0.7478039, 0, 0, 0, 1, 0, 0, 0, 0.72963417, 0.19313064, 2.199, -31.587881)
+
+[node name="plane_gravel10" parent="." unique_id=371983799 instance=ExtResource("39_x8tnm")]
+transform = Transform3D(0.7478039, 0, 0, 0, 1, 0, 0, 0, 0.72963417, 0.193, 2.2, -27.469)
+
+[node name="plane_gravel7" parent="." unique_id=677990520 instance=ExtResource("39_x8tnm")]
+transform = Transform3D(0.63390285, 0, 0, 0, 1, 0, 0, 0, 0.63390285, -22.636272, -1.7893833, -34.333683)
+
+[node name="plane_gravel5" parent="." unique_id=377000631 instance=ExtResource("39_x8tnm")]
+transform = Transform3D(1.62186, 0, 0, 0, 1.0144877, 0, 0, 0, 1.62186, -18.168678, -5.763406, -41.143917)
+
+[node name="plane_gravel6" parent="." unique_id=6669831 instance=ExtResource("39_x8tnm")]
+transform = Transform3D(1.62186, 0, 0, 0, 1.0144877, 0, 0, 0, 1.62186, -18.168678, -5.7791095, -45.964275)
+
+[node name="plane_gravel4" parent="." unique_id=1018982714 instance=ExtResource("39_x8tnm")]
+transform = Transform3D(0.7478039, 0, 0, 0, 1, 0, 0, 0, 0.72963417, -21.442007, -1.7893833, -34.588276)
+
+[node name="plane_gravel2" parent="." unique_id=978736696 instance=ExtResource("39_x8tnm")]
+transform = Transform3D(1.3531324, 0, 0, 0, 1, 0, 0, 0, 1.3224697, -18.069815, -1.7925007, -26.470707)
 
 [connection signal="body_entered" from="KillFloor" to="." method="_on_kill_floor_body_entered"]
 [connection signal="started_moving" from="Player" to="CanvasLayer/Control/GameTimer" method="start_countdown"]

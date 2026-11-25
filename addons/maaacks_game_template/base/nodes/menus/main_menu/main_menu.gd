@@ -26,9 +26,9 @@ var sub_menu : Control
 
 @onready var menu_buttons_box_container = %MenuButtonsBoxContainer
 @onready var new_game_button = %NewGameButton
-@onready var options_button = %OptionsButton
-@onready var credits_button = %CreditsButton
-@onready var exit_button = %ExitButton
+@onready var options_button: Button = get_node_or_null(^"%OptionsButton")
+@onready var credits_button: Button = get_node_or_null(^"%CreditsButton")
+@onready var exit_button: Button = get_node_or_null(^"%ExitButton")
 @onready var exit_confirmation = %ExitConfirmation
 ## If Maaack's Scene Loader is installed, then it will be used to change scenes.
 @onready var scene_loader_node = get_tree().root.get_node_or_null(^"SceneLoader")
@@ -89,7 +89,7 @@ func _input(event : InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func _hide_exit_for_web() -> void:
-	if OS.has_feature("web"):
+	if exit_button and OS.has_feature("web"):
 		exit_button.hide()
 
 func _hide_new_game_if_unset() -> void:
@@ -97,11 +97,11 @@ func _hide_new_game_if_unset() -> void:
 		new_game_button.hide()
 
 func _hide_options_if_unset() -> void:
-	if options_packed_scene == null:
+	if options_button and options_packed_scene == null:
 		options_button.hide()
 
 func _hide_credits_if_unset() -> void:
-	if credits_packed_scene == null:
+	if credits_button and credits_packed_scene == null:
 		credits_button.hide()
 
 func _ready() -> void:
